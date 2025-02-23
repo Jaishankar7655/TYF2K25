@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Calendar, Music, Users, Trophy } from "lucide-react";
 import festlogo from "../assets/festlogo.jpg";
+import EventLists from "./EventLists";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -61,7 +62,7 @@ const HomePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
             <Calendar className="w-12 h-12 text-purple-600 mb-4" />
-            <h3 className="text-xl font-bold text-purple-900 mb-2">3 Days</h3>
+            <h3 className="text-xl font-bold text-purple-900 mb-2">4 Days</h3>
             <p className="text-gray-600">
               Of non-stop excitement and cultural extravaganza
             </p>
@@ -88,6 +89,11 @@ const HomePage = () => {
             <p className="text-gray-600">Worth of prizes to be won</p>
           </div>
         </div>
+      
+
+        <EventLists/>
+
+
 
         {/* Event categories preview */}
         <div className="text-center mb-16">
@@ -116,6 +122,8 @@ const HomePage = () => {
             )}
           </div>
         </div>
+
+      
       </div>
     </div>
   );
