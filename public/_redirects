@@ -1,0 +1,14 @@
+# Redirect all routes to index.html (for SPA support)
+/*    /index.html   200
+
+# Force HTTPS (replace 'yourdomain.com' with your actual domain)
+http://* https://trubafest.netlify.app/:splat  301!
+
+# Custom 404 page (optional, if you have a 404.html file)
+/*    /404.html   404
+
+# Redirect old URLs to new ones (example)
+/old-route   /new-route   301
+
+# Block access to admin panel (example)
+/admin   403
