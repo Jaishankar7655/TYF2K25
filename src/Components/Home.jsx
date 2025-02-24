@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Calendar, Music, Users, Trophy } from "lucide-react";
 import festlogo from "../assets/festlogo.jpg";
+import trb from "../assets/trb.png";
 import EventLists from "./EventLists";
 
 const HomePage = () => {
@@ -35,7 +36,7 @@ const HomePage = () => {
       <div className="container mx-auto px-4 py-12 ">
         {/* Hero section */}
         <div className="flex justify-between" >
-          <img className="md:w-[200px] md:h-[200px]  w-[70px] h-[70px]" src={festlogo} alt="" />
+          <img className="md:w-[200px] md:h-[200px]  w-[70px] h-[70px]" src={trb} alt="" />
 
           <div className="text-center mb-16">
             <h1 className="md:text-7xl text-4xl   font-bold text-purple-900 mb-6 animate-fade-in">
@@ -45,7 +46,7 @@ const HomePage = () => {
               </span>
             </h1>
             <p className="text-3xl text-purple-700 mb-8">
-              Celebrate the Colors of Youth | March 8-9-10, 2025
+              Celebrate the Colors of Youth | March 6-7-8-9-10, 2025
             </p>
             <button
               onClick={() => navigate("/register")}
@@ -62,7 +63,7 @@ const HomePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
             <Calendar className="w-12 h-12 text-purple-600 mb-4" />
-            <h3 className="text-xl font-bold text-purple-900 mb-2">4 Days</h3>
+            <h3 className="text-xl font-bold text-purple-900 mb-2">5 Days</h3>
             <p className="text-gray-600">
               Of non-stop excitement and cultural extravaganza
             </p>
