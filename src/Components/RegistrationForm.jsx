@@ -440,7 +440,7 @@ const RegistrationForm = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting || selectedEvents.length === 0}
-                  className="inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold py-3 px-8 rounded-xl
+                  className="inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold py-3 px-3 rounded-xl
                            shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 
                            disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
