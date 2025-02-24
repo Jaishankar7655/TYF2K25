@@ -447,10 +447,10 @@ const RegistrationForm = () => {
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      Submitting...
+                      Processing..
                     </>
                   ) : (
-                    "Register Now"
+                    "Continue For payment"
                   )}
                 </button>
               </div>

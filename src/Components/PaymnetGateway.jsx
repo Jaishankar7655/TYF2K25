@@ -238,6 +238,7 @@ const PaymentGateway = () => {
                   className="hidden"
                 />
               </label>
+              <span className="text-red-600 text-[15px]" >*Kindly Attach ScreenShot </span>
             </div>
 
             {paymentSuccess && (
