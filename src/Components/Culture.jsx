@@ -128,7 +128,7 @@ function Culture() {
             className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col"
           >
             {/* Event Header */}
-            <div className="px-6 py-5 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+            <div className="px-6 py-5 bg-gradient-to-r from-purple-500 to-pink-600 text-white">
               <h2 className="text-xl font-semibold mb-1">{event.name}</h2>
               <div className="text-sm opacity-90 flex items-center">
                 <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
