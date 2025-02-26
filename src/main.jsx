@@ -8,7 +8,10 @@ import Successful from "./Components/Successful";
 import PaymnetGateway from "./Components/PaymnetGateway";
 import Paymentconfirm from "./Components/Paymentconfirm";
 import PaymentSuccess from "./Components/Paymentsuccess";
-
+import Sport from "./Components/Sport";
+import Culture from "./Components/Culture";
+import Literary from "./Components/Literary";
+import Technical from "./Components/Technical";
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root).render(
@@ -20,6 +23,10 @@ ReactDOM.createRoot(root).render(
       <Route path="/payment" element={<PaymnetGateway />} />
       <Route path="/Paymentconfirm" element={<Paymentconfirm />} />
       <Route path="/PaymentSuccess" element={<PaymentSuccess />} />
+      <Route path="/Technical" element={<Technical />} />
+      <Route path="/Literary" element={<Literary />} />
+      <Route path="/Culture" element={<Culture />} />
+      <Route path="/Sport" element={<Sport />} />
     </Routes>
   </BrowserRouter>
 );

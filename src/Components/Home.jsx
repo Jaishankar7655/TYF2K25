@@ -4,6 +4,9 @@ import { Calendar, Music, Users, Trophy } from "lucide-react";
 import festlogo from "../assets/festlogo.jpg";
 import trb from "../assets/trb.png";
 import EventLists from "./EventLists";
+import Rules from "./Rules";
+import AllEvents from "./AllEvents";
+import Footer from "./Footer";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -35,12 +38,16 @@ const HomePage = () => {
       {/* Main content */}
       <div className="container mx-auto px-4 py-12 ">
         {/* Hero section */}
-        <div className="flex justify-between" >
-          <img className="md:w-[200px] md:h-[200px]  w-[70px] h-[70px]" src={trb} alt="" />
+        <div className="flex justify-between">
+          <img
+            className="md:w-[200px] md:h-[200px]  w-[70px] h-[70px]"
+            src={trb}
+            alt=""
+          />
 
           <div className="text-center mb-16">
             <h1 className="md:text-7xl text-4xl   font-bold text-purple-900 mb-6 animate-fade-in">
-              Truba Youth Fest 
+              Truba Youth Fest
               <span className="block text-8xl bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
                 2K25
               </span>
@@ -56,7 +63,11 @@ const HomePage = () => {
               Register Now
             </button>
           </div>
-          <img className="md:w-[200px] md:h-[200px]  w-[70px] h-[70px]" src={festlogo} alt="" />
+          <img
+            className="md:w-[200px] md:h-[200px]  w-[70px] h-[70px]"
+            src={festlogo}
+            alt=""
+          />
         </div>
 
         {/* Features grid */}
@@ -90,41 +101,13 @@ const HomePage = () => {
             <p className="text-gray-600">Worth of prizes to be won</p>
           </div>
         </div>
-      
 
-        <EventLists/>
-
-
+        <EventLists />
+        <Rules />
 
         {/* Event categories preview */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-purple-900 mb-8">
-            Event Categories
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {["Cultural", "Literary", "Technical", "E-Sports", "Sports"].map(
-              (category, index) => (
-                <div
-                  key={category}
-                  className="group relative overflow-hidden rounded-xl aspect-video cursor-pointer"
-                  onClick={() => navigate("/register")}
-                >
-                  <div
-                    className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 opacity-75 
-                              group-hover:opacity-90 transition-opacity"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-2xl font-bold text-white group-hover:scale-110 transition-transform">
-                      {category}
-                    </h3>
-                  </div>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-
-      
+        <AllEvents />
+        <Footer />
       </div>
     </div>
   );
