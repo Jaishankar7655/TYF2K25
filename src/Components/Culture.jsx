@@ -146,7 +146,7 @@ function Culture() {
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-700 font-medium">Prizes:</span>
-                <span className="text-gray-800">{event.prizes}</span>
+                <span className="text-gray-800">{event.prizes.toLowerCase()}</span>
               </div>
             </div>
             
