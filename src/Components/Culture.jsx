@@ -186,6 +186,7 @@ function Culture() {
         ))}
       </div>
       
+      <p className='text-center text-red-500 ' >"ALL THE PARTICIPANTS WILL GET THE CERTIFICATE OF PARTICIPATION AND THERE ARE PRIZE FOR WINNER AND RUNNERUP"</p>
       {/* Register Section */}
       <div className="bg-gray-50 rounded-lg p-8 text-center">
         <h2 className="text-2xl font-bold text-gray-800 mb-2">Ready to Showcase Your Cultural Talent?</h2>
