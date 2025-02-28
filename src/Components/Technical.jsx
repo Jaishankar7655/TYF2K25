@@ -16,7 +16,7 @@ function Technical() {
       ],
       date: "7TH MARCH, 11:00 AM",
       fees: "RS 100 DUO",
-      prizes: "TROPHY FOR EACH DUO",
+      prizes: "TROPHY FOR WINNING AND RUNNERUP DUO",
     },
     {
       id: 2,
@@ -28,7 +28,7 @@ function Technical() {
       ],
       date: "7TH MARCH, 2:00 PM",
       fees: "Rs 50",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ function Technical() {
       ],
       date: "7TH MARCH, 2:00 PM",
       fees: "RS 100 SINGLE /DUO",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
       id: 6,
@@ -51,7 +51,7 @@ function Technical() {
       ],
       date: "8TH MARCH, 2:00 PM",
       fees: "Rs 50",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
       id: 7,
@@ -61,7 +61,7 @@ function Technical() {
       ],
       date: "9TH MARCH, 11:00 AM",
       fees: "Rs 100",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
       id: 5,
@@ -71,9 +71,9 @@ function Technical() {
       ],
       date: "8TH MARCH, 10:30 AM",
       fees: "RS 100 DUO",
-      prizes: "TROPHY FOR EACH DUO",
-    },
-  ];
+      prizes: "TROPHY FOR WINNING AND RUNNERUP DUO",
+    },
+  ];
 
   const handleToggleRules = (id) => {
     setOpenEventId(openEventId === id ? null : id);

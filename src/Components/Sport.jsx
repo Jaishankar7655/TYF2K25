@@ -15,7 +15,7 @@ function Sport() {
       ],
       date: "8TH MARCH, 10:00 AM",
       fees: "RS 350 PER SQUAD",
-      prizes: "CASH PRIZE",
+      prizes: "CASH PRIZE(DEPENDS ON REGISTRATION) AND CERTIFICATES TO ALL PARTICIPANTS",
     },
     {
       id: 8,
@@ -23,7 +23,7 @@ function Sport() {
       rules: ["REGULAR RULES."],
       date: "6TH MARCH, 10:00 AM",
       fees: "Rs 50",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER ",
     },
     {
       id: 9,
@@ -31,7 +31,7 @@ function Sport() {
       rules: ["SINGLES WILL BE THERE.", "MATCH WILL BE OF 11 POINTS."],
       date: "6TH MARCH, 11:00 AM",
       fees: "Rs 50",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
       id: 10,
@@ -39,7 +39,7 @@ function Sport() {
       rules: ["8 PARTICIPANTS SHOULD BE THERE IN THE TEAM."],
       date: "6TH MARCH, 11:00 AM",
       fees: "RS 150 PER TEAM",
-      prizes: "MEDAL & TROPHY TO TEAM",
+      prizes: "MEDAL & TROPHY FOR WINNING TEAM",
     },
     {
       id: 11,
@@ -52,7 +52,7 @@ function Sport() {
       ],
       date: "7TH MARCH, 1:00 PM",
       fees: "Rs 50",
-      prizes: "WEIGHT: 60-80KG (TROPHY & MEDAL). WEIGHT: 80-ABOVE 100KG (TROPHY & MEDAL).",
+      prizes: "TROPHY AND MEDAL FOR BOTH THE CATEGORY OF 60-80KG AND 80-ABOVE 100KG.",
     },
     {
       id: 12,
@@ -66,8 +66,8 @@ function Sport() {
       ],
       date: "7TH MARCH, 10:30 AM",
       fees: "RS 600 PER TEAM",
-      prizes: "9 GOLD MEDALS TO TEAM & 1 TROPHY TO TEAM",
-    },
+      prizes: " 1 TROPHY & 9 GOLD MEDALS TO WINNING TEAM & SILVER MEDALS FOR RUNNERUP TEAM",
+    },	
     {
       id: 13,
       name: "KABADDI",
@@ -80,7 +80,7 @@ function Sport() {
       ],
       date: "7TH MARCH, 10:30 AM",
       fees: "RS 500 PER TEAM",
-      prizes: "9 GOLD MEDALS TO TEAM & 1 TROPHY TO TEAM",
+      prizes: " 1 TROPHY & 9 GOLD MEDALS TO WINNING TEAM & SILVER MEDALS FOR RUNNERUP TEAM",
     },
     {
       id: 14,
@@ -89,8 +89,9 @@ function Sport() {
       date: "7TH MARCH, 11:00 AM",
       fees: "Rs 50",
       prizes: "Not specified",
-    },
-  ];
+    },
+  ];
+
 
   const handleToggleRules = (id) => {
     setOpenEventId(openEventId === id ? null : id);

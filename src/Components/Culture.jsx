@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 function Culture() {
   const [openEventId, setOpenEventId] = useState(null);
   const navigate = useNavigate();
-
   const culturalEvents = [
     {
       id: 22,
@@ -14,7 +13,7 @@ function Culture() {
       ],
       date: "6TH MARCH, 12:00 AM",
       fees: "Rs 50",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER",
     },
     {
       id: 23,
@@ -25,13 +24,13 @@ function Culture() {
       ],
       date: "8TH MARCH, 1:00 PM",
       fees: "SOLO- Rs 50, DUET Rs 100, GROUP Rs150",
-      prizes: "SOLO:- 1 TROPHY, DUO :- 2 TROPHY, GROUP:- 1 TROPHY TO GROUP",
+      prizes: "SOLO:- 1 TROPHY FOR WINNER, DUO :- 2 TROPHY FOR WINNER, GROUP:- 1 TROPHY FOR WINNING GROUP",
     },
     {
       id: 24,
       name: "DANCE COMPETITION",
       rules: [
-        "ALL THE PERTICIPANTS MUST REGISTER BEFORE THE DEADLINE.",
+        "ALL THE PARTICIPANTS MUST REGISTER BEFORE THE DEADLINE.",
         "EACH PERFORMANCE SHOULD BE PERFORMED UNDER 5 MIN.",
         "PARTICIPANTS MUST PROVIDE THEIR OWN MUSIC.",
         "GROUP CAN HAVE MAXIMUM 8 MEMBER."
@@ -51,7 +50,7 @@ function Culture() {
       ],
       date: "8TH MARCH, 10:30 AM",
       fees: "Rs 50",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
       id: 26,
@@ -61,7 +60,7 @@ function Culture() {
       ],
       date: "9TH MARCH, 10:30 AM",
       fees: "Rs 50",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
       id: 27,
@@ -72,7 +71,7 @@ function Culture() {
       ],
       date: "8TH MARCH, 4:30 PM",
       fees: "Rs100",
-      prizes: "TROPHY FOR MALE AND FEMALE CANDIDATE",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP FOR MALE AND FEMALE CANDIDATE",
     },
     {
       id: 28,
@@ -86,7 +85,7 @@ function Culture() {
       ],
       date: "9TH MARCH, 1.00PM",
       fees: "Rs100 PER TEAM",
-      prizes: "SINGLE TROPHY TO GROUP",
+      prizes: " TROPHY FOR WINNING GROUP",
     },
     {
       id: 29,
@@ -98,9 +97,10 @@ function Culture() {
       ],
       date: "9TH MARCH, 1:30 PM",
       fees: "Rs100",
-      prizes: "TROPHY",
-    },
-  ];
+      prizes: "TROPHY FOR 1ST, 2ND & 3RD",
+    },
+  ];
+
 
   const handleToggleRules = (id) => {
     setOpenEventId(openEventId === id ? null : id);

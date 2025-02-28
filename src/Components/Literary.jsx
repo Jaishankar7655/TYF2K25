@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 function Literary() {
   const [openEventId, setOpenEventId] = useState(null);
   const navigate = useNavigate();
-
   const literaryEvents = [
     {
       id: 14,
@@ -19,7 +18,7 @@ function Literary() {
       ],
       date: "7TH MARCH, 3:00 PM",
       fees: "Rs 50",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
       id: 15,
@@ -30,7 +29,7 @@ function Literary() {
       ],
       date: "7TH MARCH, 2:00 PM",
       fees: "Rs 50",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
       id: 16,
@@ -41,7 +40,7 @@ function Literary() {
       ],
       date: "8TH MARCH, 11:00 AM",
       fees: "Rs 150 PER TEAM",
-      prizes: "TROPHY TO TEAM",
+      prizes: "TROPHY FOR WINNING AND RUNNERUP TEAM",
     },
     {
       id: 17,
@@ -51,7 +50,7 @@ function Literary() {
       ],
       date: "8TH MARCH, 1:00 PM",
       fees: "Rs 50",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
       id: 18,
@@ -63,7 +62,7 @@ function Literary() {
       ],
       date: "8TH MARCH, 2:00 PM",
       fees: "Rs 50",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
       id: 19,
@@ -75,7 +74,7 @@ function Literary() {
       ],
       date: "9TH MARCH, 11:00 AM",
       fees: "RS 70 DUO",
-      prizes: "TROPHY",
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
       id: 20,
@@ -87,7 +86,7 @@ function Literary() {
       ],
       date: "9TH MARCH, 11:00 AM",
       fees: "Rs100 PER TEAM",
-      prizes: "1 TROPHY TO TEAM",
+      prizes: "TROPHY FOR 1ST, 2ND & 3RD ",
     },
     {
       id: 21,
@@ -101,9 +100,10 @@ function Literary() {
       ],
       date: "9TH MARCH, 11:00 AM",
       fees: "Rs 50",
-      prizes: "TROPHY",
-    },
-  ];
+      prizes: "TROPHY FOR WINNER AND RUNNERUP",
+    },
+  ];
+
 
   const handleToggleRules = (id) => {
     setOpenEventId(openEventId === id ? null : id);
