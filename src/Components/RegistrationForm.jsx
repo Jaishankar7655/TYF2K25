@@ -73,6 +73,7 @@ const categories = [
     title: "Sports",
     icon: "🏆",
     events: [
+      { name: "Kabbadi (per team)", price: 500 },
       { name: "Arm Wrestling", price: 50 },
       { name: "Badminton", price: 50 },
       { name: "Chess", price: 50 },
