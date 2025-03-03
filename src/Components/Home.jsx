@@ -36,7 +36,7 @@ const HomePage = () => {
       </div>
 
       {/* Main content */}
-      <div className="container mx-auto px-4  ">
+      <div className="container mx-auto px-4 py-12 ">
         {/* Hero section */}
         <div className="flex justify-between">
           <img
@@ -107,7 +107,7 @@ const HomePage = () => {
 
         {/* Event categories preview */}
         <AllEvents />
-       
+        <Footer />
       </div>
     </div>
   );

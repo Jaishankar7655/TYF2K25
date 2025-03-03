@@ -15,8 +15,8 @@ function Technical() {
         "POINTS FOR CORRECT ANSWERS AND PENALTIES FOR INCORRECT.",
       ],
       date: "7TH MARCH, 11:00 AM",
-      fees: "RS 100 (Group)",
-      prizes: "TROPHY FOR WINNING AND RUNNERUP (Group)",
+      fees: "RS 100 DUO",
+      prizes: "TROPHY FOR WINNING AND RUNNERUP DUO",
     },
     {
       id: 2,
@@ -38,7 +38,7 @@ function Technical() {
         "PRESENTATION SHOULD BE UNDER 10 MIN.",
       ],
       date: "7TH MARCH, 2:00 PM",
-      fees: "RS 100 SINGLE /(Group)",
+      fees: "RS 100 SINGLE /DUO",
       prizes: "TROPHY FOR WINNER AND RUNNERUP",
     },
     {
@@ -70,8 +70,8 @@ function Technical() {
         "IT WILL BE OF TWO ROUNDS. (SIMPLE SYRUP IN FIRST ROUND & EFFERVESCENT POWDER IS FOR SECOND ROUND)",
       ],
       date: "8TH MARCH, 10:30 AM",
-      fees: "RS 100 (Group)",
-      prizes: "TROPHY FOR WINNING AND RUNNERUP (Group)",
+      fees: "RS 100 DUO",
+      prizes: "TROPHY FOR WINNING AND RUNNERUP DUO",
     },
   ];
 
