@@ -15,7 +15,7 @@ const categories = [
         hasOptions: true,
         options: [
           { type: "Solo", price: 100 },
-          { type: "Duo", price: 150 },
+          { type: "Group", price: 150 },
           { type: "Group", price: 250 },
         ],
       },
@@ -28,7 +28,7 @@ const categories = [
         hasOptions: true,
         options: [
           { type: "Solo", price: 50 },
-          { type: "Duo", price: 100 },
+          { type: "Group", price: 100 },
           { type: "Group", price: 150 },
         ],
       },
@@ -41,7 +41,7 @@ const categories = [
     events: [
       { name: "Poster presentation", price: 50 },
       { name: "Kavi Kosh (Poetry)", price: 50 },
-      { name: "Mind Marathon (Duo)", price: 70 },
+      { name: "Mind Marathon (Group)", price: 70 },
       { name: "AD-MAD-SHOW (per team )", price: 100 },
       { name: "IPL Auction (Per team) ", price: 150 },
       { name: "Extempore", price: 50 },
@@ -53,12 +53,12 @@ const categories = [
     title: "Technical",
     icon: "💻",
     events: [
-      { name: "Tech Paper presentation , (Single/Duo) ", price: 100 },
+      { name: "Tech Paper presentation , (Single/Group) ", price: 100 },
       { name: "Code Encounter", price: 100 },
-      { name: "Cure Celebration (Duo)", price: 100 },
+      { name: "Cure Celebration (Group)", price: 100 },
       { name: "Tech Quiz", price: 50 },
       { name: "Buddhi Vimarsh", price: 50 },
-      { name: "Commerce Quiz (Duo)", price: 100 },
+      { name: "Commerce Quiz (Group)", price: 100 },
     ],
   },
   {

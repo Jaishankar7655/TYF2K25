@@ -12,6 +12,7 @@ import Sport from "./Components/Sport";
 import Culture from "./Components/Culture";
 import Literary from "./Components/Literary";
 import Technical from "./Components/Technical";
+import Footer from "./Components/Footer";
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root).render(
@@ -28,5 +29,6 @@ ReactDOM.createRoot(root).render(
       <Route path="/Culture" element={<Culture />} />
       <Route path="/Sport" element={<Sport />} />
     </Routes>
+    <Footer />
   </BrowserRouter>
 );
