@@ -32,7 +32,8 @@ const categories = [
           { type: "Group", price: 150 },
         ],
       },
-      { name: "Nukkad natak / mono act", price: 100 },
+      { name: "Nukkad natak", price: 100 },
+      { name: "Mono Act", price: 100 },
     ],
   },
   {
