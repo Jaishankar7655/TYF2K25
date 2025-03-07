@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { User, Mail, Phone, School, Tag, Loader2 } from "lucide-react";
+import { User, Mail, Phone, School, Tag, Loader2, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 // Updated event categories data with both singing and dance options
@@ -9,7 +9,7 @@ const categories = [
     title: "Cultural",
     icon: "🎭",
     events: [
-      { name: "Trudies (Rodies of Truba)", price: 100 },
+      { name: "Trudies (Rodies of Truba)", price: 100, closed: true },
       {
         name: "Dance Competition",
         hasOptions: true,
@@ -40,14 +40,14 @@ const categories = [
     title: "Literary",
     icon: "📚",
     events: [
-      { name: "Poster presentation", price: 50 },
+      { name: "Poster presentation", price: 50, closed: true },
       { name: "Kavi Kosh (Poetry)", price: 50 },
       { name: "Mind Marathon (Duo)", price: 70 },
       { name: "AD-MAD-SHOW (per team )", price: 100 },
       { name: "IPL Auction (Per team) ", price: 150 },
       { name: "Extempore", price: 50 },
       { name: "Designer Cut", price: 50 },
-      { name: "Becho To Jaane (Per team)", price: 50 },
+      { name: "Becho To Jaane (Per team)", price: 50, closed: true },
     ],
   },
   {
@@ -74,13 +74,13 @@ const categories = [
     title: "Sports",
     icon: "🏆",
     events: [
-      { name: "Kabbadi (per team)", price: 500 },
-      { name: "Arm Wrestling", price: 50 },
-      { name: "Badminton", price: 50 },
-      { name: "Chess", price: 50 },
-      { name: "Volleyball (Per Team) ", price: 600 },
-      { name: "Kho-Kho (Per team)", price: 150 },
-      { name: "Carrom", price: 50 },
+      { name: "Kabbadi (per team)", price: 500, closed: true },
+      { name: "Arm Wrestling", price: 50, closed: true },
+      { name: "Badminton", price: 50, closed: true },
+      { name: "Chess", price: 50, closed: true },
+      { name: "Volleyball (Per Team) ", price: 600, closed: true },
+      { name: "Kho-Kho (Per team)", price: 150, closed: true },
+      { name: "Carrom", price: 50, closed: true },
     ],
   },
 ];
@@ -94,6 +94,7 @@ const RegistrationForm = () => {
     "Singing Competition": "",
     "Dance Competition": "",
   });
+  const [alertMessage, setAlertMessage] = useState("");
 
   const {
     register,
@@ -143,20 +144,28 @@ const RegistrationForm = () => {
     return total;
   };
 
-  const handleEventSelection = (eventName, isChecked) => {
+  const handleEventSelection = (event, isChecked) => {
+    if (event.closed) {
+      setAlertMessage(`Registration for "${event.name}" is closed.`);
+      setTimeout(() => {
+        setAlertMessage("");
+      }, 3000);
+      return;
+    }
+
     if (isChecked) {
-      setSelectedEvents((prev) => [...prev, eventName]);
+      setSelectedEvents((prev) => [...prev, event.name]);
     } else {
-      setSelectedEvents((prev) => prev.filter((e) => e !== eventName));
+      setSelectedEvents((prev) => prev.filter((e) => e !== event.name));
       if (
-        eventName === "Singing Competition" ||
-        eventName === "Dance Competition"
+        event.name === "Singing Competition" ||
+        event.name === "Dance Competition"
       ) {
         setEventOptions((prev) => ({
           ...prev,
-          [eventName]: "",
+          [event.name]: "",
         }));
-        setValue(`${eventName} Options`, "");
+        setValue(`${event.name} Options`, "");
       }
     }
   };
@@ -247,6 +256,16 @@ const RegistrationForm = () => {
               Register for Truba Youth Fest 2K25
             </p>
           </div>
+
+          {/* Alert Message */}
+          {alertMessage && (
+            <div className="fixed top-6 left-0 right-0 mx-auto w-full max-w-md z-50">
+              <div className="bg-red-100 border border-red-200 text-red-700 px-4 py-3 rounded-lg shadow-lg flex items-center">
+                <AlertTriangle className="h-5 w-5 mr-2" />
+                <p>{alertMessage}</p>
+              </div>
+            </div>
+          )}
 
           {/* Error Message */}
           {error && (
@@ -367,17 +386,17 @@ const RegistrationForm = () => {
                     <div className="space-y-3">
                       {category.events.map((event) => (
                         <div key={event.name} className="space-y-2">
-                          <label className="flex items-center justify-between p-2 rounded-lg hover:bg-purple-50 cursor-pointer transition-colors duration-200">
+                          <div 
+                            className={`flex items-center justify-between p-2 rounded-lg 
+                                     ${event.closed ? 'cursor-pointer' : 'hover:bg-purple-50 cursor-pointer'} 
+                                     transition-colors duration-200`}
+                            onClick={() => handleEventSelection(event, !selectedEvents.includes(event.name))}
+                          >
                             <div className="flex items-center space-x-3">
                               <input
                                 type="checkbox"
                                 checked={selectedEvents.includes(event.name)}
-                                onChange={(e) =>
-                                  handleEventSelection(
-                                    event.name,
-                                    e.target.checked
-                                  )
-                                }
+                                onChange={() => {}} // Handling via the onClick of the parent div
                                 className="w-5 h-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                               />
                               <span className="text-gray-700">
@@ -389,7 +408,7 @@ const RegistrationForm = () => {
                                 ? "Price varies"
                                 : `₹${event.price}`}
                             </span>
-                          </label>
+                          </div>
 
                           {event.hasOptions &&
                             selectedEvents.includes(event.name) && (
