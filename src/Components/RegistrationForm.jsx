@@ -87,13 +87,13 @@ const categories = [
     title: "SAC Committee",
     icon: "🌟",
     events: [
-      { name: "Dare to Drink", price: 50 },
-      { name: "Cup Pyramid", price: 50 },
-      { name: "Spoon Tie-Knot Challenge", price: 50 },
-      { name: "Plank / Weight Add-on Challenge", price: 50 },
-      { name: "Blind Fold Challenge", price: 50 },
-      { name: "Dance-Freeze Challenge", price: 50 },
-      { name: "Cricket Circle Game", price: 50 },
+      { name: "Dare to Drink", price: null },
+      { name: "Cup Pyramid", price: null },
+      { name: "Spoon Tie-Knot Challenge", price: null },
+      { name: "Plank / Weight Add-on Challenge", price: null },
+      { name: "Blind Fold Challenge", price: null },
+      { name: "Dance-Freeze Challenge", price: null },
+      { name: "Cricket Circle Game", price: null },
     ],
   },
 ];
@@ -390,7 +390,7 @@ const RegistrationForm = () => {
               </div>
   
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categories.map((category) => (
+                {categories.filter(c => c.title !== "SAC Committee").map((category) => (
                   <div
                     key={category.title}
                     className="bg-white rounded-xl p-6 shadow-lg border border-gray-100"
@@ -491,7 +491,9 @@ const RegistrationForm = () => {
                           />
                           <span className="text-gray-700 text-sm font-medium">{event.name}</span>
                         </div>
-                        <span className="font-medium text-purple-600 text-sm">₹{event.price}</span>
+                        <span className="font-medium text-purple-600 text-sm">
+                                {event.price !== null ? `₹${event.price}` : "Free"}
+                              </span>
                       </div>
                     </div>
                   ))}
