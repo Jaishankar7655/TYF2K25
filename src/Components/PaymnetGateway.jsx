@@ -14,8 +14,8 @@ const PaymentGateway = () => {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbxvcS7iar05au5XtfX8J8H91D_heVbcLzqIi80eZ7OsFdUGrsJjyjZJn0zgItlUy0VP/exec";
+  // Payment script URL — loaded from .env (not exposed on GitHub)
+  const SCRIPT_URL = import.meta.env.VITE_PAYMENT_SCRIPT_URL;
 
   const merchantDetails = {
     name: "TRUBA PROVISIONAL ADMISSION POOL ACCOUNT",
@@ -50,7 +50,8 @@ const PaymentGateway = () => {
           // Calculate new dimensions
           let width = img.width;
           let height = img.height;
-          const maxDimension = 1200;
+          // Compress aggressively — small size = reliable upload
+          const maxDimension = 800;
 
           if (width > height && width > maxDimension) {
             height = (height * maxDimension) / width;
@@ -64,7 +65,7 @@ const PaymentGateway = () => {
           canvas.height = height;
 
           ctx.drawImage(img, 0, 0, width, height);
-          resolve(canvas.toDataURL("image/jpeg", 0.7));
+          resolve(canvas.toDataURL("image/jpeg", 0.4));
         };
         img.onerror = reject;
       };
@@ -103,8 +104,9 @@ const PaymentGateway = () => {
     try {
       const compressedImage = await compressImage(screenshot);
       const timestamp = new Date().getTime();
-      const filename = `payment_${phoneNumber}_${timestamp}.jpg`;
+      const filename = `payment_${phoneNumber.trim()}_${timestamp}.jpg`;
 
+      // Send JSON body — script reads via JSON.parse(e.postData.contents)
       const response = await fetch(SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
@@ -115,12 +117,9 @@ const PaymentGateway = () => {
         }),
       });
 
-      // Google Apps Script blocks CORS JSON responses, so we check for
-      // an "opaque" response type which means the request went through.
+      // no-cors always returns opaque — means request went through
       if (response.type === "opaque" || response.ok) {
-        // Wait briefly for the script to process
         await new Promise((resolve) => setTimeout(resolve, 1500));
-
         setPaymentSuccess(true);
         setTimeout(() => {
           navigate("/paymentSuccess", {
@@ -128,7 +127,7 @@ const PaymentGateway = () => {
           });
         }, 1500);
       } else {
-        throw new Error("Failed to submit payment details");
+        throw new Error("Submission failed");
       }
     } catch (err) {
       console.error("Error:", err);

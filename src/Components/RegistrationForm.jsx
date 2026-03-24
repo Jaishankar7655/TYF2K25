@@ -83,6 +83,19 @@ const categories = [
       { name: "Carrom", price: 50 },
     ],
   },
+  {
+    title: "SAC Committee",
+    icon: "🌟",
+    events: [
+      { name: "Dare to Drink", price: 50 },
+      { name: "Cup Pyramid", price: 50 },
+      { name: "Spoon Tie-Knot Challenge", price: 50 },
+      { name: "Plank / Weight Add-on Challenge", price: 50 },
+      { name: "Blind Fold Challenge", price: 50 },
+      { name: "Dance-Freeze Challenge", price: 50 },
+      { name: "Cricket Circle Game", price: 50 },
+    ],
+  },
 ];
 
 
@@ -213,8 +226,7 @@ const RegistrationForm = () => {
       formData.append("events", eventsData);
       formData.append("totalAmount", calculateTotal());
   
-      const GOOGLE_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbxVdY1Leca6iuIwN-Msb0gKIQehwh488UT7E3Z4J84rTRBT7Cno5I4TDaZa1xcaSrN5/exec";
+      const GOOGLE_SCRIPT_URL = import.meta.env.VITE_REGISTRATION_SCRIPT_URL;
   
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
@@ -453,6 +465,44 @@ const RegistrationForm = () => {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* SAC Committee Section */}
+            <div className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <span className="text-2xl">🌟</span>
+                <h3 className="text-2xl font-bold text-purple-900">SAC Committee</h3>
+              </div>
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 shadow-lg border border-purple-100">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                  {categories.find(c => c.title === "SAC Committee").events.map((event) => (
+                    <div key={event.name} className="space-y-2">
+                      <div
+                        className="flex items-center justify-between p-2 rounded-lg hover:bg-white cursor-pointer transition-colors duration-200"
+                        onClick={() => handleEventSelection(event, !selectedEvents.includes(event.name))}
+                      >
+                        <div className="flex items-center space-x-3">
+                          <input
+                            type="checkbox"
+                            checked={selectedEvents.includes(event.name)}
+                            onChange={() => {}}
+                            className="w-5 h-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                          />
+                          <span className="text-gray-700 text-sm font-medium">{event.name}</span>
+                        </div>
+                        <span className="font-medium text-purple-600 text-sm">₹{event.price}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* More Events Coming Soon Banner */}
+              <div className="flex items-center justify-center gap-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-xl p-4 shadow-md">
+                <span className="text-xl">⏳</span>
+                <p className="font-bold text-lg tracking-wide">More Events Coming Soon!</p>
+                <span className="text-xl">✨</span>
               </div>
             </div>
   

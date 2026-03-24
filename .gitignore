@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Environment variables — keep Google Script URLs private
+.env
+.env.*
+
+# Google Apps Script source files — contain sensitive IDs and emails
+google-scripts/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
