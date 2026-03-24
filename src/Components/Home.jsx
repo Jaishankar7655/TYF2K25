@@ -49,11 +49,11 @@ const HomePage = () => {
             <h1 className="md:text-7xl text-4xl   font-bold text-purple-900 mb-6 animate-fade-in">
               Truba Youth Fest
               <span className="block text-8xl bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
-                2K25
+                2K26
               </span>
             </h1>
             <p className="text-3xl text-purple-700 mb-8">
-              Celebrate the Colors of Youth | March 6-7-8-9-10, 2025
+              Celebrate the Colors of Youth | april 6-7-8, 2026
             </p>
             <button
               onClick={() => navigate("/register")}

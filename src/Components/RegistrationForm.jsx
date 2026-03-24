@@ -87,13 +87,13 @@ const categories = [
     title: "SAC Committee",
     icon: "🌟",
     events: [
-      { name: "Dare to Drink", price: null },
-      { name: "Cup Pyramid", price: null },
-      { name: "Spoon Tie-Knot Challenge", price: null },
-      { name: "Plank / Weight Add-on Challenge", price: null },
-      { name: "Blind Fold Challenge", price: null },
-      { name: "Dance-Freeze Challenge", price: null },
-      { name: "Cricket Circle Game", price: null },
+      { name: "Dare to Drink", price: 0 },
+      { name: "Cup Pyramid", price: 0 },
+      { name: "Spoon Tie-Knot Challenge", price: 0 },
+      { name: "Plank / Weight Add-on Challenge", price: 0 },
+      { name: "Blind Fold Challenge", price: 0 },
+      { name: "Dance-Freeze Challenge", price: 0 },
+      { name: "Cricket Circle Game", price: 0 },
     ],
   },
 ];
@@ -421,7 +421,7 @@ const RegistrationForm = () => {
                               <span className="font-medium text-purple-600">
                                 {event.hasOptions
                                   ? "Price varies"
-                                  : event.price !== null ? `₹${event.price}` : ""}
+                                  : `₹${event.price}`}
                               </span>
                             </div>
   
