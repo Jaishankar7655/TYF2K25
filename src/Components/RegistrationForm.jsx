@@ -390,7 +390,7 @@ const RegistrationForm = () => {
               </div>
   
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categories.filter(c => c.title !== "SAC Committee").map((category) => (
+                {categories.map((category) => (
                   <div
                     key={category.title}
                     className="bg-white rounded-xl p-6 shadow-lg border border-gray-100"
@@ -421,7 +421,7 @@ const RegistrationForm = () => {
                               <span className="font-medium text-purple-600">
                                 {event.hasOptions
                                   ? "Price varies"
-                                  : `₹${event.price}`}
+                                  : event.price !== null ? `₹${event.price}` : ""}
                               </span>
                             </div>
   
@@ -463,50 +463,16 @@ const RegistrationForm = () => {
                         </div>
                       ))}
                     </div>
+                    {category.title === "SAC Committee" && (
+                      <p className="mt-3 text-xs text-purple-500 font-semibold text-center animate-pulse">
+                        ✨ More events coming soon!
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* SAC Committee Section */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <span className="text-2xl">🌟</span>
-                <h3 className="text-2xl font-bold text-purple-900">SAC Committee</h3>
-              </div>
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 shadow-lg border border-purple-100">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                  {categories.find(c => c.title === "SAC Committee").events.map((event) => (
-                    <div key={event.name} className="space-y-2">
-                      <div
-                        className="flex items-center justify-between p-2 rounded-lg hover:bg-white cursor-pointer transition-colors duration-200"
-                        onClick={() => handleEventSelection(event, !selectedEvents.includes(event.name))}
-                      >
-                        <div className="flex items-center space-x-3">
-                          <input
-                            type="checkbox"
-                            checked={selectedEvents.includes(event.name)}
-                            onChange={() => {}}
-                            className="w-5 h-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
-                          />
-                          <span className="text-gray-700 text-sm font-medium">{event.name}</span>
-                        </div>
-                        <span className="font-medium text-purple-600 text-sm">
-                                {event.price !== null ? `₹${event.price}` : "Free"}
-                              </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* More Events Coming Soon Banner */}
-              <div className="flex items-center justify-center gap-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-xl p-4 shadow-md">
-                <span className="text-xl">⏳</span>
-                <p className="font-bold text-lg tracking-wide">More Events Coming Soon!</p>
-                <span className="text-xl">✨</span>
-              </div>
-            </div>
   
             {/* Total Amount and Submit Button */}
             <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-lg p-4 border-t border-gray-200">
