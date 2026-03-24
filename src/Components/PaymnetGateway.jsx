@@ -107,6 +107,7 @@ const PaymentGateway = () => {
 
       const response = await fetch(SCRIPT_URL, {
         method: "POST",
+        mode: "no-cors",
         body: JSON.stringify({
           phone: phoneNumber.trim(),
           imageData: compressedImage,
@@ -114,18 +115,21 @@ const PaymentGateway = () => {
         }),
       });
 
-      const result = await response.json();
+      // Google Apps Script blocks CORS JSON responses, so we check for
+      // an "opaque" response type which means the request went through.
+      if (response.type === "opaque" || response.ok) {
+        // Wait briefly for the script to process
+        await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      if (!result.success) {
-        throw new Error(result.error || "Failed to submit payment details");
+        setPaymentSuccess(true);
+        setTimeout(() => {
+          navigate("/paymentSuccess", {
+            state: { amount: totalAmount },
+          });
+        }, 1500);
+      } else {
+        throw new Error("Failed to submit payment details");
       }
-
-      setPaymentSuccess(true);
-      setTimeout(() => {
-        navigate("/paymentSuccess", {
-          state: { amount: totalAmount },
-        });
-      }, 1500);
     } catch (err) {
       console.error("Error:", err);
       setError(

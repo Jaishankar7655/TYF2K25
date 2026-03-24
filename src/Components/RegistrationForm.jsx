@@ -1,51 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { User, Mail, Phone, School, Tag, Loader2, AlertTriangle, Calendar } from "lucide-react";
+import { User, Mail, Phone, School, Tag, Loader2, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-// Event schedule data from the list
-const eventSchedule = {
-  "Commerce Quiz": { date: "2025-03-07", time: "11:00 AM" },
-  "Buddhi Vimarsh": { date: "2025-03-07", time: "2:00 PM" },
-  "Tech Paper presentation": { date: "2025-03-07", time: "11:00 AM" },
-  "BGMI": { date: "2025-03-08", time: "10:00 AM" },
-  "Freefire": { date: "2025-03-08", time: "10:00 AM" },
-  "Cure Celebration": { date: "2025-03-08", time: "10:30 AM" },
-  "Tech Quiz": { date: "2025-03-08", time: "2:00 PM" },
-  "Code Encounter": { date: "2025-03-09", time: "11:00 AM" },
-  "Chess": { date: "2025-03-06", time: "10:00 AM" },
-  "Badminton": { date: "2025-03-06", time: "11:00 AM" },
-  "Kho-Kho": { date: "2025-03-06", time: "11:00 AM" },
-  "Arm Wrestling": { date: "2025-03-07", time: "1:00 PM" },
-  "Volleyball": { date: "2025-03-07", time: "10:30 AM" },
-  "Carrom": { date: "2025-03-07", time: "11:00 AM" },
-  "Poster presentation": { date: "2025-03-07", time: "3:00 PM" },
-  "Becho To Jaane": { date: "2025-03-07", time: "2:00 PM" },
-  "IPL Auction": { date: "2025-03-08", time: "11:00 AM" },
-  "Kavi Kosh": { date: "2025-03-08", time: "1:00 PM" },
-  "Extempore": { date: "2025-03-08", time: "2:00 PM" },
-  "Mind Marathon": { date: "2025-03-09", time: "11:00 AM" },
-  "AD-MAD-SHOW": { date: "2025-03-09", time: "11:00 AM" },
-  "Designer Cut": { date: "2025-03-09", time: "11:00 AM" },
-  "Trudies": { date: "2025-03-06", time: "12:00 PM" },
-  "Singing Competition": { date: "2025-03-08", time: "1:00 PM" },
-  "Dance Competition": { date: "2025-03-08", time: "1:00 PM" },
-  "Rangoli": { date: "2025-03-08", time: "10:00 AM" },
-  "Face Painting": { date: "2025-03-09", time: "10:30 AM" },
-  "Ramp Walk": { date: "2025-03-08", time: "4:30 PM" },
-  "Nukkad natak": { date: "2025-03-09", time: "1:00 PM" },
-  "Dance Battle": { date: "2025-03-09", time: "1:30 PM" },
-  "Mono Act": { date: "2025-03-09", time: "1:00 PM" }, // Assuming same date as Nukkad natak
-  "Kabbadi": { date: "2025-03-06", time: "10:00 AM" }, // Assuming same date as Chess
-};
-
-// Original categories data
+// Categories data — all registrations open
 const categories = [
   {
     title: "Cultural",
     icon: "🎭",
     events: [
-      { name: "Trudies (Rodies of Truba)", price: 100, closed: true },
+      { name: "Trudies (Rodies of Truba)", price: 100 },
       {
         name: "Dance Competition",
         hasOptions: true,
@@ -76,14 +40,14 @@ const categories = [
     title: "Literary",
     icon: "📚",
     events: [
-      { name: "Poster presentation", price: 50, closed: true },
+      { name: "Poster presentation", price: 50 },
       { name: "Kavi Kosh (Poetry)", price: 50 },
       { name: "Mind Marathon (Duo)", price: 70 },
       { name: "AD-MAD-SHOW (per team )", price: 100 },
       { name: "IPL Auction (Per team) ", price: 150 },
       { name: "Extempore", price: 50 },
       { name: "Designer Cut", price: 50 },
-      { name: "Becho To Jaane (Per team)", price: 50, closed: true },
+      { name: "Becho To Jaane (Per team)", price: 50 },
     ],
   },
   {
@@ -110,48 +74,18 @@ const categories = [
     title: "Sports",
     icon: "🏆",
     events: [
-      { name: "Kabbadi (per team)", price: 500, closed: true },
-      { name: "Arm Wrestling", price: 50, closed: true },
-      { name: "Badminton", price: 50, closed: true },
-      { name: "Chess", price: 50, closed: true },
-      { name: "Volleyball (Per Team) ", price: 600, closed: true },
-      { name: "Kho-Kho (Per team)", price: 150, closed: true },
-      { name: "Carrom", price: 50, closed: true },
+      { name: "Kabbadi (per team)", price: 500 },
+      { name: "Arm Wrestling", price: 50 },
+      { name: "Badminton", price: 50 },
+      { name: "Chess", price: 50 },
+      { name: "Volleyball (Per Team) ", price: 600 },
+      { name: "Kho-Kho (Per team)", price: 150 },
+      { name: "Carrom", price: 50 },
     ],
   },
 ];
 
-// Utility function to format date to YYYY-MM-DD
-const formatDate = (date) => {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-};
 
-// Utility function to get remaining time as a string
-const getRemainingTime = (eventDate, eventTime) => {
-  const now = new Date();
-  const eventDateTime = new Date(`${eventDate} ${eventTime}`);
-  
-  if (isNaN(eventDateTime.getTime())) {
-    return "Invalid date";
-  }
-  
-  const diffMs = eventDateTime - now;
-  if (diffMs <= 0) {
-    return "Registration closed";
-  }
-  
-  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  const diffHours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  
-  if (diffDays > 0) {
-    return `Closes in ${diffDays} day${diffDays > 1 ? 's' : ''} ${diffHours} hr${diffHours > 1 ? 's' : ''}`;
-  } else {
-    return `Closes in ${diffHours} hr${diffHours > 1 ? 's' : ''}`;
-  }
-};
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -163,8 +97,6 @@ const RegistrationForm = () => {
     "Dance Competition": "",
   });
   const [alertMessage, setAlertMessage] = useState("");
-  const [updatedCategories, setUpdatedCategories] = useState(categories);
-  const [currentDate, setCurrentDate] = useState(new Date());
 
   const {
     register,
@@ -183,65 +115,13 @@ const RegistrationForm = () => {
     },
   });
 
-  // Update event closure status based on current date
-  useEffect(() => {
-    const today = formatDate(currentDate);
-    
-    // Create a deep copy of the categories array
-    const updatedCategoriesData = JSON.parse(JSON.stringify(categories));
-    
-    // Update the closure status for each event
-    updatedCategoriesData.forEach(category => {
-      category.events.forEach(event => {
-        // Extract the base event name without options
-        let eventName = event.name.split(" (")[0];
-        
-        // Special case handling for events with different names in schedule
-        if (eventName === "BGMI") eventName = "BGMI (Per Squad)";
-        if (eventName === "Freefire") eventName = "Freefire (Per squad)";
-        if (eventName === "Kavi Kosh") eventName = "Kavi Kosh (Poetry)";
-        if (eventName === "IPL Auction") eventName = "IPL Auction (Per team)";
-        if (eventName === "Tech Paper presentation") eventName = "Tech Paper presentation , (Single/Duo)";
-        if (eventName === "Trudies") eventName = "Trudies (Rodies of Truba)";
-        if (eventName === "Commerce Quiz") eventName = "Commerce Quiz (Duo)";
-        
-        // Find the event in the schedule
-        const scheduleEvent = Object.keys(eventSchedule).find(key => {
-          return eventName.includes(key) || key.includes(eventName);
-        });
-        
-        if (scheduleEvent && eventSchedule[scheduleEvent]) {
-          const eventDate = eventSchedule[scheduleEvent].date;
-          // Close registration if today is the event date or after
-          if (today >= eventDate) {
-            event.closed = true;
-          }
-          // Store the date for display purposes
-          event.date = eventSchedule[scheduleEvent].date;
-          event.time = eventSchedule[scheduleEvent].time;
-        }
-      });
-    });
-    
-    setUpdatedCategories(updatedCategoriesData);
-    
-    // Remove any selected events that are now closed
-    setSelectedEvents(prev => prev.filter(eventName => {
-      const eventFound = updatedCategoriesData.some(category => 
-        category.events.some(event => 
-          event.name === eventName && !event.closed
-        )
-      );
-      return eventFound;
-    }));
-    
-  }, [currentDate]);
+
 
   const calculateTotal = () => {
     let total = 0;
 
     selectedEvents.forEach((eventName) => {
-      for (const category of updatedCategories) {
+      for (const category of categories) {
         const event = category.events.find((e) => e.name === eventName);
         if (event) {
           if (event.hasOptions) {
@@ -377,11 +257,7 @@ const RegistrationForm = () => {
               Join the Celebration!
             </h2>
             <p className="text-gray-600 text-lg">
-              Register for Truba Youth Fest 2K25
-            </p>
-            <p className="text-gray-500 mt-2 flex items-center justify-center">
-              <Calendar className="w-4 h-4 mr-1" />
-              Current Date: {currentDate.toLocaleDateString()}
+              Register for Truba Youth Fest 2K26
             </p>
           </div>
   
@@ -502,7 +378,7 @@ const RegistrationForm = () => {
               </div>
   
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {updatedCategories.map((category) => (
+                {categories.map((category) => (
                   <div
                     key={category.title}
                     className="bg-white rounded-xl p-6 shadow-lg border border-gray-100"
@@ -515,43 +391,27 @@ const RegistrationForm = () => {
                       {category.events.map((event) => (
                         <div key={event.name} className="space-y-2">
                           <div 
-                            className={`flex flex-col p-2 rounded-lg 
-                                     ${event.closed ? 'bg-gray-50 opacity-75' : 'hover:bg-purple-50 cursor-pointer'} 
-                                     transition-colors duration-200`}
-                            onClick={() => !event.closed && handleEventSelection(event, !selectedEvents.includes(event.name))}
+                            className="flex flex-col p-2 rounded-lg hover:bg-purple-50 cursor-pointer transition-colors duration-200"
+                            onClick={() => handleEventSelection(event, !selectedEvents.includes(event.name))}
                           >
                             <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-3">
                                 <input
                                   type="checkbox"
-                                  disabled={event.closed}
                                   checked={selectedEvents.includes(event.name)}
-                                  onChange={() => {}} // Handling via the onClick of the parent div
-                                  className="w-5 h-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500 disabled:opacity-50"
+                                  onChange={() => {}}
+                                  className="w-5 h-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                                 />
-                                <span className={`${event.closed ? 'text-gray-400' : 'text-gray-700'}`}>
+                                <span className="text-gray-700">
                                   {event.name}
                                 </span>
                               </div>
-                              <span className={`font-medium ${event.closed ? 'text-gray-400' : 'text-purple-600'}`}>
+                              <span className="font-medium text-purple-600">
                                 {event.hasOptions
                                   ? "Price varies"
                                   : `₹${event.price}`}
                               </span>
                             </div>
-                            
-                            {/* Event schedule information */}
-                            {event.date && (
-                              <div className={`text-xs mt-1 ml-8 flex items-center ${event.closed ? 'text-red-400' : 'text-green-600'}`}>
-                                <Calendar className="w-3 h-3 mr-1" />
-                                {event.closed 
-                                  ? "Registration closed" 
-                                  : getRemainingTime(event.date, event.time)}
-                                <span className="ml-1">
-                                  ({new Date(event.date).toLocaleDateString()} {event.time})
-                                </span>
-                              </div>
-                            )}
   
                             {event.hasOptions &&
                               selectedEvents.includes(event.name) && (
