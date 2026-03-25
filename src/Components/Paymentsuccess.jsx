@@ -28,7 +28,7 @@ const PaymentSuccess = () => {
             <p className="text-2xl font-black text-neon-green">₹{amount}</p>
           </div>
         </div>
-        <p className="mt-6 text-neon-yellow/80 text-sm">🎉 Welcome to the party! See you at TYF 2K26 🎉</p>
+        <p className="mt-6 text-neon-yellow/80 text-sm">🎉 Welcome to the party! See you at Truba Fest 2026 🎉</p>
       </div>
     </div>
   );

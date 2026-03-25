@@ -54,7 +54,7 @@ const PaymentConfirm = () => {
               Payment Successful!
             </h1>
             <p className="text-gray-400">
-              Thank you for registering for Truba Youth Fest 2K26 🎉
+              Thank you for registering for Truba Fest 2026 🎉
             </p>
           </div>
 

@@ -291,7 +291,7 @@ const RegistrationForm = () => {
               Join the Party!
             </h2>
             <p className="text-gray-400 text-lg">
-              🎧 Register for Truba Youth Fest 2K26 🎧
+              🎧 Register for Truba Fest 2026 🎧
             </p>
           </div>
   

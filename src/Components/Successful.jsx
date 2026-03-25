@@ -27,7 +27,7 @@ function Successful() {
         </h1>
         <div className="space-y-4 mb-8">
           <p className="text-gray-400">
-            Thank you for registering for Truba Youth Fest 2K26! Your registration has been confirmed. 🎉
+            Thank you for registering for Truba Fest 2026! Your registration has been confirmed. 🎉
           </p>
          
           <div className="bg-neon-green/5 border border-neon-green/20 rounded-xl p-4">
