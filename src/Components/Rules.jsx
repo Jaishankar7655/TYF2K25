@@ -16,7 +16,7 @@ function Rules() {
       </div>
       
       <a 
-        href={Rulespdf}
+        // href={Rulespdf}
         target="_blank"
         rel="noopener noreferrer"
         className="btn-party group inline-flex items-center gap-2 px-8 py-3.5 font-semibold rounded-xl"
