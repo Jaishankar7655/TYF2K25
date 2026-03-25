@@ -8,44 +8,44 @@ function Culture() {
     {
       id: 22, name: "TRUDIES",
       rules: ["NO SPECIFIC RULES."],
-      date: "6TH MARCH, 12:00 AM", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🎤",
+      date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🎤",
     },
     {
       id: 23, name: "SONG COMPETITION",
       rules: ["TIME DURATION WILL BE UNDER 5 MIN.", "MAXIMUM 5 MAMBER IS ALLOWED IN THE GROUP."],
-      date: "8TH MARCH, 1:00 PM", fees: "SOLO- Rs 50, DUET Rs 100, GROUP Rs150",
+      date: "Not Decided", fees: "SOLO- Rs 50, DUET Rs 100, GROUP Rs150",
       prizes: "SOLO:- 1 TROPHY FOR WINNER, DUO :- 2 TROPHY FOR WINNER, GROUP:- 1 TROPHY FOR WINNING GROUP", emoji: "🎵",
     },
     {
       id: 24, name: "DANCE COMPETITION",
       rules: ["ALL THE PARTICIPANTS MUST REGISTER BEFORE THE DEADLINE.", "EACH PERFORMANCE SHOULD BE PERFORMED UNDER 5 MIN.", "PARTICIPANTS MUST PROVIDE THEIR OWN MUSIC.", "GROUP CAN HAVE MAXIMUM 8 MEMBER."],
-      date: "8TH MARCH, 1:00 PM", fees: "SOLO- Rs 100, DUET Rs 150, GROUP Rs 250",
+      date: "Not Decided", fees: "SOLO- Rs 100, DUET Rs 150, GROUP Rs 250",
       prizes: "SOLO:- 1ST, 2ND & 3RD PRICE, DUO :- 1ST, 2ND & 3RD PRICE, GROUP:- 1ST & 2ND PRICE.", emoji: "💃",
     },
     {
       id: 25, name: "RANGOLI",
       rules: ["RANGOLI COLOURS IS ALLOWED FOR RANGOLI.(NO PAINTS OR FLOWER IS ALLOWED)", "THEME:- WOMEN DAY.", "TIME LIMITS WILL BE 1 HRS.", "SIZE OF AREA FOR RANGOLI WILL BE 4FT * 4 FT"],
-      date: "8TH MARCH, 10:30 AM", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎨",
+      date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎨",
     },
     {
       id: 26, name: "FACE PAINTAING",
       rules: ["THERE WILL BE ONLY SINGLE ROUND"],
-      date: "9TH MARCH, 10:30 AM", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️",
+      date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️",
     },
     {
       id: 27, name: "RAMP WALK",
       rules: ["DAY 1 THEME :- BOLLYWOOD.", "DAY-2 THEME:- ANGEL AND DEVIL."],
-      date: "8TH MARCH, 4:30 PM", fees: "Rs100", prizes: "TROPHY FOR WINNER AND RUNNERUP FOR MALE AND FEMALE CANDIDATE", emoji: "🕺",
+      date: "Not Decided", fees: "Rs100", prizes: "TROPHY FOR WINNER AND RUNNERUP FOR MALE AND FEMALE CANDIDATE", emoji: "🕺",
     },
     {
       id: 28, name: "NUKKAD NATAK",
       rules: ["THEME:- SOCIAL AWARENESS.", "MAX 10 MEMBER PER TEAM.", "TIME LIMIT WILL BE 10 MIN.", "TEAM SHOULD BRING THEIR OWN PROPS.", "MIC AND SOUND SYSTEM IS NOT ALLOWED"],
-      date: "9TH MARCH, 1.00PM", fees: "Rs100 PER TEAM", prizes: " TROPHY FOR WINNING GROUP", emoji: "🎭",
+      date: "Not Decided", fees: "Rs100 PER TEAM", prizes: " TROPHY FOR WINNING GROUP", emoji: "🎭",
     },
     {
       id: 29, name: "DANCE BATTLE",
       rules: ["FIRST ROUND:- PERFORMED UNDER 2 MIN.(THEME:- BOLLYWOOD)", "SECOND ROUND:- PERFORMED UNDER 2 MIN. (THEME:- HIP-HOP BEAT)", "THIRD ROUND:- PERFORMED UNDER 4 MIN.((THEME:- GIVEN ON THE SPOT)"],
-      date: "9TH MARCH, 1:30 PM", fees: "Rs100", prizes: "TROPHY FOR 1ST, 2ND & 3RD", emoji: "🔥",
+      date: "Not Decided", fees: "Rs100", prizes: "TROPHY FOR 1ST, 2ND & 3RD", emoji: "🔥",
     },
   ];
 
