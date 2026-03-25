@@ -90,11 +90,12 @@ const HomePage = () => {
         <div className="flex items-center group cursor-pointer flex-shrink-0">
           <img className="w-12 h-12 sm:w-12 sm:h-12 md:w-28 md:h-28 object-contain rounded-full transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(0,240,255,0.5)] group-hover:scale-105" src={festlogo} alt="Fest Logo" />
         </div>
+        
       </header>
 
       {/* Hero Section */}
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center w-full px-4 sm:px-6 py-2 sm:py-4">
-        <div className="text-center w-full max-w-5xl mx-auto flex flex-col items-center justify-evenly h-full gap-4 sm:gap-6 md:gap-8 min-h-[60vh]">
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center w-full px-4 sm:px-6 py-2 sm:py-4 md:py-0">
+        <div className="text-center w-full max-w-5xl mx-auto flex flex-col items-center justify-evenly h-full gap-4 sm:gap-6 md:gap-2 lg:gap-4 xl:gap-8 min-h-[60vh]">
 
           {/* Party badge */}
           <div className="inline-flex items-center flex-wrap justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full bg-dark-card/80 border border-neon-pink/30 backdrop-blur-md text-neon-pink font-semibold text-xs sm:text-sm shadow-[0_0_20px_rgba(255,45,149,0.15)] animate-party-float">
@@ -103,7 +104,7 @@ const HomePage = () => {
             
             <Disc3 className="w-4 h-4 sm:w-5 sm:h-5 text-neon-cyan animate-spin flex-shrink-0" style={{ animationDuration: '3s' }} />
           </div>
-         <div className="w-[90%] max-w-[600px] overflow-hidden rounded-lg py-2 my-3 mx-auto">
+         <div className="w-[90%] max-w-[600px] overflow-hidden rounded-lg py-2 my-3 md:my-0 lg:my-1 mx-auto">
   <div className="flex w-max animate-ticker hover:[animation-play-state:paused]">
     {[...Array(4)].map((_, i) => (
       <span
@@ -116,9 +117,9 @@ const HomePage = () => {
   </div>
 </div>
           {/* Main title */}
-          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tight flex flex-col items-center leading-[1.1]">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight flex flex-col items-center leading-[1.1] md:leading-none">
             
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan px-2 pb-2 drop-shadow-[0_0_40px_rgba(255,45,149,0.3)]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan px-2 pb-2 md:pb-0 drop-shadow-[0_0_40px_rgba(255,45,149,0.3)]">
              <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">TRUBA</span> FEST
             </span>
           </h1>
@@ -133,7 +134,7 @@ const HomePage = () => {
           </div>
 
           {/* Tagline */}
-          <p className="text-sm sm:text-lg md:text-2xl text-gray-300 max-w-xs sm:max-w-xl md:max-w-3xl mx-auto font-medium leading-relaxed px-2">
+          <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-xs sm:max-w-xl md:max-w-3xl mx-auto font-medium leading-relaxed px-2">
             🎧 The Ultimate <span className="text-neon-pink font-bold">Party</span> • <span className="text-neon-cyan font-bold">Music</span> • <span className="text-neon-purple font-bold">Dance</span> Experience.
             <span className="hidden sm:inline"> Join Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span>
             <span className="sm:hidden"> Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span> 🎶
@@ -142,7 +143,7 @@ const HomePage = () => {
           {/* CTA Button */}
           <button
             onClick={() => navigate("/register")}
-            className="btn-party group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-3 sm:py-5 font-bold text-base sm:text-lg md:text-xl rounded-full transition-all duration-300 active:scale-95 neon-border"
+            className="btn-party group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-10 md:px-8 lg:px-10 py-3 sm:py-5 md:py-3 lg:py-4 font-bold text-base sm:text-lg md:text-lg lg:text-xl rounded-full transition-all duration-300 active:scale-95 neon-border"
           >
             <span>🎉 Register Now</span>
             <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
