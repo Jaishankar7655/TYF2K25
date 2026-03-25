@@ -6,12 +6,12 @@ function Rules() {
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-6 w-full">
       <div className="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
-        <div className="p-5 bg-cyan-50 text-cyan-600 rounded-2xl shadow-sm border border-cyan-100">
+        <div className="p-5 bg-neon-cyan/10 text-neon-cyan rounded-2xl border border-neon-cyan/20 shadow-[0_0_15px_rgba(0,240,255,0.1)]">
           <FileText className="w-8 h-8" />
         </div>
         <div>
-          <h3 className="text-2xl font-bold text-slate-800 tracking-tight">Rules & Regulations</h3>
-          <p className="text-slate-500 mt-1 font-medium">Read the comprehensive guidelines for participation.</p>
+          <h3 className="text-2xl font-bold text-white tracking-tight">📜 Rules & Regulations</h3>
+          <p className="text-gray-400 mt-1 font-medium">Read the party guidelines for participation.</p>
         </div>
       </div>
       
@@ -19,7 +19,7 @@ function Rules() {
         href={Rulespdf}
         target="_blank"
         rel="noopener noreferrer"
-        className="group inline-flex items-center gap-2 px-8 py-3.5 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 hover:shadow-lg hover:-translate-y-0.5 transition-all active:scale-95"
+        className="btn-party group inline-flex items-center gap-2 px-8 py-3.5 font-semibold rounded-xl"
       >
         <span>View Rules</span>
         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

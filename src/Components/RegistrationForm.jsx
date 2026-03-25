@@ -260,24 +260,31 @@ const RegistrationForm = () => {
   };
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-100 to-purple-100 py-12 px-4">
-      <div className="max-w-5xl mx-auto">
-        <div className="bg-white rounded-3xl shadow-2xl p-8">
+    <div className="min-h-screen bg-dark-bg party-bg py-12 px-4 relative overflow-hidden">
+      {/* Animated background orbs */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{animationDelay: '1s'}}></div>
+      </div>
+
+      <div className="max-w-5xl mx-auto relative z-10">
+        <div className="party-card rounded-3xl p-8">
           {/* Header */}
           <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text mb-4">
-              Join the Celebration!
+            <div className="text-4xl mb-4">🎉🪩🎶</div>
+            <h2 className="text-5xl font-black gradient-party mb-4">
+              Join the Party!
             </h2>
-            <p className="text-gray-600 text-lg">
-              Register for Truba Youth Fest 2K26
+            <p className="text-gray-400 text-lg">
+              🎧 Register for Truba Youth Fest 2K26 🎧
             </p>
           </div>
   
           {/* Alert Message */}
           {alertMessage && (
             <div className="fixed top-6 left-0 right-0 mx-auto w-full max-w-md z-50">
-              <div className="bg-red-100 border border-red-200 text-red-700 px-4 py-3 rounded-lg shadow-lg flex items-center">
-                <AlertTriangle className="h-5 w-5 mr-2" />
+              <div className="bg-red-900/80 border border-red-500/50 text-red-200 px-4 py-3 rounded-lg shadow-[0_0_20px_rgba(255,0,0,0.2)] flex items-center backdrop-blur-md">
+                <AlertTriangle className="h-5 w-5 mr-2 text-neon-yellow" />
                 <p>{alertMessage}</p>
               </div>
             </div>
@@ -285,8 +292,8 @@ const RegistrationForm = () => {
   
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-600">{error}</p>
+            <div className="mb-6 p-4 bg-red-900/30 border border-red-500/30 rounded-xl">
+              <p className="text-red-300">{error}</p>
             </div>
           )}
   
@@ -295,17 +302,17 @@ const RegistrationForm = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Name Field */}
               <div>
-                <label className="flex items-center space-x-2 text-gray-700 font-medium mb-2">
-                  <User className="w-4 h-4" />
+                <label className="flex items-center space-x-2 text-gray-300 font-medium mb-2">
+                  <User className="w-4 h-4 text-neon-pink" />
                   <span>Full Name</span>
                 </label>
                 <input
                   {...register("name", { required: "Name is required" })}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-pink/50 focus:border-neon-pink/50 outline-none transition-all"
                   placeholder="Enter your full name"
                 />
                 {errors.name && (
-                  <p className="mt-1 text-red-500 text-sm">
+                  <p className="mt-1 text-neon-pink text-sm">
                     {errors.name.message}
                   </p>
                 )}
@@ -313,8 +320,8 @@ const RegistrationForm = () => {
   
               {/* Email Field */}
               <div>
-                <label className="flex items-center space-x-2 text-gray-700 font-medium mb-2">
-                  <Mail className="w-4 h-4" />
+                <label className="flex items-center space-x-2 text-gray-300 font-medium mb-2">
+                  <Mail className="w-4 h-4 text-neon-cyan" />
                   <span>Email</span>
                 </label>
                 <input
@@ -325,11 +332,11 @@ const RegistrationForm = () => {
                       message: "Invalid email address",
                     },
                   })}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-cyan/50 focus:border-neon-cyan/50 outline-none transition-all"
                   placeholder="Enter your email"
                 />
                 {errors.email && (
-                  <p className="mt-1 text-red-500 text-sm">
+                  <p className="mt-1 text-neon-pink text-sm">
                     {errors.email.message}
                   </p>
                 )}
@@ -337,8 +344,8 @@ const RegistrationForm = () => {
   
               {/* Phone Field */}
               <div>
-                <label className="flex items-center space-x-2 text-gray-700 font-medium mb-2">
-                  <Phone className="w-4 h-4" />
+                <label className="flex items-center space-x-2 text-gray-300 font-medium mb-2">
+                  <Phone className="w-4 h-4 text-neon-purple" />
                   <span>Phone Number</span>
                 </label>
                 <input
@@ -349,11 +356,11 @@ const RegistrationForm = () => {
                       message: "Invalid phone number",
                     },
                   })}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-purple/50 focus:border-neon-purple/50 outline-none transition-all"
                   placeholder="Enter your phone number"
                 />
                 {errors.phone && (
-                  <p className="mt-1 text-red-500 text-sm">
+                  <p className="mt-1 text-neon-pink text-sm">
                     {errors.phone.message}
                   </p>
                 )}
@@ -361,19 +368,19 @@ const RegistrationForm = () => {
   
               {/* College Field */}
               <div>
-                <label className="flex items-center space-x-2 text-gray-700 font-medium mb-2">
-                  <School className="w-4 h-4" />
+                <label className="flex items-center space-x-2 text-gray-300 font-medium mb-2">
+                  <School className="w-4 h-4 text-neon-yellow" />
                   <span>College Name</span>
                 </label>
                 <input
                   {...register("college", {
                     required: "College name is required",
                   })}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-yellow/50 focus:border-neon-yellow/50 outline-none transition-all"
                   placeholder="Enter your college name"
                 />
                 {errors.college && (
-                  <p className="mt-1 text-red-500 text-sm">
+                  <p className="mt-1 text-neon-pink text-sm">
                     {errors.college.message}
                   </p>
                 )}
@@ -383,9 +390,9 @@ const RegistrationForm = () => {
             {/* Events Selection */}
             <div className="space-y-6">
               <div className="flex items-center space-x-2">
-                <Tag className="w-6 h-6 text-purple-600" />
-                <h3 className="text-2xl font-bold text-purple-900">
-                  Select Your Events
+                <Tag className="w-6 h-6 text-neon-pink" />
+                <h3 className="text-2xl font-bold gradient-party">
+                  🎶 Select Your Events
                 </h3>
               </div>
   
@@ -393,9 +400,9 @@ const RegistrationForm = () => {
                 {categories.map((category) => (
                   <div
                     key={category.title}
-                    className="bg-white rounded-xl p-6 shadow-lg border border-gray-100"
+                    className="party-card rounded-xl p-6"
                   >
-                    <h4 className="text-xl font-bold text-purple-900 mb-4 flex items-center space-x-2">
+                    <h4 className="text-xl font-bold text-white mb-4 flex items-center space-x-2">
                       <span>{category.icon}</span>
                       <span>{category.title}</span>
                     </h4>
@@ -403,7 +410,7 @@ const RegistrationForm = () => {
                       {category.events.map((event) => (
                         <div key={event.name} className="space-y-2">
                           <div 
-                            className="flex flex-col p-2 rounded-lg hover:bg-purple-50 cursor-pointer transition-colors duration-200"
+                            className="flex flex-col p-2 rounded-lg hover:bg-neon-purple/10 cursor-pointer transition-colors duration-200"
                             onClick={() => handleEventSelection(event, !selectedEvents.includes(event.name))}
                           >
                             <div className="flex items-center justify-between">
@@ -412,13 +419,13 @@ const RegistrationForm = () => {
                                   type="checkbox"
                                   checked={selectedEvents.includes(event.name)}
                                   onChange={() => {}}
-                                  className="w-5 h-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                                  className="w-5 h-5 rounded border-neon-purple/30 text-neon-pink focus:ring-neon-pink bg-dark-surface"
                                 />
-                                <span className="text-gray-700">
+                                <span className="text-gray-300 text-sm">
                                   {event.name}
                                 </span>
                               </div>
-                              <span className="font-medium text-purple-600">
+                              <span className="font-medium text-neon-cyan text-sm">
                                 {event.hasOptions
                                   ? "Price varies"
                                   : `₹${event.price}`}
@@ -427,7 +434,7 @@ const RegistrationForm = () => {
   
                             {event.hasOptions &&
                               selectedEvents.includes(event.name) && (
-                                <div className="ml-8 mt-2">
+                                <div className="ml-8 mt-2" onClick={(e) => e.stopPropagation()}>
                                   <select
                                     {...register(`${event.name} Options`, {
                                       validate: () =>
@@ -440,7 +447,7 @@ const RegistrationForm = () => {
                                         e.target.value
                                       )
                                     }
-                                    className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+                                    className="w-full px-3 py-2 rounded-lg bg-dark-surface border border-neon-purple/20 text-white focus:ring-2 focus:ring-neon-pink/50 focus:border-neon-pink/50 outline-none"
                                   >
                                     <option value="">Select Category</option>
                                     {event.options.map((option) => (
@@ -453,7 +460,7 @@ const RegistrationForm = () => {
                                     ))}
                                   </select>
                                   {errors[`${event.name} Options`] && (
-                                    <p className="mt-1 text-red-500 text-sm">
+                                    <p className="mt-1 text-neon-pink text-sm">
                                       {errors[`${event.name} Options`].message}
                                     </p>
                                   )}
@@ -464,7 +471,7 @@ const RegistrationForm = () => {
                       ))}
                     </div>
                     {category.title === "SAC Committee" && (
-                      <p className="mt-3 text-xs text-purple-500 font-semibold text-center animate-pulse">
+                      <p className="mt-3 text-xs text-neon-yellow font-semibold text-center animate-pulse">
                         ✨ More events coming soon!
                       </p>
                     )}
@@ -475,25 +482,24 @@ const RegistrationForm = () => {
 
   
             {/* Total Amount and Submit Button */}
-            <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-lg p-4 border-t border-gray-200">
+            <div className="fixed bottom-0 left-0 right-0 glass-party border-t border-neon-purple/20 p-4 z-50">
               <div className="max-w-5xl mx-auto flex items-center justify-between">
-                <div className="text-lg font-bold text-purple-900">
-                  Total Amount: ₹{calculateTotal()}
+                <div className="text-lg font-bold text-white flex items-center gap-2">
+                  <span className="text-neon-yellow">🎟️</span> Total: <span className="text-neon-cyan">₹{calculateTotal()}</span>
                 </div>
                 <button
                   type="submit"
                   disabled={isSubmitting || selectedEvents.length === 0}
-                  className="inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold py-3 px-6 rounded-xl
-                           shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 
-                           disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="btn-party inline-flex items-center justify-center font-bold py-3 px-6 rounded-xl
+                           disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      Processing..
+                      <span>Processing..</span>
                     </>
                   ) : (
-                    "Continue For Payment"
+                    <span>🎉 Continue For Payment</span>
                   )}
                 </button>
               </div>
