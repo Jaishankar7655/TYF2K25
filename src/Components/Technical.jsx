@@ -7,17 +7,15 @@ function Technical() {
 
   const technicalEvents = [
     { id: 1, name: "TECH QUIZ", rules: ["TOTAL 5 SECTION WILL BE THERE.", "QUESTION ATTEMPTATION SHOULD BE MANDATORY.", "ALL THE QUESTION WILL BE MULTIPLE CHOICE"], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🧪" },
-    { id: 2, name: "CODE ENCOUNTER", rules: ["THERE WILL BE TWO ROUNDS (1ST WILL BE CHOOSE THE CORRECT ANSWER & 2ND WILL BE CODE EXECUTION)"], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "💻" },
-    { id: 3, name: "TECH PAPER PRESENTATION", rules: ["SINGLE ROUND WILL BE HELD.", "PRESENTATION SHOULD BE UNDER 10 MIN."], date: "Not Decided", fees: "RS 150 SINGLE/DUO", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📝" },
-    { id: 4, name: "TREASURE HUNT", rules: ["TEAM BASED EVENT.", "FOLLOW THE CLUES TO FIND THE TREASURE."], date: "Not Decided", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🗺️" },
-    { id: 5, name: "LAN GAMING", rules: ["PARTICIPANTS SHOULD BRING THEIR OWN DEVICES.", "GAME RULES WILL BE ANNOUNCED ON THE SPOT."], date: "Not Decided", fees: "Rs 350", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎮" },
-    { id: 6, name: "CYBER SECURITY", rules: ["KNOWLEDGE OF CYBERSECURITY CONCEPTS REQUIRED.", "PRACTICAL AND THEORETICAL ROUNDS."], date: "Not Decided", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🔐" },
-    { id: 7, name: "TECH TALK", rules: ["OPEN FOR ALL PARTICIPANTS.", "NO REGISTRATION FEE REQUIRED."], date: "Not Decided", fees: "Free for all", prizes: "CERTIFICATE OF PARTICIPATION", emoji: "🎤" },
-    { id: 8, name: "PHARMA QUIZ", rules: ["QUESTIONS WILL BE RELATED TO PHARMACY.", "TIME LIMIT WILL BE THERE FOR EACH ROUND."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "💊" },
-    { id: 9, name: "CURE CREATION", rules: ["PRACTICAL ROUND.", "RELATED TO PHARMACEUTICAL PREPARATIONS."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "⚗️" },
-    { id: 10, name: "BUDDHI VIMARSH", rules: ["MAXIMUM 6 SLIDES CAN BE THERE.", "IT SHOULD BE RELATED TO PHARMACY TOPIC.", "EXPLANATION SHOULD BE SHORT AND SIMPLE."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📊" },
-    { id: 11, name: "COMMERCE QUIZ", rules: ["THERE WILL BE THREE ROUNDS (MCQ, PRESENTATION, RAPID FIRE).", "TIME LIMIT WILL BE THERE FOR EACH ROUND.", "POINTS FOR CORRECT ANSWERS AND PENALTIES FOR INCORRECT."], date: "Not Decided", fees: "RS 100 DUO", prizes: "TROPHY FOR WINNING AND RUNNERUP DUO", emoji: "📋" },
-    { id: 12, name: "CURE CELEBRATION", rules: ["IT WILL BE OF TWO ROUNDS. (SIMPLE SYRUP IN FIRST ROUND & EFFERVESCENT POWDER IS FOR SECOND ROUND)"], date: "Not Decided", fees: "RS 100 DUO", prizes: "TROPHY FOR WINNING AND RUNNERUP DUO", emoji: "🧬" },
+    { id: 2, name: "CODING CONTEST", rules: ["THERE WILL BE TWO ROUNDS (1ST WILL BE CHOOSE THE CORRECT ANSWER & 2ND WILL BE CODE EXECUTION)"], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "💻" },
+    { id: 3, name: "DEBUGGING CONTEST", rules: ["DEBUG THE GIVEN CODE.", "TIME LIMIT WILL BE THERE."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🐛" },
+    { id: 4, name: "POSTER-PAPER PRESENTATION", rules: ["SINGLE ROUND WILL BE HELD.", "PRESENTATION SHOULD BE UNDER 10 MIN."], date: "Not Decided", fees: "Rs 150", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📝" },
+    { id: 5, name: "TREASURE HUNT", rules: ["TEAM BASED EVENT.", "FOLLOW THE CLUES TO FIND THE TREASURE."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🗺️" },
+    { id: 6, name: "LAN GAMING", rules: ["PARTICIPANTS SHOULD BRING THEIR OWN DEVICES.", "GAME RULES WILL BE ANNOUNCED ON THE SPOT."], date: "Not Decided", fees: "Rs 350", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎮" },
+    { id: 7, name: "CYBER SECURITY", rules: ["KNOWLEDGE OF CYBERSECURITY CONCEPTS REQUIRED.", "PRACTICAL AND THEORETICAL ROUNDS."], date: "Not Decided", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🔐" },
+    { id: 8, name: "TECH TALK", rules: ["OPEN FOR ALL PARTICIPANTS.", "NO REGISTRATION FEE REQUIRED."], date: "Not Decided", fees: "Free for all", prizes: "CERTIFICATE OF PARTICIPATION", emoji: "🎤" },
+    { id: 9, name: "PHARMA QUIZ", rules: ["QUESTIONS WILL BE RELATED TO PHARMACY.", "TIME LIMIT WILL BE THERE FOR EACH ROUND."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "💊" },
+    { id: 10, name: "CURE CREATION", rules: ["PRACTICAL ROUND.", "RELATED TO PHARMACEUTICAL PREPARATIONS."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "⚗️" },
   ];
 
   const handleToggleRules = (id) => {

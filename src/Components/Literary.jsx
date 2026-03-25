@@ -5,14 +5,14 @@ function Literary() {
   const [openEventId, setOpenEventId] = useState(null);
   const navigate = useNavigate();
   const literaryEvents = [
-    { id: 14, name: "POSTER PRESENTATION", rules: ["THEME:- WOMENS DAY.", "USE GRAPHICS & ILLUSTRATIONS.", "ONLY HAND MADE POSTER WILL BE CONSIDERED.", "PRESENTATION TIME LIMIT FOR EXPLAINATION WILL BE 2 MIN.", "POSTER SIZE IS A0 SIZE(33* 46 INCH).", "POSTERS HAS TO BE PRE HAND MADE"], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖼️" },
-    { id: 15, name: "BECHO TO JAANE", rules: ["SELLING MATERIAL WILL BE PROVIDED BY INSTITUTION.", "TIME LIMIT WILL BE HALF N HOUR."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🛍️" },
-    { id: 16, name: "IPL AUCATION", rules: ["TEAM SHOULD HAVE 3 MEMBERS.", "BIDDING HAS TO BE DONE WITHIN ASSIGN BUDGET"], date: "Not Decided", fees: "Rs 150 PER TEAM", prizes: "TROPHY FOR WINNING AND RUNNERUP TEAM", emoji: "🏏" },
-    { id: 17, name: "POETRY (KAVI KOSH)", rules: ["VULGAR WRITING IS NOT ALLOWED."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "✍️" },
-    { id: 18, name: "EXTEMPORE", rules: ["PARTICIPANTS WILL BE GIVEN A TANDOM TOPIC AND THEY HAVE TO SPEAK ON THAT TOPIC.", "PERTICULAR TIME WILL BE GIVEN TO SPEAK.", "PARTICIPANTS WILL NOT BE ALLOWED TO PREPARE SPEECH IN ADVANCE."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎙️" },
-    { id: 19, name: "MIND MARATHON", rules: ["THERE WILL BE 4 ROUNDS.", "QUESTIONS WILL BE ON GENERAL SCIENCE, GK AND CURRENT AFFAIRS.", "TIME LIMIT WILL BE THERE FOR FIRST"], date: "Not Decided", fees: "RS 70 DUO", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🧠" },
-    { id: 20, name: "AD MAD SHOW", rules: ["MAX FOUR MEMBER PER TEAM.", "TIME LIMIT WILL BE 2 MIN.", "ONE AD HAS TO BE PREPARED IN ADVANCED FOR ROUND ONE."], date: "Not Decided", fees: "Rs100 PER TEAM", prizes: "TROPHY FOR 1ST, 2ND & 3RD ", emoji: "📺" },
-    { id: 21, name: "DESIGNER CUT", rules: ["MAX TWO MEMBER PER TEAM.", "NEWSPAPER IS PROVIDED BY INSTITUTION.", "CUT AND DESIGN WILL BE DONE IN THE GIVEN TIME.", "DRESS CAN BE WAREABLE AND DECENT.", "NO PRE-PREPARED DRESS WILL BE ALLOWED."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "✂️" },
+    { id: 14, name: "FOCUS & FRAME (PHOTOGRAPHY)", rules: ["THE NATURE OF EVENT."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📸" },
+    { id: 15, name: "CINEMATIC CAPITAL (REEL MAKING)", rules: ["CREATE A REEL.", "TIME LIMIT IS THERE."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎥" },
+    { id: 16, name: "INK & INSIGHT (POETRY)", rules: ["VULGAR WRITING IS NOT ALLOWED."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "✍️" },
+    { id: 17, name: "FACE PAINTING", rules: ["THERE WILL BE ONLY SINGLE ROUND"], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️" },
+    { id: 18, name: "COMMERCE QUIZ", rules: ["THERE WILL BE THREE ROUNDS.", "TIME LIMIT WILL BE THERE."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📋" },
+    { id: 19, name: "IPL - THE FINAL BIDDER", rules: ["TEAM SHOULD HAVE MAX 4 MEMBERS.", "BIDDING HAS TO BE DONE WITHIN ASSIGN BUDGET"], date: "Not Decided", fees: "Rs 200 (Per team max 4 person)", prizes: "TROPHY FOR WINNING TEAM", emoji: "🏏" },
+    { id: 20, name: "EXTEMPORE", rules: ["PARTICIPANTS WILL BE GIVEN A RANDOM TOPIC AND THEY HAVE TO SPEAK ON THAT TOPIC."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎙️" },
+    { id: 21, name: "BECHO TOH JAANE (SOLD OUT)", rules: ["SELLING MATERIAL WILL BE PROVIDED BY INSTITUTION.", "MAX 4 PERSON PER TEAM."], date: "Not Decided", fees: "Rs 100 (Per team max 4 person)", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🛍️" },
   ];
 
   const handleToggleRules = (id) => {

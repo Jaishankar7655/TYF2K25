@@ -5,48 +5,15 @@ function Culture() {
   const [openEventId, setOpenEventId] = useState(null);
   const navigate = useNavigate();
   const culturalEvents = [
-    {
-      id: 22, name: "TRUDIES",
-      rules: ["NO SPECIFIC RULES."],
-      date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🎤",
-    },
-    {
-      id: 23, name: "SONG COMPETITION",
-      rules: ["TIME DURATION WILL BE UNDER 5 MIN.", "MAXIMUM 5 MAMBER IS ALLOWED IN THE GROUP."],
-      date: "Not Decided", fees: "SOLO- Rs 50, DUET Rs 100, GROUP Rs150",
-      prizes: "SOLO:- 1 TROPHY FOR WINNER, DUO :- 2 TROPHY FOR WINNER, GROUP:- 1 TROPHY FOR WINNING GROUP", emoji: "🎵",
-    },
-    {
-      id: 24, name: "DANCE COMPETITION",
-      rules: ["ALL THE PARTICIPANTS MUST REGISTER BEFORE THE DEADLINE.", "EACH PERFORMANCE SHOULD BE PERFORMED UNDER 5 MIN.", "PARTICIPANTS MUST PROVIDE THEIR OWN MUSIC.", "GROUP CAN HAVE MAXIMUM 8 MEMBER."],
-      date: "Not Decided", fees: "SOLO- Rs 100, DUET Rs 150, GROUP Rs 250",
-      prizes: "SOLO:- 1ST, 2ND & 3RD PRICE, DUO :- 1ST, 2ND & 3RD PRICE, GROUP:- 1ST & 2ND PRICE.", emoji: "💃",
-    },
-    {
-      id: 25, name: "RANGOLI",
-      rules: ["RANGOLI COLOURS IS ALLOWED FOR RANGOLI.(NO PAINTS OR FLOWER IS ALLOWED)", "THEME:- WOMEN DAY.", "TIME LIMITS WILL BE 1 HRS.", "SIZE OF AREA FOR RANGOLI WILL BE 4FT * 4 FT"],
-      date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎨",
-    },
-    {
-      id: 26, name: "FACE PAINTAING",
-      rules: ["THERE WILL BE ONLY SINGLE ROUND"],
-      date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️",
-    },
-    {
-      id: 27, name: "RAMP WALK",
-      rules: ["DAY 1 THEME :- BOLLYWOOD.", "DAY-2 THEME:- ANGEL AND DEVIL."],
-      date: "Not Decided", fees: "Rs100", prizes: "TROPHY FOR WINNER AND RUNNERUP FOR MALE AND FEMALE CANDIDATE", emoji: "🕺",
-    },
-    {
-      id: 28, name: "NUKKAD NATAK",
-      rules: ["THEME:- SOCIAL AWARENESS.", "MAX 10 MEMBER PER TEAM.", "TIME LIMIT WILL BE 10 MIN.", "TEAM SHOULD BRING THEIR OWN PROPS.", "MIC AND SOUND SYSTEM IS NOT ALLOWED"],
-      date: "Not Decided", fees: "Rs100 PER TEAM", prizes: " TROPHY FOR WINNING GROUP", emoji: "🎭",
-    },
-    {
-      id: 29, name: "DANCE BATTLE",
-      rules: ["FIRST ROUND:- PERFORMED UNDER 2 MIN.(THEME:- BOLLYWOOD)", "SECOND ROUND:- PERFORMED UNDER 2 MIN. (THEME:- HIP-HOP BEAT)", "THIRD ROUND:- PERFORMED UNDER 4 MIN.((THEME:- GIVEN ON THE SPOT)"],
-      date: "Not Decided", fees: "Rs100", prizes: "TROPHY FOR 1ST, 2ND & 3RD", emoji: "🔥",
-    },
+    { id: 1, name: "DANCE (SOLO-DUO-GROUP)", rules: ["PERFORMED UNDER 5 MIN."], date: "Not Decided", fees: "SOLO: 100, DUO: 200, GROUP: 250", prizes: "TROPHY FOR WINNERS", emoji: "💃" },
+    { id: 2, name: "SINGING (SOLO-DUO)", rules: ["TIME DURATION WILL BE UNDER 5 MIN."], date: "Not Decided", fees: "SOLO: 50, DUO: 100", prizes: "TROPHY FOR WINNERS", emoji: "🎵" },
+    { id: 3, name: "ACTING ANTICS (SKIT)", rules: ["THEME:- SOCIAL AWARENESS.", "TIME LIMIT WILL BE 10 MIN."], date: "Not Decided", fees: "Rs 250 (Per team)", prizes: "TROPHY FOR WINNING GROUP", emoji: "🎭" },
+    { id: 4, name: "COPY PASTE (MIMICRY)", rules: ["NO OFFENSIVE CONTENT."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🗣️" },
+    { id: 5, name: "COLORFUL CANVAS (RANGOLI)", rules: ["RANGOLI COLOURS ONLY.", "TIME LIMIT WILL BE 1 HRS."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎨" },
+    { id: 6, name: "HENNA HARMONY (MEHENDI)", rules: ["BRING YOUR OWN CONE."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️" },
+    { id: 7, name: "OPEN MIC", rules: ["ANY TALENT UNDER 5 MIN."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🎤" },
+    { id: 8, name: "WALK & WOW (RAMP WALK)", rules: ["PROPER DRESS REGULATION."], date: "Not Decided", fees: "Rs 200", prizes: "TROPHY FOR WINNERS", emoji: "🚶" },
+    { id: 9, name: "DANCE BATTLE", rules: ["IMPROMPTU DANCE."], date: "Not Decided", fees: "Rs 100 (Per member)", prizes: "TROPHY FOR BATTLE WINNER", emoji: "🔥" },
   ];
 
   const handleToggleRules = (id) => {

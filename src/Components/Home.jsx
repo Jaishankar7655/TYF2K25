@@ -75,7 +75,7 @@ const HomePage = () => {
       </div>
 
       {/* Header */}
-      <header className="relative z-50 w-full flex justify-center items-center gap-2 sm:gap-8 md:gap-16 px-2 sm:px-6 md:px-12 py-3 sm:py-5">
+      <header className="relative z-50 w-full flex justify-between items-center gap-2 sm:gap-8 md:gap-16 px-4 sm:px-10 md:px-16 py-3 sm:py-5">
         <div className="flex items-center group cursor-pointer flex-shrink-0">
           <img className="w-12 h-12 sm:w-16 sm:h-16 md:w-28 md:h-28 object-contain rounded-full transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(255,45,149,0.5)] group-hover:scale-105" src={trb} alt="Truba Logo" />
         </div>

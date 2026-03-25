@@ -6,102 +6,18 @@ function Sport() {
   const navigate = useNavigate();
 
   const sportsEvents = [
-    {
-      id: 4,
-      name: "BGMI AND FREE FIRE",
-      rules: [
-        "AT LEAST TWO TEAM MEMBERS HAVE TO BE PRESENT AT THE VENUE.",
-        "CANDIDATES SHOULD REACH THE VENUE BEFORE 30 MINUTES.",
-      ],
-      date: "Not Decided",
-      fees: "RS 350 PER SQUAD",
-      prizes:
-        "CASH PRIZE(DEPENDS ON REGISTRATION) AND CERTIFICATES TO ALL PARTICIPANTS",
-      emoji: "🎮",
-    },
-    {
-      id: 8,
-      name: "CHESS",
-      rules: ["REGULAR RULES."],
-      date: "Not Decided",
-      fees: "Rs 50",
-      prizes: "TROPHY FOR WINNER ",
-      emoji: "♟️",
-    },
-    {
-      id: 9,
-      name: "BADMINTON",
-      rules: ["SINGLES WILL BE THERE.", "MATCH WILL BE OF 11 POINTS."],
-      date: "Not Decided",
-      fees: "Rs 50",
-      prizes: "TROPHY FOR WINNER AND RUNNERUP",
-      emoji: "🏸",
-    },
-    {
-      id: 10,
-      name: "KHO-KHO",
-      rules: ["8 PARTICIPANTS SHOULD BE THERE IN THE TEAM."],
-      date: "Not Decided",
-      fees: "RS 150 PER TEAM",
-      prizes: "MEDAL & TROPHY FOR WINNING TEAM",
-      emoji: "🏃",
-    },
-    {
-      id: 11,
-      name: "ARM WRESTLING",
-      rules: [
-        "ELBOWS MUST REMAIN ON TABLE AND HAND CENTERED, STRAIGHT WRIST.",
-        "OPPONENT HAND TOUCHES THE TABLE OR COMMITS TO FOULS.",
-        "LIFTING ELBOW, GRIP CHANGE, EARLY START, INTENTIONAL SLIP.",
-        "WEIGHT RANGE: 60-80 KG AND 80-ABOVE 100KG.",
-      ],
-      date: "Not Decided",
-      fees: "Rs 50",
-      prizes:
-        "TROPHY AND MEDAL FOR BOTH THE CATEGORY OF 60-80KG AND 80-ABOVE 100KG.",
-      emoji: "💪",
-    },
-    {
-      id: 12,
-      name: "VOLLEYBALL",
-      rules: [
-        "EVERY SET IS OF 15 POINTS.",
-        "TWO SUBSTITUTIONS ARE ALLOWED.",
-        "PROPER SPORTS DRESS & SHOES ARE MANDATORY.",
-        "UMPIRE DECISION WILL BE FINAL.",
-        "TEAM CAN HAVE MAXIMUM 9 MEMBERS.",
-      ],
-      date: "Not Decided",
-      fees: "RS 600 PER TEAM",
-      prizes:
-        " 1 TROPHY & 9 GOLD MEDALS TO WINNING TEAM & SILVER MEDALS FOR RUNNERUP TEAM",
-      emoji: "🏐",
-    },
-    {
-      id: 13,
-      name: "KABADDI",
-      rules: [
-        "EVERY SET WILL BE OF 10 MIN.",
-        "TEAM CAN USE MAXIMUM 2 SUBSTITUTIONS.",
-        "BREAK WILL BE OF 1 MIN.",
-        "PROPER DRESS AND SHOES ARE MANDATORY.",
-        "UMPIRE DECISION WILL BE FINAL.",
-      ],
-      date: "Not Decided",
-      fees: "RS 500 PER TEAM",
-      prizes:
-        " 1 TROPHY & 9 GOLD MEDALS TO WINNING TEAM & SILVER MEDALS FOR RUNNERUP TEAM",
-      emoji: "🤼",
-    },
-    {
-      id: 14,
-      name: "CARROM",
-      rules: ["REGULAR RULES."],
-      date: "Not Decided",
-      fees: "Rs 50",
-      prizes: "Not specified",
-      emoji: "🎯",
-    },
+    { id: 1, name: "RAPID RUN-RACE", rules: ["STANDARD RACE RULES."], date: "Not Decided", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🏃" },
+    { id: 2, name: "JAVELIN THROW", rules: ["STANDARD RULES."], date: "Not Decided", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🎯" },
+    { id: 3, name: "BADMINTON", rules: ["SINGLES WILL BE THERE.", "MATCH WILL BE OF 11 POINTS."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🏸" },
+    { id: 4, name: "SHOT PUT", rules: ["STANDARD RULES."], date: "Not Decided", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🪨" },
+    { id: 5, name: "CRICKET", rules: ["STANDARD RULES."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNING TEAM", emoji: "🏏" },
+    { id: 6, name: "KABADDI", rules: ["EVERY SET WILL BE OF 10 MIN.", "PROPER DRESS AND SHOES ARE MANDATORY."], date: "Not Decided", fees: "Rs 300", prizes: "MEDAL AND TROPHY FOR WINNING TEAM", emoji: "🤼" },
+    { id: 7, name: "KHO-KHO", rules: ["8 PARTICIPANTS SHOULD BE THERE IN THE TEAM."], date: "Not Decided", fees: "Rs 300", prizes: "MEDAL AND TROPHY FOR WINNING TEAM", emoji: "🏃" },
+    { id: 8, name: "TUG OF WAR", rules: ["STANDARD RULES."], date: "Not Decided", fees: "Rs 50", prizes: "MEDAL AND TROPHY", emoji: "🪢" },
+    { id: 9, name: "DISCUS THROW", rules: ["STANDARD RULES."], date: "Not Decided", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🛸" },
+    { id: 10, name: "CARROM", rules: ["REGULAR RULES."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🎯" },
+    { id: 11, name: "CHESS", rules: ["REGULAR RULES."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "♟️" },
+    { id: 12, name: "TABLE TENNIS", rules: ["REGULAR RULES."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🏓" },
   ];
 
   const handleToggleRules = (id) => {
