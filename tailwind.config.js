@@ -14,6 +14,10 @@ export default {
         'dark-surface': '#1a1a3e',
       },
       keyframes: {
+        ticker: {
+          '0%':   { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
         fadeIn: {
           '0%': { opacity: '0', transform: 'translateY(-20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' }
@@ -51,6 +55,7 @@ export default {
         }
       },
       animation: {
+        ticker: 'ticker 12s linear infinite',
         'fade-in': 'fadeIn 0.5s ease-in',
         'slide-in-up': 'slideInUp 0.6s ease-out',
         'neon-pulse': 'neonPulse 3s ease-in-out infinite',

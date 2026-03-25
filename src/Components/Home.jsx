@@ -54,7 +54,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-dark-bg text-white relative overflow-hidden font-outfit selection:bg-neon-pink/30">
+    <div className="min-h-screen bg-dark-bg text-white relative overflow-hidden font-outfit selection:bg-neon-pink/30 flex flex-col">
 
       {/* Confetti overlay — fewer on mobile for performance */}
       <div className="hidden sm:block">
@@ -75,44 +75,56 @@ const HomePage = () => {
       </div>
 
       {/* Header */}
-      <header className="relative z-50 w-full flex justify-between items-center px-2 sm:px-6 md:px-12 py-2 sm:py-4">
+      <header className="relative z-50 w-full flex justify-center items-center gap-2 sm:gap-8 md:gap-16 px-2 sm:px-6 md:px-12 py-3 sm:py-5">
         <div className="flex items-center group cursor-pointer flex-shrink-0">
-          <img className="w-10 h-10 sm:w-16 sm:h-16 md:w-28 md:h-28 object-contain rounded-full transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(255,45,149,0.5)] group-hover:scale-105" src={trb} alt="Truba Logo" />
+          <img className="w-12 h-12 sm:w-16 sm:h-16 md:w-28 md:h-28 object-contain rounded-full transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(255,45,149,0.5)] group-hover:scale-105" src={trb} alt="Truba Logo" />
         </div>
 
         {/* Center - Music Equalizer */}
-        <div className="flex items-center gap-1 sm:gap-3 md:gap-4 flex-shrink min-w-0 justify-center px-1">
-          <div className="scale-75 sm:scale-100"><MusicEqualizer /></div>
-          <span className="text-neon-cyan text-[9px] sm:text-sm md:text-3xl font-bold md:font-black tracking-normal sm:tracking-widest uppercase whitespace-nowrap drop-shadow-[0_0_10px_rgba(0,240,255,0.5)] truncate">Live Party Mode</span>
-          <div className="scale-75 sm:scale-100"><MusicEqualizer /></div>
+        <div className="flex items-center gap-1 sm:gap-3 md:gap-4 flex-shrink min-w-0 justify-center">
+          <div className="scale-[0.6] sm:scale-100"><MusicEqualizer /></div>
+          <span className="text-neon-cyan text-[11px] sm:text-base md:text-3xl font-bold md:font-black tracking-normal sm:tracking-widest uppercase whitespace-nowrap drop-shadow-[0_0_10px_rgba(0,240,255,0.5)] truncate">Live Party Mode</span>
+          <div className="scale-[0.6] sm:scale-100"><MusicEqualizer /></div>
         </div>
 
         <div className="flex items-center group cursor-pointer flex-shrink-0">
-          <img className="w-10 h-10 sm:w-16 sm:h-16 md:w-28 md:h-28 object-contain rounded-full transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(0,240,255,0.5)] group-hover:scale-105" src={festlogo} alt="Fest Logo" />
+          <img className="w-12 h-12 sm:w-12 sm:h-12 md:w-28 md:h-28 object-contain rounded-full transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(0,240,255,0.5)] group-hover:scale-105" src={festlogo} alt="Fest Logo" />
         </div>
       </header>
 
       {/* Hero Section */}
-      <main className="relative z-10 flex flex-col items-center justify-center min-h-[80vh] sm:min-h-[85vh] px-4 sm:px-6 pt-8 sm:pt-10 pb-12 sm:pb-20">
-        <div className="text-center w-full max-w-5xl mx-auto flex flex-col items-center mt-[-20px] sm:mt-[-40px]">
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center w-full px-4 sm:px-6 py-2 sm:py-4">
+        <div className="text-center w-full max-w-5xl mx-auto flex flex-col items-center justify-evenly h-full gap-4 sm:gap-6 md:gap-8 min-h-[60vh]">
 
           {/* Party badge */}
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full bg-dark-card/80 border border-neon-pink/30 backdrop-blur-md mb-3 sm:mb-4 text-neon-pink font-semibold text-xs sm:text-sm shadow-[0_0_20px_rgba(255,45,149,0.15)] animate-party-float">
+          <div className="inline-flex items-center flex-wrap justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full bg-dark-card/80 border border-neon-pink/30 backdrop-blur-md text-neon-pink font-semibold text-xs sm:text-sm shadow-[0_0_20px_rgba(255,45,149,0.15)] animate-party-float">
             <PartyPopper className="w-4 h-4 sm:w-5 sm:h-5 text-neon-yellow flex-shrink-0" />
             <span className="tracking-wide sm:tracking-wider uppercase whitespace-nowrap">🎉 Registration Open • April 6-8, 2026 🎉</span>
+            
             <Disc3 className="w-4 h-4 sm:w-5 sm:h-5 text-neon-cyan animate-spin flex-shrink-0" style={{ animationDuration: '3s' }} />
           </div>
-
+         <div className="w-[90%] max-w-[600px] overflow-hidden rounded-lg py-2 my-3 mx-auto">
+  <div className="flex w-max animate-ticker hover:[animation-play-state:paused]">
+    {[...Array(4)].map((_, i) => (
+      <span
+        key={i}
+        className="whitespace-nowrap px-12 text-sm sm:text-base font-medium text-amber-200/90 tracking-wide"
+      >
+        📌 Note: Sport events will be from 4 – 5 April 2026
+      </span>
+    ))}
+  </div>
+</div>
           {/* Main title */}
-          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tight mb-1 sm:mb-2 flex flex-col items-center leading-[1.1]">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tight flex flex-col items-center leading-[1.1]">
             
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan mt-1 px-2 pb-2 drop-shadow-[0_0_40px_rgba(255,45,149,0.3)]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan px-2 pb-2 drop-shadow-[0_0_40px_rgba(255,45,149,0.3)]">
              <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">TRUBA</span> FEST
             </span>
           </h1>
 
           {/* Year */}
-          <div className="relative mb-4 sm:mb-6 mt-1 flex items-center gap-3 sm:gap-4">
+          <div className="relative flex items-center gap-3 sm:gap-4">
             <Headphones className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-neon-cyan animate-party-float" style={{ animationDelay: '0.5s' }} />
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-black neon-text bg-clip-text text-neon-cyan">
               2K26
@@ -121,7 +133,7 @@ const HomePage = () => {
           </div>
 
           {/* Tagline */}
-          <p className="text-sm sm:text-lg md:text-2xl text-gray-300 max-w-xs sm:max-w-xl md:max-w-3xl mx-auto mb-5 sm:mb-8 font-medium leading-relaxed px-2">
+          <p className="text-sm sm:text-lg md:text-2xl text-gray-300 max-w-xs sm:max-w-xl md:max-w-3xl mx-auto font-medium leading-relaxed px-2">
             🎧 The Ultimate <span className="text-neon-pink font-bold">Party</span> • <span className="text-neon-cyan font-bold">Music</span> • <span className="text-neon-purple font-bold">Dance</span> Experience.
             <span className="hidden sm:inline"> Join Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span>
             <span className="sm:hidden"> Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span> 🎶
@@ -137,7 +149,7 @@ const HomePage = () => {
           </button>
 
           {/* Party emojis row */}
-          <div className="mt-4 sm:mt-6 flex items-center gap-3 sm:gap-6 text-xl sm:text-2xl md:text-3xl animate-party-float flex-wrap justify-center">
+          <div className="flex items-center gap-3 sm:gap-6 text-xl sm:text-2xl md:text-3xl animate-party-float flex-wrap justify-center">
             <span>🎵</span><span>🪩</span><span>🎤</span><span>🎸</span>
             <span className="hidden sm:inline">🥁</span>
             <span className="hidden sm:inline">🎷</span>
