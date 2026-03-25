@@ -9,45 +9,44 @@ const categories = [
     title: "Cultural",
     icon: "🎭",
     events: [
-      { name: "Trudies (Rodies of Truba)", price: 100 },
       {
-        name: "Dance Competition",
+        name: "Dance (Solo-Duo-Group)",
         hasOptions: true,
         options: [
           { type: "Solo", price: 100 },
-          { type: "Duo", price: 150 },
+          { type: "Duo", price: 200 },
           { type: "Group", price: 250 },
         ],
       },
-      { name: "Face Painting", price: 50 },
-      { name: "Dance Battle", price: 100 },
-      { name: "Ramp Walk", price: 100 },
-      { name: "Rangoli", price: 50 },
       {
-        name: "Singing Competition",
+        name: "Singing (Solo-Duo)",
         hasOptions: true,
         options: [
           { type: "Solo", price: 50 },
           { type: "Duo", price: 100 },
-          { type: "Group", price: 150 },
         ],
       },
-      { name: "Nukkad natak", price: 100 },
-      { name: "Mono Act", price: 100 },
+      { name: "Acting Antics (Skit)", price: 250 },
+      { name: "Copy Paste (Mimicry)", price: 50 },
+      { name: "Colorful Canvas (Rangoli)", price: 50 },
+      { name: "Henna Harmony (Mehendi)", price: 50 },
+      { name: "Open Mic", price: 50 },
+      { name: "Walk & Wow (Ramp Walk)", price: 200 },
+      { name: "Dance Battle", price: 100 },
     ],
   },
   {
     title: "Literary",
     icon: "📚",
     events: [
-      { name: "Poster presentation", price: 50 },
-      { name: "Kavi Kosh (Poetry)", price: 50 },
-      { name: "Mind Marathon (Duo)", price: 70 },
-      { name: "AD-MAD-SHOW (per team )", price: 100 },
-      { name: "IPL Auction (Per team) ", price: 150 },
+      { name: "Focus & Frame (Photography)", price: 50 },
+      { name: "Cinematic Capital (Reel Making)", price: 100 },
+      { name: "Ink & Insight (Poetry)", price: 50 },
+      { name: "Face Painting", price: 100 },
+      { name: "Commerce Quiz", price: 100 },
+      { name: "IPL - The Final Bidder", price: 200 },
       { name: "Extempore", price: 50 },
-      { name: "Designer Cut", price: 50 },
-      { name: "Becho To Jaane (Per team)", price: 50 },
+      { name: "Becho Toh Jaane (Sold Out)", price: 100 },
     ],
   },
   {
@@ -55,38 +54,33 @@ const categories = [
     icon: "💻",
     events: [
       { name: "Tech Quiz", price: 50 },
-      { name: "Code Encounter", price: 100 },
-      { name: "Tech Paper Presentation (Single/Duo)", price: 150 },
-      { name: "Treasure Hunt", price: 200 },
+      { name: "Coding Contest", price: 100 },
+      { name: "Debugging Contest", price: 100 },
+      { name: "Poster-Paper Presentation", price: 150 },
+      { name: "Treasure Hunt", price: 100 },
       { name: "LAN Gaming", price: 350 },
       { name: "Cyber Security", price: 200 },
       { name: "Tech Talk", price: 0 },
       { name: "Pharma Quiz", price: 100 },
       { name: "Cure Creation", price: 100 },
-      { name: "Buddhi Vimarsh", price: 50 },
-      { name: "Commerce Quiz (Duo)", price: 100 },
-      { name: "Cure Celebration (Duo)", price: 100 },
-    ],
-  },
-  {
-    title: "E-Sports",
-    icon: "🎮",
-    events: [
-      { name: "BGMI (Per Squad)", price: 350 },
-      { name: "Freefire (Per squad)", price: 350 },
     ],
   },
   {
     title: "Sports",
     icon: "🏆",
     events: [
-      { name: "Kabbadi (per team)", price: 500 },
-      { name: "Arm Wrestling", price: 50 },
+      { name: "Rapid Run-Race", price: 50 },
+      { name: "Javelin Throw", price: 50 },
       { name: "Badminton", price: 50 },
-      { name: "Chess", price: 50 },
-      { name: "Volleyball (Per Team)", price: 600 },
-      { name: "Kho-Kho (Per team)", price: 150 },
+      { name: "Shot Put", price: 50 },
+      { name: "Cricket", price: 50 },
+      { name: "Kabaddi", price: 300 },
+      { name: "Kho-Kho", price: 300 },
+      { name: "Tug of War", price: 50 },
+      { name: "Discus Throw", price: 50 },
       { name: "Carrom", price: 50 },
+      { name: "Chess", price: 50 },
+      { name: "Table Tennis", price: 50 },
     ],
   },
   {
@@ -121,8 +115,8 @@ const RegistrationForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedEvents, setSelectedEvents] = useState([]);
   const [eventOptions, setEventOptions] = useState({
-    "Singing Competition": "",
-    "Dance Competition": "",
+    "Singing (Solo-Duo)": "",
+    "Dance (Solo-Duo-Group)": "",
   });
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -138,8 +132,8 @@ const RegistrationForm = () => {
       phone: "",
       college: "",
       events: [],
-      "Singing Competition Options": "",
-      "Dance Competition Options": "",
+      "Singing (Solo-Duo) Options": "",
+      "Dance (Solo-Duo-Group) Options": "",
     },
   });
 
@@ -190,8 +184,8 @@ const RegistrationForm = () => {
     } else {
       setSelectedEvents((prev) => prev.filter((e) => e !== event.name));
       if (
-        event.name === "Singing Competition" ||
-        event.name === "Dance Competition"
+        event.name === "Singing (Solo-Duo)" ||
+        event.name === "Dance (Solo-Duo-Group)"
       ) {
         setEventOptions((prev) => ({
           ...prev,
@@ -224,8 +218,8 @@ const RegistrationForm = () => {
       const eventsData = selectedEvents
         .map((eventName) => {
           if (
-            eventName === "Singing Competition" ||
-            eventName === "Dance Competition"
+            eventName === "Singing (Solo-Duo)" ||
+            eventName === "Dance (Solo-Duo-Group)"
           ) {
             return `${eventName} (${eventOptions[eventName]})`;
           }

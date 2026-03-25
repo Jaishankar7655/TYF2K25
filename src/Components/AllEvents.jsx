@@ -8,7 +8,7 @@ function AllEvents() {
     { name: "Literary", path: "/literary", icon: <BookOpen className="w-10 h-10 mb-3" />, color: "text-neon-purple", borderColor: "border-neon-purple/30", hoverBorder: "hover:border-neon-purple", glow: "hover:shadow-[0_0_25px_rgba(176,38,255,0.2)]", emoji: "📚" },
     { name: "Cultural", path: "/culture", icon: <Music className="w-10 h-10 mb-3" />, color: "text-neon-pink", borderColor: "border-neon-pink/30", hoverBorder: "hover:border-neon-pink", glow: "hover:shadow-[0_0_25px_rgba(255,45,149,0.2)]", emoji: "🎭" },
     { name: "Sports", path: "/sport", icon: <Trophy className="w-10 h-10 mb-3" />, color: "text-neon-yellow", borderColor: "border-neon-yellow/30", hoverBorder: "hover:border-neon-yellow", glow: "hover:shadow-[0_0_25px_rgba(255,230,0,0.2)]", emoji: "🏆" },
-    { name: "SEC Committee", path: "#", icon: <Star className="w-10 h-10 mb-3" />, color: "text-green-400", borderColor: "border-green-400/30", hoverBorder: "hover:border-green-400", glow: "hover:shadow-[0_0_25px_rgba(74,222,128,0.2)]", emoji: "🌟" },
+    { name: "SEC Committee", path: "/sac", icon: <Star className="w-10 h-10 mb-3" />, color: "text-green-400", borderColor: "border-green-400/30", hoverBorder: "hover:border-green-400", glow: "hover:shadow-[0_0_25px_rgba(74,222,128,0.2)]", emoji: "🌟" },
   ];
 
   return (
