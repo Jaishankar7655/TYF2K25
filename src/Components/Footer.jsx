@@ -1,12 +1,24 @@
-import React from "react";
+import React from 'react';
 
-function Footer() {
+const Footer = () => {
   return (
-    <footer>
-      <p className="text-center my-6" >© 2025 Truba Youth Fest. All rights reserved.</p>
-      <p className="text-center text-slate-600" >Created and developed By student Committee (SOC) of Truba group of Institute</p>
+    <footer style={{ 
+      textAlign: 'center', 
+      padding: '20px', 
+      marginTop: 'auto',
+      backgroundColor: '#f8f9fa',
+      color: '#333',
+      fontSize: '14px',
+      width: '100%',
+      backdropFilter: 'blur(10px)',
+      background: 'rgba(255, 255, 255, 0.1)',
+      borderTop: '1px solid rgba(255, 255, 255, 0.2)'
+    }}>
+      <p style={{ margin: 0 }}>
+        Created and developed with <span style={{ color: 'red' }}>❤️</span> by student Committee (SOC) of Truba group of Institute
+      </p>
     </footer>
   );
-}
+};
 
 export default Footer;

@@ -33,4 +33,18 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Hide spinners for Firefox */
 input[type="number"] {
   -moz-appearance: textfield; /* Firefox uses -moz-appearance */
+  appearance: textfield; /* Standard syntax */
 }
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+}
+
