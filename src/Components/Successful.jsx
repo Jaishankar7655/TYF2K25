@@ -12,7 +12,7 @@ function Successful() {
       {/* Animated BG */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full bg-neon-green/5 blur-[150px] animate-disco-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
       <div className="party-card rounded-2xl p-8 max-w-md w-full mx-auto text-center animate-fade-in relative z-10">
@@ -29,7 +29,7 @@ function Successful() {
           <p className="text-gray-400">
             Thank you for registering for Truba Fest 2026! Your registration has been confirmed. 🎉
           </p>
-         
+
           <div className="bg-neon-green/5 border border-neon-green/20 rounded-xl p-4">
             <p className="text-neon-green">
               A confirmation email has been sent to your registered email address with all the event details.

@@ -77,21 +77,21 @@ const HomePage = () => {
       {/* Header */}
       <header className="relative z-50 w-full flex justify-between items-center px-4 sm:px-6 md:px-12 py-3 sm:py-4 border-b border-neon-purple/20 glass-party">
         <div className="flex items-center gap-3 sm:gap-4 group cursor-pointer">
-          <div className="relative p-1 sm:p-1.5 md:p-2 rounded-xl sm:rounded-2xl bg-dark-card/80 border border-neon-purple/30 group-hover:border-neon-pink/60 transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(255,45,149,0.3)]">
-            <img className="w-9 h-9 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain rounded-lg sm:rounded-xl" src={trb} alt="Truba Logo" />
+          <div className="relative p-1 sm:p-2 md:p-3 rounded-xl sm:rounded-2xl bg-dark-card/80 border border-neon-purple/30 group-hover:border-neon-pink/60 transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(255,45,149,0.3)]">
+            <img className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain rounded-lg sm:rounded-xl" src={trb} alt="Truba Logo" />
           </div>
         </div>
 
-        {/* Center - Music Equalizer (hidden on mobile) */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* Center - Music Equalizer */}
+        <div className="flex items-center gap-1 sm:gap-3 scale-75 sm:scale-100">
           <MusicEqualizer />
-          <span className="text-neon-cyan/70 text-sm font-medium tracking-wider uppercase">Live Party Mode</span>
+          <span className="text-neon-cyan/70 text-[10px] sm:text-sm font-medium tracking-wider uppercase whitespace-nowrap">Live Party Mode</span>
           <MusicEqualizer />
         </div>
 
         <div className="flex items-center gap-3 sm:gap-4 group cursor-pointer">
-          <div className="relative p-1 sm:p-1.5 md:p-2 rounded-xl sm:rounded-2xl bg-dark-card/80 border border-neon-cyan/30 group-hover:border-neon-cyan/60 transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(0,240,255,0.3)]">
-            <img className="w-9 h-9 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain rounded-lg sm:rounded-xl" src={festlogo} alt="Fest Logo" />
+          <div className="relative p-1 sm:p-2 md:p-3 rounded-xl sm:rounded-2xl bg-dark-card/80 border border-neon-cyan/30 group-hover:border-neon-cyan/60 transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(0,240,255,0.3)]">
+            <img className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain rounded-lg sm:rounded-xl" src={festlogo} alt="Fest Logo" />
           </div>
         </div>
       </header>
@@ -119,7 +119,7 @@ const HomePage = () => {
           <div className="relative mb-8 sm:mb-10 mt-1 sm:mt-2 flex items-center gap-3 sm:gap-4">
             <Headphones className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-neon-cyan animate-party-float" style={{ animationDelay: '0.5s' }} />
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-black neon-text bg-clip-text text-neon-cyan">
-              2026
+              2K26
             </h2>
             <Music className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-neon-pink animate-party-float" style={{ animationDelay: '1s' }} />
           </div>
@@ -127,7 +127,7 @@ const HomePage = () => {
           {/* Tagline */}
           <p className="text-base sm:text-lg md:text-2xl text-gray-300 max-w-xs sm:max-w-xl md:max-w-3xl mx-auto mb-8 sm:mb-14 font-medium leading-relaxed px-2">
             🎧 The Ultimate <span className="text-neon-pink font-bold">Party</span> • <span className="text-neon-cyan font-bold">Music</span> • <span className="text-neon-purple font-bold">Dance</span> Experience.
-            <span className="hidden sm:inline"> Join Central India's most <span className="text-neon-yellow font-bold">electrifying</span> youth festival!</span>
+            <span className="hidden sm:inline"> Join Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span>
             <span className="sm:hidden"> Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span> 🎶
           </p>
 

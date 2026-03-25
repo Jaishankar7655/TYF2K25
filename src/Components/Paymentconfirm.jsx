@@ -36,11 +36,11 @@ const PaymentConfirm = () => {
       {/* Animated BG */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-1/3 w-[400px] h-[400px] rounded-full bg-neon-green/5 blur-[150px] animate-disco-pulse"></div>
-        <div className="absolute bottom-0 right-1/3 w-[400px] h-[400px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-0 right-1/3 w-[400px] h-[400px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
       <div className="max-w-2xl mx-auto relative z-10">
-        <div 
+        <div
           ref={confirmationRef}
           className="party-card rounded-2xl p-8"
         >

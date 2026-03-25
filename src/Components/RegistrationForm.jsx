@@ -220,7 +220,7 @@ const RegistrationForm = () => {
     try {
       setError("");
       setIsSubmitting(true);
-  
+
       const eventsData = selectedEvents
         .map((eventName) => {
           if (
@@ -232,7 +232,7 @@ const RegistrationForm = () => {
           return eventName;
         })
         .join(", ");
-  
+
       const formData = new FormData();
       formData.append("name", data.name);
       formData.append("email", data.email);
@@ -240,18 +240,18 @@ const RegistrationForm = () => {
       formData.append("college", data.college);
       formData.append("events", eventsData);
       formData.append("totalAmount", calculateTotal());
-  
+
       const GOOGLE_SCRIPT_URL = import.meta.env.VITE_REGISTRATION_SCRIPT_URL;
-  
+
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         body: formData,
         mode: "no-cors",
       });
-  
+
       if (response.type === "opaque") {
         await new Promise((resolve) => setTimeout(resolve, 1500));
-  
+
         navigate("/payment", {
           state: {
             totalAmount: calculateTotal(),
@@ -273,13 +273,13 @@ const RegistrationForm = () => {
       setIsSubmitting(false);
     }
   };
-  
+
   return (
     <div className="min-h-screen bg-dark-bg party-bg py-12 px-4 relative overflow-hidden">
       {/* Animated background orbs */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse"></div>
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
       <div className="max-w-5xl mx-auto relative z-10">
@@ -294,7 +294,7 @@ const RegistrationForm = () => {
               🎧 Register for Truba Fest 2026 🎧
             </p>
           </div>
-  
+
           {/* Alert Message */}
           {alertMessage && (
             <div className="fixed top-6 left-0 right-0 mx-auto w-full max-w-md z-50">
@@ -304,14 +304,14 @@ const RegistrationForm = () => {
               </div>
             </div>
           )}
-  
+
           {/* Error Message */}
           {error && (
             <div className="mb-6 p-4 bg-red-900/30 border border-red-500/30 rounded-xl">
               <p className="text-red-300">{error}</p>
             </div>
           )}
-  
+
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             {/* Personal Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -332,7 +332,7 @@ const RegistrationForm = () => {
                   </p>
                 )}
               </div>
-  
+
               {/* Email Field */}
               <div>
                 <label className="flex items-center space-x-2 text-gray-300 font-medium mb-2">
@@ -356,7 +356,7 @@ const RegistrationForm = () => {
                   </p>
                 )}
               </div>
-  
+
               {/* Phone Field */}
               <div>
                 <label className="flex items-center space-x-2 text-gray-300 font-medium mb-2">
@@ -380,7 +380,7 @@ const RegistrationForm = () => {
                   </p>
                 )}
               </div>
-  
+
               {/* College Field */}
               <div>
                 <label className="flex items-center space-x-2 text-gray-300 font-medium mb-2">
@@ -401,7 +401,7 @@ const RegistrationForm = () => {
                 )}
               </div>
             </div>
-  
+
             {/* Events Selection */}
             <div className="space-y-6">
               <div className="flex items-center space-x-2">
@@ -410,7 +410,7 @@ const RegistrationForm = () => {
                   🎶 Select Your Events
                 </h3>
               </div>
-  
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {categories.map((category) => (
                   <div
@@ -424,7 +424,7 @@ const RegistrationForm = () => {
                     <div className="space-y-3">
                       {category.events.map((event) => (
                         <div key={event.name} className="space-y-2">
-                          <div 
+                          <div
                             className="flex flex-col p-2 rounded-lg hover:bg-neon-purple/10 cursor-pointer transition-colors duration-200"
                             onClick={() => handleEventSelection(event, !selectedEvents.includes(event.name))}
                           >
@@ -433,7 +433,7 @@ const RegistrationForm = () => {
                                 <input
                                   type="checkbox"
                                   checked={selectedEvents.includes(event.name)}
-                                  onChange={() => {}}
+                                  onChange={() => { }}
                                   className="w-5 h-5 rounded border-neon-purple/30 text-neon-pink focus:ring-neon-pink bg-dark-surface"
                                 />
                                 <span className="text-gray-300 text-sm">
@@ -446,7 +446,7 @@ const RegistrationForm = () => {
                                   : `₹${event.price}`}
                               </span>
                             </div>
-  
+
                             {event.hasOptions &&
                               selectedEvents.includes(event.name) && (
                                 <div className="ml-8 mt-2" onClick={(e) => e.stopPropagation()}>
@@ -495,7 +495,7 @@ const RegistrationForm = () => {
               </div>
             </div>
 
-  
+
             {/* Total Amount and Submit Button */}
             <div className="fixed bottom-0 left-0 right-0 glass-party border-t border-neon-purple/20 p-4 z-50">
               <div className="max-w-5xl mx-auto flex items-center justify-between">
@@ -524,6 +524,6 @@ const RegistrationForm = () => {
       </div>
     </div>
   );
-  };
-  
-  export default RegistrationForm;
+};
+
+export default RegistrationForm;
