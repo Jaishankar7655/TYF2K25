@@ -109,9 +109,9 @@ const HomePage = () => {
 
           {/* Main title */}
           <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tight mb-3 sm:mb-4 flex flex-col items-center leading-[1.1]">
-            <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">TRUBA</span>
+            
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan mt-1 sm:mt-2 px-2 pb-2 drop-shadow-[0_0_40px_rgba(255,45,149,0.3)]">
-              FEST
+             <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">TRUBA</span> FEST
             </span>
           </h1>
 
