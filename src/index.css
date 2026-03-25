@@ -30,9 +30,11 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--dark-bg);
 }
+
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--neon-pink), var(--neon-purple));
   border-radius: 4px;
@@ -40,79 +42,177 @@ body {
 
 /* ===== CONFETTI ANIMATION ===== */
 @keyframes confettiFall {
-  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
 }
 
 @keyframes confettiSway {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(30px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(30px);
+  }
 }
 
 /* ===== NEON GLOW ANIMATION ===== */
 @keyframes neonPulse {
-  0%, 100% { 
+
+  0%,
+  100% {
     text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
   }
-  50% { 
+
+  50% {
     text-shadow: 0 0 2px var(--neon-cyan), 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
   }
 }
 
 @keyframes neonBorder {
-  0%, 100% { box-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), inset 0 0 5px rgba(255,45,149,0.1); }
-  50% { box-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), inset 0 0 5px rgba(0,240,255,0.1); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), inset 0 0 5px rgba(255, 45, 149, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), inset 0 0 5px rgba(0, 240, 255, 0.1);
+  }
 }
 
 /* ===== DISCO BALL / DJ LIGHTS ===== */
 @keyframes spotlightSweep {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes discoPulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.1); }
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
 }
 
 @keyframes float {
-  0% { transform: translateY(0px) scale(1); }
-  50% { transform: translateY(-20px) scale(1.05); }
-  100% { transform: translateY(0px) scale(1); }
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+
+  100% {
+    transform: translateY(0px) scale(1);
+  }
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(-20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideInUp {
-  0% { opacity: 0; transform: translateY(40px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes musicBars {
-  0%, 100% { height: 8px; }
-  50% { height: 24px; }
+
+  0%,
+  100% {
+    height: 8px;
+  }
+
+  50% {
+    height: 24px;
+  }
 }
 
 @keyframes partyShake {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(3deg); }
-  75% { transform: rotate(-3deg); }
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(3deg);
+  }
+
+  75% {
+    transform: rotate(-3deg);
+  }
 }
 
 @keyframes rainbowBorder {
-  0% { border-color: var(--neon-pink); }
-  25% { border-color: var(--neon-cyan); }
-  50% { border-color: var(--neon-yellow); }
-  75% { border-color: var(--neon-green); }
-  100% { border-color: var(--neon-pink); }
+  0% {
+    border-color: var(--neon-pink);
+  }
+
+  25% {
+    border-color: var(--neon-cyan);
+  }
+
+  50% {
+    border-color: var(--neon-yellow);
+  }
+
+  75% {
+    border-color: var(--neon-green);
+  }
+
+  100% {
+    border-color: var(--neon-pink);
+  }
 }
 
 @keyframes strobeLight {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 /* ===== UTILITY CLASSES ===== */
@@ -125,15 +225,15 @@ body {
 }
 
 .party-card {
-  background: linear-gradient(145deg, rgba(18,18,42,0.9), rgba(26,26,62,0.9));
-  border: 1px solid rgba(176,38,255,0.2);
+  background: linear-gradient(145deg, rgba(18, 18, 42, 0.9), rgba(26, 26, 62, 0.9));
+  border: 1px solid rgba(176, 38, 255, 0.2);
   backdrop-filter: blur(20px);
   transition: all 0.4s ease;
 }
 
 .party-card:hover {
   border-color: var(--neon-pink);
-  box-shadow: 0 0 20px rgba(255,45,149,0.2), 0 0 40px rgba(176,38,255,0.1);
+  box-shadow: 0 0 20px rgba(255, 45, 149, 0.2), 0 0 40px rgba(176, 38, 255, 0.1);
   transform: translateY(-4px);
 }
 
@@ -167,11 +267,12 @@ body {
 }
 
 .btn-party:hover {
-  box-shadow: 0 0 20px rgba(255,45,149,0.4), 0 0 40px rgba(176,38,255,0.2);
+  box-shadow: 0 0 20px rgba(255, 45, 149, 0.4), 0 0 40px rgba(176, 38, 255, 0.2);
   transform: scale(1.05);
 }
 
-.btn-party span, .btn-party svg {
+.btn-party span,
+.btn-party svg {
   position: relative;
   z-index: 1;
 }
@@ -179,9 +280,9 @@ body {
 /* Party background pattern */
 .party-bg {
   background-image:
-    radial-gradient(circle at 20% 80%, rgba(255,45,149,0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(0,240,255,0.08) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(176,38,255,0.05) 0%, transparent 50%);
+    radial-gradient(circle at 20% 80%, rgba(255, 45, 149, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(176, 38, 255, 0.05) 0%, transparent 50%);
 }
 
 /* Music equalizer bars */
@@ -194,9 +295,9 @@ body {
 
 /* Glass morphism party style */
 .glass-party {
-  background: rgba(18,18,42,0.6);
+  background: rgba(18, 18, 42, 0.6);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,45,149,0.15);
+  border: 1px solid rgba(255, 45, 149, 0.15);
 }
 
 /* Add this to your global CSS file */
@@ -204,9 +305,11 @@ body {
   .no-print {
     display: none;
   }
+
   .invoice {
     display: block !important;
   }
+
   .customer {
     background-color: gray !important;
   }
