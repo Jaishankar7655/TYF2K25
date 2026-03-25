@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Calendar, Music, Users, Trophy, ArrowRight, Sparkles } from "lucide-react";
-import festlogo from "../assets/festlogo.jpg";
+import festlogo from "../assets/festlogo.png";
 import trb from "../assets/trb.png";
 import EventLists from "./EventLists";
 import Rules from "./Rules";
