@@ -480,7 +480,7 @@ const RegistrationForm = () => {
                       ))}
                     </div>
                     {category.title === "SAC Committee" && (
-                      <p className="mt-3 pb-10 text-xs text-neon-yellow font-semibold text-center animate-pulse">
+                      <p className="mt-3 text-xs text-neon-yellow font-semibold text-center my-20 animate-pulse">
                         ✨ More events coming soon!
                       </p>
                     )}
@@ -491,7 +491,7 @@ const RegistrationForm = () => {
 
 
             {/* Total Amount and Submit Button */}
-            <div className="fixed bottom-0 my-[300px] left-0 right-0 glass-party border-t border-neon-purple/20 p-2 z-50">
+            <div className="fixed bottom-0 my-[300px] left-0 right-0 glass-party border-t border-neon-purple/20 p-4 z-50">
               <div className="max-w-5xl mx-auto flex items-center justify-between">
                 <div className="text-lg font-bold text-white flex items-center gap-2">
                   <span className="text-neon-yellow">🎟️</span> Total: <span className="text-neon-cyan">₹{calculateTotal()}</span>
@@ -499,7 +499,7 @@ const RegistrationForm = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting || selectedEvents.length === 0}
-                  className="btn-party inline-flex items-center justify-center font-bold py-3 px-3 rounded-xl
+                  className="btn-party inline-flex items-center justify-center font-bold py-3 px-3 my-1 rounded-xl
                            disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
