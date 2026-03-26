@@ -70,108 +70,108 @@ const HomePage = () => {
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] rounded-full bg-neon-purple/10 blur-[120px] sm:blur-[180px] animate-disco-pulse" style={{ animationDelay: '2s' }}></div>
         <div className="hidden sm:block absolute bottom-1/4 left-0 w-[400px] h-[400px] rounded-full bg-neon-yellow/5 blur-[120px] animate-disco-pulse" style={{ animationDelay: '0.5s' }}></div>
 
-      {/* Subtle grid pattern */}
+        {/* Subtle grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(176,38,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(176,38,255,0.03)_1px,transparent_1px)] bg-[size:3rem_3rem] sm:bg-[size:4rem_4rem]"></div>
       </div>
 
       {/* Hero Section Container (min 100vh) */}
       <div className="min-h-[100dvh] w-full flex flex-col relative z-20">
         {/* Header */}
-      <header className="relative z-50 w-full flex justify-between items-center gap-2 sm:gap-8 md:gap-16 px-4 sm:px-10 md:px-16 py-3 sm:py-5">
-        <div className="flex items-center group cursor-pointer flex-shrink-0">
+        <header className="relative z-50 w-full flex justify-between items-center gap-2 sm:gap-8 md:gap-16 px-4 sm:px-10 md:px-16 py-3 sm:py-5">
+          <div className="flex items-center group cursor-pointer flex-shrink-0">
           <img className="w-12 h-12 sm:w-16 sm:h-16 md:w-28 md:h-28 object-contain rounded-full transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(255,45,149,0.5)] group-hover:scale-105" src={trb} alt="Truba Logo" />
-        </div>
+          </div>
 
-        {/* Center - Music Equalizer */}
-        <div className="flex items-center gap-1 sm:gap-3 md:gap-4 flex-shrink min-w-0 justify-center">
-          <div className="scale-[0.6] sm:scale-100"><MusicEqualizer /></div>
+          {/* Center - Music Equalizer */}
+          <div className="flex items-center gap-1 sm:gap-3 md:gap-4 flex-shrink min-w-0 justify-center">
+            <div className="scale-[0.6] sm:scale-100"><MusicEqualizer /></div>
           <span className="text-neon-cyan text-[11px] sm:text-base md:text-3xl font-bold md:font-black tracking-normal sm:tracking-widest uppercase whitespace-nowrap drop-shadow-[0_0_10px_rgba(0,240,255,0.5)] truncate">Live Party Mode</span>
-          <div className="scale-[0.6] sm:scale-100"><MusicEqualizer /></div>
-        </div>
+            <div className="scale-[0.6] sm:scale-100"><MusicEqualizer /></div>
+          </div>
 
-        <div className="flex items-center group cursor-pointer flex-shrink-0">
+          <div className="flex items-center group cursor-pointer flex-shrink-0">
           <img className="w-12 h-12 sm:w-12 sm:h-12 md:w-28 md:h-28 object-contain rounded-full transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(0,240,255,0.5)] group-hover:scale-105" src={festlogo} alt="Fest Logo" />
-        </div>
-        
-      </header>
+          </div>
 
-      {/* Hero Section */}
+        </header>
+
+        {/* Hero Section */}
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center w-full px-4 sm:px-6 pb-12 sm:pb-20 pt-10 sm:pt-12">
         <div className="text-center w-full max-w-5xl mx-auto flex flex-col items-center justify-center h-full gap-6 sm:gap-8 md:gap-10 lg:gap-12">
 
-          {/* Party badge */}
-          <div className="inline-flex items-center flex-wrap justify-center gap-1.5 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-dark-card/80 border border-neon-pink/30 backdrop-blur-md text-neon-pink font-semibold text-xs sm:text-base shadow-[0_0_20px_rgba(255,45,149,0.15)] animate-party-float scaling-element">
-            <PartyPopper className="w-4 h-4 sm:w-5 sm:h-5 text-neon-yellow flex-shrink-0" />
-            <span className="tracking-wide sm:tracking-wider uppercase whitespace-nowrap">🎉 Registration Open • April 6-8, 2026 🎉</span>
-            <Disc3 className="w-4 h-4 sm:w-5 sm:h-5 text-neon-cyan animate-spin flex-shrink-0" style={{ animationDuration: '3s' }} />
-          </div>
-          
-         <div className="w-[90%] max-w-[600px] overflow-hidden rounded-lg py-2 mx-auto">
-          <div className="flex w-max animate-ticker hover:[animation-play-state:paused]">
-            {[...Array(4)].map((_, i) => (
-              <span
-                key={i}
-                className="whitespace-nowrap px-12 text-sm sm:text-base md:text-lg font-medium text-amber-200/90 tracking-wide"
-              >
-                📌 Note: Sport events will be from 4 – 5 April 2026
-              </span>
-            ))}
-          </div>
-        </div>
+            {/* Party badge */}
+            <div className="inline-flex items-center flex-wrap justify-center gap-1.5 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-dark-card/80 border border-neon-pink/30 backdrop-blur-md text-neon-pink font-semibold text-xs sm:text-base shadow-[0_0_20px_rgba(255,45,149,0.15)] animate-party-float scaling-element">
+              <PartyPopper className="w-4 h-4 sm:w-5 sm:h-5 text-neon-yellow flex-shrink-0" />
+              <span className="tracking-wide sm:tracking-wider uppercase whitespace-nowrap">🎉 Registration Open • April 6-8, 2026 🎉</span>
+              <Disc3 className="w-4 h-4 sm:w-5 sm:h-5 text-neon-cyan animate-spin flex-shrink-0" style={{ animationDuration: '3s' }} />
+            </div>
 
-          {/* Main title */}
+            <div className="w-[90%] max-w-[600px] overflow-hidden rounded-lg py-2 mx-auto">
+              <div className="flex w-max animate-ticker hover:[animation-play-state:paused]">
+                {[...Array(4)].map((_, i) => (
+                  <span
+                    key={i}
+                    className="whitespace-nowrap px-12 text-sm sm:text-base md:text-lg font-medium text-amber-200/90 tracking-wide"
+                  >
+                    📌 Note: Sport events will be from 4 – 5 April 2026
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Main title */}
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight flex flex-col items-center leading-[1.1] md:leading-none my-2 sm:my-4">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan px-2 pb-2 md:pb-0 drop-shadow-[0_0_40px_rgba(255,45,149,0.3)]">
-             <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">TRUBA</span> FEST
-            </span>
-          </h1>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan px-2 pb-2 md:pb-0 drop-shadow-[0_0_40px_rgba(255,45,149,0.3)]">
+                <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">TRUBA</span> FEST
+              </span>
+            </h1>
 
-          {/* Year */}
+            {/* Year */}
           <div className="relative flex items-center gap-3 sm:gap-5 mb-2 sm:mb-4">
             <Headphones className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-neon-cyan animate-party-float" style={{ animationDelay: '0.5s' }} />
             <h2 className="text-5xl sm:text-6xl md:text-8xl font-black neon-text bg-clip-text text-neon-cyan drop-shadow-[0_0_20px_rgba(0,240,255,0.4)]">
-              2K26
-            </h2>
+                2K26
+              </h2>
             <Music className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-neon-pink animate-party-float" style={{ animationDelay: '1s' }} />
-          </div>
+            </div>
 
-          {/* Tagline */}
+            {/* Tagline */}
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-sm sm:max-w-2xl md:max-w-3xl mx-auto font-medium leading-relaxed px-4">
-            🎧 The Ultimate <span className="text-neon-pink font-bold">Party</span> • <span className="text-neon-cyan font-bold">Music</span> • <span className="text-neon-purple font-bold">Dance</span> Experience.
-            <span className="hidden sm:inline"> Join Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span>
-            <span className="sm:hidden mt-1 block"> Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span> 🎶
-          </p>
+              🎧 The Ultimate <span className="text-neon-pink font-bold">Party</span> • <span className="text-neon-cyan font-bold">Music</span> • <span className="text-neon-purple font-bold">Dance</span> Experience.
+              <span className="hidden sm:inline"> Join Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span>
+              <span className="sm:hidden mt-1 block"> Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span> 🎶
+            </p>
 
-          {/* CTA Button */}
-          <button
-            onClick={() => navigate("/register")}
-            className="btn-party group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 font-bold text-base sm:text-lg lg:text-xl rounded-full transition-all duration-300 active:scale-95 neon-border"
-          >
-            <span>🎉 Register Now</span>
-            <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
-          </button>
+            {/* CTA Button */}
+            <button
+              onClick={() => navigate("/register")}
+              className="btn-party group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 font-bold text-base sm:text-lg lg:text-xl rounded-full transition-all duration-300 active:scale-95 neon-border"
+            >
+              <span>🎉 Register Now</span>
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
+            </button>
 
-          {/* Party emojis row */}
-          <div className="flex items-center gap-3 sm:gap-6 text-xl sm:text-2xl md:text-3xl animate-party-float flex-wrap justify-center">
-            <span>🎵</span><span>🪩</span><span>🎤</span><span>🎸</span>
-            <span className="hidden sm:inline">🥁</span>
-            <span className="hidden sm:inline">🎷</span>
-            <span className="hidden md:inline">🎺</span>
+            {/* Party emojis row */}
+            <div className="flex items-center gap-3 sm:gap-6 text-xl sm:text-2xl md:text-3xl animate-party-float flex-wrap justify-center">
+              <span>🎵</span><span>🪩</span><span>🎤</span><span>🎸</span>
+              <span className="hidden sm:inline">🥁</span>
+              <span className="hidden sm:inline">🎷</span>
+              <span className="hidden md:inline">🎺</span>
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
 
-      {/* Scroll Down Indicator */}
-      <div 
-        className="mt-auto mb-4 sm:mb-8 mx-auto flex flex-col items-center animate-bounce z-50 cursor-pointer text-gray-400 hover:text-white transition-colors"
-        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-      >
-        <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest mb-1 drop-shadow-md">Scroll Down</span>
-        <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-current rounded-full flex justify-center p-1 bg-dark-bg/50 backdrop-blur-sm">
-          <div className="w-1 h-2 bg-neon-cyan rounded-full"></div>
+        {/* Scroll Down Indicator */}
+        <div
+          className="mt-auto mb-4 sm:mb-8 mx-auto flex flex-col items-center animate-bounce z-50 cursor-pointer text-gray-400 hover:text-white transition-colors"
+          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+        >
+          <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest mb-1 drop-shadow-md">Scroll Down</span>
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-current rounded-full flex justify-center p-1 bg-dark-bg/50 backdrop-blur-sm">
+            <div className="w-1 h-2 bg-neon-cyan rounded-full"></div>
+          </div>
         </div>
       </div>
-    </div>
 
       {/* Feature Section - Party Stats */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 border-y border-neon-purple/10">

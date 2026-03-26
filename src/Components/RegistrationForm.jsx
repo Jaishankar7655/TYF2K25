@@ -57,7 +57,7 @@ const categories = [
       { name: "Coding Contest", price: 100 },
       { name: "Debugging Contest", price: 100 },
       { name: "Poster-Paper Presentation", price: 150 },
-      { name: "Treasure Hunt", price: 100 },
+      { name: "Treasure Hunt", price: 200 },
       { name: "LAN Gaming", price: 350 },
       { name: "Cyber Security", price: 200 },
       { name: "Tech Talk", price: 0 },
