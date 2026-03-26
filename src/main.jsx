@@ -5,6 +5,7 @@ import App from "./App";
 import "./index.css";
 import RegistrationForm from "./Components/RegistrationForm";
 import Successful from "./Components/Successful";
+import RegistrationConfirmed from "./Components/RegistrationConfirmed";
 import PaymnetGateway from "./Components/PaymnetGateway";
 import Paymentconfirm from "./Components/Paymentconfirm";
 import PaymentSuccess from "./Components/Paymentsuccess";
@@ -25,6 +26,7 @@ ReactDOM.createRoot(root).render(
           <Route path="/" element={<App />} />
           <Route path="/register" element={<RegistrationForm />} />
           <Route path="/Success" element={<Successful />} />
+          <Route path="/registration-confirmed" element={<RegistrationConfirmed />} />
           <Route path="/payment" element={<PaymnetGateway />} />
           <Route path="/Paymentconfirm" element={<Paymentconfirm />} />
           <Route path="/PaymentSuccess" element={<PaymentSuccess />} />

@@ -7,7 +7,7 @@ function Sac() {
   const sacEvents = [
       { id: 1, name: "Push-Up Challenge", rules: ["Standard rules apply."], date: "Not Decided", fees: "Rs 50", prizes: "Surprise Reward", emoji: "💪" },
       { id: 2, name: "Plank / Weight Add-On Challenge", rules: ["Standard rules apply."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🏋️" },
-      { id: 3, name: "Spoon Tie-Knot Challenge", rules: ["Perform the challenge in given time."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🥄" },
+      { id: 3, name: "Spoon Tie-Knot Challenge", rules: ["Perform the challenge in given time."], date: "Not Decided", fees: "Rs 50", prizes: "Surprise Reward", emoji: "🥄" },
       { id: 4, name: "Poetry", rules: ["Any topic."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "✍️" },
       { id: 5, name: "Arm Wrestling (SAC)", rules: ["Standard rules apply."], date: "Not Decided", fees: "Rs 50", prizes: "Surprise Reward", emoji: "✊" },
       { id: 6, name: "Bottle Flip", rules: ["Maximum consecutive flips win."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🍾" },
@@ -18,9 +18,9 @@ function Sac() {
       { id: 11, name: "Paper Folding Dance", rules: ["Dance and stay on the paper."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "📰" },
       { id: 12, name: "Truba Roadies", rules: ["Task based event."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🏍️" },
       { id: 13, name: "Cup Pyramid", rules: ["Fastest to build wins."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🥤" },
-      { id: 14, name: "Sign - Walk Game", rules: ["Follow the instructions."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🚶‍♂️" },
+      { id: 14, name: "Sign - Walk Game", rules: ["Follow the instructions."], date: "Not Decided", fees: "Rs 50", prizes: "Surprise Reward", emoji: "🚶‍♂️" },
       { id: 15, name: "Cricket Circle Game", rules: ["Hit boundaries."], date: "Not Decided", fees: "Rs 100", prizes: "Surprise Reward", emoji: "🏏" },
-      { id: 16, name: "Dare to Drink", rules: ["Mystery drink challenge."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🍹" },
+      { id: 16, name: "Dare to Drink", rules: ["Mystery drink challenge."], date: "Not Decided", fees: "Rs 50", prizes: "Surprise Reward", emoji: "🍹" },
   ];
 
   const handleToggleRules = (id) => {

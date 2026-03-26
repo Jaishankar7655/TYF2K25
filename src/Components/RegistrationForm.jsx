@@ -89,7 +89,7 @@ const categories = [
     events: [
       { name: "Push-Up Challenge", price: 50 },
       { name: "Plank / Weight Add-On Challenge", price: 0 },
-      { name: "Spoon Tie-Knot Challenge", price: 0 },
+      { name: "Spoon Tie-Knot Challenge", price: 50 },
       { name: "Poetry", price: 0 },
       { name: "Arm Wrestling (SAC)", price: 50 },
       { name: "Bottle Flip", price: 0 },
@@ -100,9 +100,9 @@ const categories = [
       { name: "Paper Folding Dance", price: 0 },
       { name: "Truba Roadies", price: 0 },
       { name: "Cup Pyramid", price: 0 },
-      { name: "Sign - Walk Game", price: 0 },
+      { name: "Sign - Walk Game", price: 50 },
       { name: "Cricket Circle Game", price: 100 },
-      { name: "Dare to Drink", price: 0 },
+      { name: "Dare to Drink", price: 50 },
     ],
   },
 ];
@@ -221,7 +221,7 @@ const RegistrationForm = () => {
         for (const cat of categories) {
           const event = cat.events.find((e) => e.name === eventName);
           if (event) {
-            let catTitle = cat.title === "SAC Committee" ? "SEC Committee" : cat.title;
+            let catTitle = cat.title === "SAC Committee" ? "SAC Committee" : cat.title;
             if (event.hasOptions) {
               const selectedOption = eventOptions[event.name] || null;
               category = selectedOption ? `${catTitle} - ${selectedOption}` : catTitle;
@@ -258,15 +258,25 @@ const RegistrationForm = () => {
       if (response.type === "opaque") {
         await new Promise((resolve) => setTimeout(resolve, 1500));
 
-        navigate("/payment", {
-          state: {
-            totalAmount: calculateTotal(),
-            email: data.email,
-            phone: data.phone,
-            message:
-              "Registration successful! Please check your email for the confirmation and QR code.",
-          },
-        });
+        const totalAmt = calculateTotal();
+        if (totalAmt === 0) {
+          navigate("/registration-confirmed", {
+            state: {
+              email: data.email,
+              phone: data.phone,
+            },
+          });
+        } else {
+          navigate("/payment", {
+            state: {
+              totalAmount: totalAmt,
+              email: data.email,
+              phone: data.phone,
+              message:
+                "Registration successful! Please check your email for the confirmation and QR code.",
+            },
+          });
+        }
       } else {
         throw new Error("Registration submission failed");
       }
