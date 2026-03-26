@@ -235,7 +235,7 @@ const RegistrationForm = () => {
       formData.append("events", eventsData);
       formData.append("totalAmount", calculateTotal());
 
-      const GOOGLE_SCRIPT_URL = import.meta.env.VITE_REGISTRATION_SCRIPT_URL;
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVdY1Leca6iuIwN-Msb0gKIQehwh488UT7E3Z4J84rTRBT7Cno5I4TDaZa1xcaSrN5/exec";
 
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",

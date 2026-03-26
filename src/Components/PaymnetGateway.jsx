@@ -14,7 +14,7 @@ const PaymentGateway = () => {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const SCRIPT_URL = import.meta.env.VITE_PAYMENT_SCRIPT_URL;
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZNVEQwvtv4EQjRlH05z8uT66CgMW043akdGp3ca8I9ZXvYOWVfC58ME-9WAkH4nKS/exec";
 
   const merchantDetails = {
     name: "TRUBA PROVISIONAL ADMISSION POOL ACCOUNT",
