@@ -215,24 +215,33 @@ const RegistrationForm = () => {
       setError("");
       setIsSubmitting(true);
 
-      const eventsData = selectedEvents
-        .map((eventName) => {
-          if (
-            eventName === "Singing (Solo-Duo)" ||
-            eventName === "Dance (Solo-Duo-Group)"
-          ) {
-            return `${eventName} (${eventOptions[eventName]})`;
+      const detailedEventsList = selectedEvents.map((eventName) => {
+        let price = null;
+        let category = null;
+        for (const cat of categories) {
+          const event = cat.events.find((e) => e.name === eventName);
+          if (event) {
+            if (event.hasOptions) {
+              category = eventOptions[event.name] || null;
+              if (category) {
+                const opt = event.options.find((o) => o.type === category);
+                if (opt) price = opt.price;
+              }
+            } else {
+              price = typeof event.price === "number" ? event.price : parseInt(event.price);
+            }
+            break;
           }
-          return eventName;
-        })
-        .join(", ");
+        }
+        return { name: eventName, category: category, price: price };
+      });
 
       const formData = new FormData();
       formData.append("name", data.name);
       formData.append("email", data.email);
       formData.append("phone", data.phone);
       formData.append("college", data.college);
-      formData.append("events", eventsData);
+      formData.append("events", JSON.stringify(detailedEventsList));
       formData.append("totalAmount", calculateTotal());
 
       const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVdY1Leca6iuIwN-Msb0gKIQehwh488UT7E3Z4J84rTRBT7Cno5I4TDaZa1xcaSrN5/exec";
