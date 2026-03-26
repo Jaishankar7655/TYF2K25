@@ -221,13 +221,16 @@ const RegistrationForm = () => {
         for (const cat of categories) {
           const event = cat.events.find((e) => e.name === eventName);
           if (event) {
+            let catTitle = cat.title === "SAC Committee" ? "SEC Committee" : cat.title;
             if (event.hasOptions) {
-              category = eventOptions[event.name] || null;
-              if (category) {
-                const opt = event.options.find((o) => o.type === category);
+              const selectedOption = eventOptions[event.name] || null;
+              category = selectedOption ? `${catTitle} - ${selectedOption}` : catTitle;
+              if (selectedOption) {
+                const opt = event.options.find((o) => o.type === selectedOption);
                 if (opt) price = opt.price;
               }
             } else {
+              category = catTitle;
               price = typeof event.price === "number" ? event.price : parseInt(event.price);
             }
             break;

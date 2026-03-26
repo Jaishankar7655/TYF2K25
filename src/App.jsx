@@ -5,7 +5,7 @@ import MaintainancePage from './Components/MaintainancePage'
 function App() {
   return (
 <>
-   <MaintainancePage />
+  <HomePage />
 </>
   )
 }
