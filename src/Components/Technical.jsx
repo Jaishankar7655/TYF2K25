@@ -10,7 +10,7 @@ function Technical() {
     { id: 2, name: "CODING CONTEST", rules: ["THERE WILL BE TWO ROUNDS (1ST WILL BE CHOOSE THE CORRECT ANSWER & 2ND WILL BE CODE EXECUTION)"], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "💻" },
     { id: 3, name: "DEBUGGING CONTEST", rules: ["DEBUG THE GIVEN CODE.", "TIME LIMIT WILL BE THERE."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🐛" },
     { id: 4, name: "POSTER-PAPER PRESENTATION", rules: ["SINGLE ROUND WILL BE HELD.", "PRESENTATION SHOULD BE UNDER 10 MIN."], date: "Not Decided", fees: "Rs 150", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📝" },
-    { id: 5, name: "TREASURE HUNT", rules: ["TEAM BASED EVENT.", "FOLLOW THE CLUES TO FIND THE TREASURE."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🗺️" },
+    { id: 5, name: "TREASURE HUNT", rules: ["TEAM BASED EVENT.", "FOLLOW THE CLUES TO FIND THE TREASURE."], date: "Not Decided", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🗺️" },
     { id: 6, name: "LAN GAMING", rules: ["PARTICIPANTS SHOULD BRING THEIR OWN DEVICES.", "GAME RULES WILL BE ANNOUNCED ON THE SPOT."], date: "Not Decided", fees: "Rs 350", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎮" },
     { id: 7, name: "CYBER SECURITY", rules: ["KNOWLEDGE OF CYBERSECURITY CONCEPTS REQUIRED.", "PRACTICAL AND THEORETICAL ROUNDS."], date: "Not Decided", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🔐" },
     { id: 8, name: "TECH TALK", rules: ["OPEN FOR ALL PARTICIPANTS.", "NO REGISTRATION FEE REQUIRED."], date: "Not Decided", fees: "Free for all", prizes: "CERTIFICATE OF PARTICIPATION", emoji: "🎤" },
