@@ -44,15 +44,7 @@ function MaintainancePage() {
           We're currently enhancing the TRUBA Fest 2K26 registration systems. We'll be back online before you know it! 🚀
         </p>
 
-        <div className="inline-flex flex-col items-center justify-center p-8 rounded-2xl bg-dark-surface border border-neon-cyan/20 shadow-[inset_0_0_30px_rgba(0,255,255,0.05)]">
-          <div className="flex items-center space-x-3 text-neon-cyan mb-3 font-bold tracking-widest uppercase text-sm">
-            <Clock className="w-5 h-5 animate-pulse" />
-            <span>Estimated Wait Time</span>
-          </div>
-          <div className="text-7xl font-mono font-black text-white drop-shadow-[0_0_15px_rgba(0,255,255,0.5)]">
-            {formatTime(timeLeft)}
-          </div>
-        </div>
+       
 
         <div className="mt-12 text-sm text-neon-purple flex items-center justify-center space-x-3">
           <span className="relative flex h-3 w-3">
