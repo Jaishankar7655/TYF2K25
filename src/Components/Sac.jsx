@@ -16,7 +16,7 @@ function Sac() {
       { id: 9, name: "Blind Fold Challenge", rules: ["Follow the guided route."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🙈" },
       { id: 10, name: "Dance-Freeze Challenge", rules: ["Freeze when music stops."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🧊" },
       { id: 11, name: "Paper Folding Dance", rules: ["Dance and stay on the paper."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "📰" },
-      { id: 12, name: "Truba Roadies", rules: ["Task based event."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🏍️" },
+      { id: 12, name: "Truba Roadies", rules: ["Task based event."], date: "Not Decided", fees: "100", prizes: "Surprise Reward", emoji: "🏍️" },
       { id: 13, name: "Cup Pyramid", rules: ["Fastest to build wins."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🥤" },
       { id: 14, name: "Sign - Walk Game", rules: ["Follow the instructions."], date: "Not Decided", fees: "Rs 50", prizes: "Surprise Reward", emoji: "🚶‍♂️" },
       { id: 15, name: "Cricket Circle Game", rules: ["Hit boundaries."], date: "Not Decided", fees: "Rs 100", prizes: "Surprise Reward", emoji: "🏏" },
