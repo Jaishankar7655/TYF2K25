@@ -98,7 +98,7 @@ const categories = [
       { name: "Blind Fold Challenge", price: 0 },
       { name: "Dance-Freeze Challenge", price: 0 },
       { name: "Paper Folding Dance", price: 0 },
-      { name: "Truba Roadies", price: 0 },
+      { name: "Truba Roadies", price: 100 },
       { name: "Cup Pyramid", price: 0 },
       { name: "Sign - Walk Game", price: 50 },
       { name: "Cricket Circle Game", price: 100 },
