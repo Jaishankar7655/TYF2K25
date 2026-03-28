@@ -17,6 +17,7 @@ const categories = [
           { type: "Duo", price: 200 },
           { type: "Group", price: 250 },
         ],
+        closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM"
       },
       {
         name: "Singing (Solo-Duo)",
@@ -25,62 +26,63 @@ const categories = [
           { type: "Solo", price: 50 },
           { type: "Duo", price: 100 },
         ],
+        closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM"
       },
-      { name: "Acting Antics (Skit)", price: 250 },
-      { name: "Copy Paste (Mimicry)", price: 50 },
-      { name: "Colorful Canvas (Rangoli)", price: 50 },
-      { name: "Henna Harmony (Mehendi)", price: 50 },
-      { name: "Open Mic", price: 50 },
-      { name: "Walk & Wow (Ramp Walk)", price: 200 },
-      { name: "Dance Battle", price: 100 },
+      { name: "Acting Antics (Skit)", price: 250, closingDate: "2026-04-06T14:00:00+05:30", closingDateStr: "6 APRIL, 2:00 PM" },
+      { name: "Copy Paste (Mimicry)", price: 50, closingDate: "2026-04-06T14:00:00+05:30", closingDateStr: "6 APRIL, 2:00 PM" },
+      { name: "Colorful Canvas (Rangoli)", price: 50, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
+      { name: "Henna Harmony (Mehendi)", price: 50, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
+      { name: "Open Mic", price: 50, closingDate: "2026-04-06T14:00:00+05:30", closingDateStr: "6 APRIL, 2:00 PM" },
+      { name: "Walk & Wow (Ramp Walk)", price: 200, closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM" },
+      { name: "Dance Battle", price: 100, closingDate: "2026-04-06T17:00:00+05:30", closingDateStr: "6 APRIL, 5:00 PM" },
     ],
   },
   {
     title: "Literary",
     icon: "📚",
     events: [
-      { name: "Focus & Frame (Photography)", price: 50 },
-      { name: "Cinematic Capital (Reel Making)", price: 100 },
-      { name: "Ink & Insight (Poetry)", price: 50 },
-      { name: "Face Painting", price: 100 },
-      { name: "Commerce Quiz", price: 100 },
-      { name: "IPL - The Final Bidder", price: 200 },
-      { name: "Extempore", price: 50 },
-      { name: "Becho Toh Jaane (Sold Out)", price: 100 },
+      { name: "Focus & Frame (Photography)", price: 50, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
+      { name: "Cinematic Capital (Reel Making)", price: 100, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
+      { name: "Ink & Insight (Poetry)", price: 50, closingDate: "2026-04-06T12:00:00+05:30", closingDateStr: "6 APRIL, 12:00 PM" },
+      { name: "Face Painting", price: 100, closingDate: "2026-04-07T12:00:00+05:30", closingDateStr: "7 APRIL, 12:00 PM" },
+      { name: "Commerce Quiz", price: 100, closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM" },
+      { name: "IPL - The Final Bidder", price: 200, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
+      { name: "Extempore", price: 50, closingDate: "2026-04-07T14:00:00+05:30", closingDateStr: "7 APRIL, 2:00 PM" },
+      { name: "Becho Toh Jaane (Sold Out)", price: 100, closingDate: "2026-04-06T13:00:00+05:30", closingDateStr: "6 APRIL, 1:00 PM" },
     ],
   },
   {
     title: "Technical",
     icon: "💻",
     events: [
-      { name: "Tech Quiz", price: 50 },
-      { name: "Coding Contest", price: 100 },
-      { name: "Debugging Contest", price: 100 },
-      { name: "Poster-Paper Presentation", price: 150 },
-      { name: "Treasure Hunt", price: 200 },
-      { name: "LAN Gaming", price: 350 },
-      { name: "Cyber Security", price: 200 },
-      { name: "Tech Talk", price: 0 },
-      { name: "Pharma Quiz", price: 100 },
-      { name: "Cure Creation", price: 100 },
+      { name: "Tech Quiz", price: 50, closingDate: "2026-04-06T12:30:00+05:30", closingDateStr: "6 APRIL, 12:30 PM" },
+      { name: "Coding Contest", price: 100, closingDate: "2026-04-07T10:30:00+05:30", closingDateStr: "7 APRIL, 10:30 AM" },
+      { name: "Debugging Contest", price: 100, closingDate: "2026-04-07T14:00:00+05:30", closingDateStr: "7 APRIL, 2:00 PM" },
+      { name: "Poster-Paper Presentation", price: 150, closingDate: "2026-04-06T10:30:00+05:30", closingDateStr: "6 APRIL, 10:30 AM" },
+      { name: "Treasure Hunt", price: 200, closingDate: "2026-04-06T11:30:00+05:30", closingDateStr: "6 APRIL, 11:30 AM" },
+      { name: "LAN Gaming", price: 350, closingDate: "2026-04-06T10:30:00+05:30", closingDateStr: "6 APRIL, 10:30 AM" },
+      { name: "Cyber Security", price: 200, closingDate: "2026-04-07T12:30:00+05:30", closingDateStr: "7 APRIL, 12:30 PM" },
+      { name: "Tech Talk", price: 0, closingDate: "2026-04-06T22:30:00+05:30", closingDateStr: "6 APRIL, 10:30 PM" },
+      { name: "Pharma Quiz", price: 100, closingDate: "2026-04-07T13:00:00+05:30", closingDateStr: "7 APRIL, 1:00 PM" },
+      { name: "Cure Creation", price: 100, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
     ],
   },
   {
     title: "Sports",
     icon: "🏆",
     events: [
-      { name: "Rapid Run-Race", price: 50 },
-      { name: "Javelin Throw", price: 50 },
-      { name: "Badminton", price: 50 },
-      { name: "Shot Put", price: 50 },
-      { name: "Cricket", price: 50 },
-      { name: "Kabaddi", price: 300 },
-      { name: "Kho-Kho", price: 300 },
-      { name: "Tug of War", price: 50 },
-      { name: "Discus Throw", price: 50 },
-      { name: "Carrom", price: 50 },
-      { name: "Chess", price: 50 },
-      { name: "Table Tennis", price: 50 },
+      { name: "Rapid Run-Race", price: 50, closingDate: "2026-04-04T11:00:00+05:30", closingDateStr: "4 APRIL, 11:00 AM" },
+      { name: "Javelin Throw", price: 50, closingDate: "2026-04-04T10:00:00+05:30", closingDateStr: "4 APRIL, 10:00 AM" },
+      { name: "Badminton", price: 50, closingDate: "2026-04-05T10:00:00+05:30", closingDateStr: "5 APRIL, 10:00 AM" },
+      { name: "Shot Put", price: 50, closingDate: "2026-04-04T12:00:00+05:30", closingDateStr: "4 APRIL, 12:00 PM" },
+      { name: "Cricket", price: 50, closingDate: "2026-04-04T10:00:00+05:30", closingDateStr: "4 APRIL, 10:00 AM" },
+      { name: "Kabaddi", price: 300, closingDate: "2026-04-05T10:00:00+05:30", closingDateStr: "5 APRIL, 10:00 AM" },
+      { name: "Kho-Kho", price: 300, closingDate: "2026-04-05T11:00:00+05:30", closingDateStr: "5 APRIL, 11:00 AM" },
+      { name: "Tug of War", price: 50, closingDate: "2026-04-05T11:00:00+05:30", closingDateStr: "5 APRIL, 11:00 AM" },
+      { name: "Discus Throw", price: 50, closingDate: "2026-04-04T10:30:00+05:30", closingDateStr: "4 APRIL, 10:30 AM" },
+      { name: "Carrom", price: 50, closingDate: "2026-04-04T10:30:00+05:30", closingDateStr: "4 APRIL, 10:30 AM" },
+      { name: "Chess", price: 50, closingDate: "2026-04-05T11:00:00+05:30", closingDateStr: "5 APRIL, 11:00 AM" },
+      { name: "Table Tennis", price: 50, closingDate: "2026-04-05T11:00:00+05:30", closingDateStr: "5 APRIL, 11:00 AM" },
     ],
   },
   {
@@ -171,7 +173,8 @@ const RegistrationForm = () => {
   };
 
   const handleEventSelection = (event, isChecked) => {
-    if (event.closed) {
+    const isClosed = event.closed || (event.closingDate && new Date() > new Date(event.closingDate));
+    if (isClosed) {
       setAlertMessage(`Registration for "${event.name}" is closed.`);
       setTimeout(() => {
         setAlertMessage("");
@@ -452,9 +455,16 @@ const RegistrationForm = () => {
                                   onChange={() => { }}
                                   className="w-5 h-5 rounded border-neon-purple/30 text-neon-pink focus:ring-neon-pink bg-dark-surface"
                                 />
-                                <span className="text-gray-300 text-sm">
-                                  {event.name}
-                                </span>
+                                <div className="flex flex-col">
+                                  <span className="text-gray-300 text-sm">
+                                    {event.name}
+                                  </span>
+                                  {event.closingDateStr && (
+                                    <span className="text-red-500 text-[10px] uppercase font-semibold">
+                                      {new Date() > new Date(event.closingDate) ? `Closed: ${event.closingDateStr}` : `Closes: ${event.closingDateStr}`}
+                                    </span>
+                                  )}
+                                </div>
                               </div>
                               <span className="font-medium text-neon-cyan text-sm">
                                 {event.hasOptions

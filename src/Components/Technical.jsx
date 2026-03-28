@@ -6,16 +6,16 @@ function Technical() {
   const navigate = useNavigate();
 
   const technicalEvents = [
-    { id: 1, name: "TECH QUIZ", rules: ["TOTAL 5 SECTION WILL BE THERE.", "QUESTION ATTEMPTATION SHOULD BE MANDATORY.", "ALL THE QUESTION WILL BE MULTIPLE CHOICE"], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🧪" },
-    { id: 2, name: "CODING CONTEST", rules: ["THERE WILL BE TWO ROUNDS (1ST WILL BE CHOOSE THE CORRECT ANSWER & 2ND WILL BE CODE EXECUTION)"], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "💻" },
-    { id: 3, name: "DEBUGGING CONTEST", rules: ["DEBUG THE GIVEN CODE.", "TIME LIMIT WILL BE THERE."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🐛" },
-    { id: 4, name: "POSTER-PAPER PRESENTATION", rules: ["SINGLE ROUND WILL BE HELD.", "PRESENTATION SHOULD BE UNDER 10 MIN."], date: "Not Decided", fees: "Rs 150", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📝" },
-    { id: 5, name: "TREASURE HUNT", rules: ["TEAM BASED EVENT.", "FOLLOW THE CLUES TO FIND THE TREASURE."], date: "Not Decided", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🗺️" },
-    { id: 6, name: "LAN GAMING", rules: ["PARTICIPANTS SHOULD BRING THEIR OWN DEVICES.", "GAME RULES WILL BE ANNOUNCED ON THE SPOT."], date: "Not Decided", fees: "Rs 350", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎮" },
-    { id: 7, name: "CYBER SECURITY", rules: ["KNOWLEDGE OF CYBERSECURITY CONCEPTS REQUIRED.", "PRACTICAL AND THEORETICAL ROUNDS."], date: "Not Decided", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🔐" },
-    { id: 8, name: "TECH TALK", rules: ["OPEN FOR ALL PARTICIPANTS.", "NO REGISTRATION FEE REQUIRED."], date: "Not Decided", fees: "Free for all", prizes: "CERTIFICATE OF PARTICIPATION", emoji: "🎤" },
-    { id: 9, name: "PHARMA QUIZ", rules: ["QUESTIONS WILL BE RELATED TO PHARMACY.", "TIME LIMIT WILL BE THERE FOR EACH ROUND."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "💊" },
-    { id: 10, name: "CURE CREATION", rules: ["PRACTICAL ROUND.", "RELATED TO PHARMACEUTICAL PREPARATIONS."], date: "Not Decided", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "⚗️" },
+    { id: 1, name: "TECH QUIZ", rules: ["TOTAL 5 SECTION WILL BE THERE.", "QUESTION ATTEMPTATION SHOULD BE MANDATORY.", "ALL THE QUESTION WILL BE MULTIPLE CHOICE"], date: "6 APRIL, 12:30 PM", venue: "F-20 (CS LAB)", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🧪" },
+    { id: 2, name: "CODING CONTEST", rules: ["THERE WILL BE TWO ROUNDS (1ST WILL BE CHOOSE THE CORRECT ANSWER & 2ND WILL BE CODE EXECUTION)"], date: "7 APRIL, 10:30 AM", venue: "G-23/MT-LAB", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "💻" },
+    { id: 3, name: "DEBUGGING CONTEST", rules: ["DEBUG THE GIVEN CODE.", "TIME LIMIT WILL BE THERE."], date: "7 APRIL, 2:00 PM", venue: "G-23/MT-LAB", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🐛" },
+    { id: 4, name: "POSTER-PAPER PRESENTATION", rules: ["SINGLE ROUND WILL BE HELD.", "PRESENTATION SHOULD BE UNDER 10 MIN."], date: "6 APRIL, 10:30 AM", venue: "SEMINAR HALL", fees: "Rs 150", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📝" },
+    { id: 5, name: "TREASURE HUNT", rules: ["TEAM BASED EVENT.", "FOLLOW THE CLUES TO FIND THE TREASURE."], date: "6 APRIL, 11:30 AM", venue: "F-24", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🗺️" },
+    { id: 6, name: "LAN GAMING", rules: ["PARTICIPANTS SHOULD BRING THEIR OWN DEVICES.", "GAME RULES WILL BE ANNOUNCED ON THE SPOT."], date: "6 APRIL, 10:30 AM", venue: "F-20 (CS LAB)", fees: "Rs 350", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎮" },
+    { id: 7, name: "CYBER SECURITY", rules: ["KNOWLEDGE OF CYBERSECURITY CONCEPTS REQUIRED.", "PRACTICAL AND THEORETICAL ROUNDS."], date: "7 APRIL, 12:30 PM", venue: "G-35 (COE LAB)", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🔐" },
+    { id: 8, name: "TECH TALK", rules: ["OPEN FOR ALL PARTICIPANTS.", "NO REGISTRATION FEE REQUIRED."], date: "6 APRIL, 10:30 PM", venue: "SEMINAR HALL", fees: "Free for all", prizes: "CERTIFICATE OF PARTICIPATION", emoji: "🎤" },
+    { id: 9, name: "PHARMA QUIZ", rules: ["QUESTIONS WILL BE RELATED TO PHARMACY.", "TIME LIMIT WILL BE THERE FOR EACH ROUND."], date: "7 APRIL, 1:00 PM", venue: "PHARMACY", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "💊" },
+    { id: 10, name: "CURE CREATION", rules: ["PRACTICAL ROUND.", "RELATED TO PHARMACEUTICAL PREPARATIONS."], date: "6 APRIL, 11:00 AM", venue: "PHARMACY", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "⚗️" },
   ];
 
   const handleToggleRules = (id) => {
@@ -57,8 +57,9 @@ function Technical() {
                   <span className="text-2xl">{event.emoji}</span>
                   <h2 className="text-xl font-bold text-white">{event.name}</h2>
                 </div>
-                <div className="text-sm text-neon-cyan/80 flex items-center ml-10">
-                  📅 {event.date}
+                <div className="text-sm text-neon-cyan/80 flex flex-wrap items-center ml-10 gap-x-2">
+                  <span>📅 {event.date}</span>
+                  {event.venue && <span>| 📍 {event.venue}</span>}
                 </div>
               </div>
               

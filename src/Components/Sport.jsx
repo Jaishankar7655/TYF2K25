@@ -6,18 +6,18 @@ function Sport() {
   const navigate = useNavigate();
 
   const sportsEvents = [
-    { id: 1, name: "RAPID RUN-RACE", rules: ["STANDARD RACE RULES."], date: "Not Decided", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🏃" },
-    { id: 2, name: "JAVELIN THROW", rules: ["STANDARD RULES."], date: "Not Decided", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🎯" },
-    { id: 3, name: "BADMINTON", rules: ["SINGLES WILL BE THERE.", "MATCH WILL BE OF 11 POINTS."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🏸" },
-    { id: 4, name: "SHOT PUT", rules: ["STANDARD RULES."], date: "Not Decided", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🪨" },
-    { id: 5, name: "CRICKET", rules: ["STANDARD RULES."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNING TEAM", emoji: "🏏" },
-    { id: 6, name: "KABADDI", rules: ["EVERY SET WILL BE OF 10 MIN.", "PROPER DRESS AND SHOES ARE MANDATORY."], date: "Not Decided", fees: "Rs 300", prizes: "MEDAL AND TROPHY FOR WINNING TEAM", emoji: "🤼" },
-    { id: 7, name: "KHO-KHO", rules: ["8 PARTICIPANTS SHOULD BE THERE IN THE TEAM."], date: "Not Decided", fees: "Rs 300", prizes: "MEDAL AND TROPHY FOR WINNING TEAM", emoji: "🏃" },
-    { id: 8, name: "TUG OF WAR", rules: ["STANDARD RULES."], date: "Not Decided", fees: "Rs 50", prizes: "MEDAL AND TROPHY", emoji: "🪢" },
-    { id: 9, name: "DISCUS THROW", rules: ["STANDARD RULES."], date: "Not Decided", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🛸" },
-    { id: 10, name: "CARROM", rules: ["REGULAR RULES."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🎯" },
-    { id: 11, name: "CHESS", rules: ["REGULAR RULES."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "♟️" },
-    { id: 12, name: "TABLE TENNIS", rules: ["REGULAR RULES."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🏓" },
+    { id: 1, name: "RAPID RUN-RACE", rules: ["STANDARD RACE RULES."], date: "4 APRIL, 11:00 AM", venue: "MAIN GROUND", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🏃" },
+    { id: 2, name: "JAVELIN THROW", rules: ["STANDARD RULES."], date: "4 APRIL, 10:00 AM", venue: "MAIN GROUND", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🎯" },
+    { id: 3, name: "BADMINTON", rules: ["SINGLES WILL BE THERE.", "MATCH WILL BE OF 11 POINTS."], date: "5 APRIL, 10:00 AM", venue: "PHARMACY GROUND", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🏸" },
+    { id: 4, name: "SHOT PUT", rules: ["STANDARD RULES."], date: "4 APRIL, 12:00 PM", venue: "MAIN GROUND", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🪨" },
+    { id: 5, name: "CRICKET", rules: ["STANDARD RULES."], date: "4 APRIL, 10:00 AM", venue: "MAIN GROUND", fees: "Rs 50", prizes: "TROPHY FOR WINNING TEAM", emoji: "🏏" },
+    { id: 6, name: "KABADDI", rules: ["EVERY SET WILL BE OF 10 MIN.", "PROPER DRESS AND SHOES ARE MANDATORY."], date: "5 APRIL, 10:00 AM", venue: "MAIN GROUND", fees: "Rs 300", prizes: "MEDAL AND TROPHY FOR WINNING TEAM", emoji: "🤼" },
+    { id: 7, name: "KHO-KHO", rules: ["8 PARTICIPANTS SHOULD BE THERE IN THE TEAM."], date: "5 APRIL, 11:00 AM", venue: "MAIN GROUND", fees: "Rs 300", prizes: "MEDAL AND TROPHY FOR WINNING TEAM", emoji: "🏃" },
+    { id: 8, name: "TUG OF WAR", rules: ["STANDARD RULES."], date: "5 APRIL, 11:00 AM", venue: "INFRONT OF CSE", fees: "Rs 50", prizes: "MEDAL AND TROPHY", emoji: "🪢" },
+    { id: 9, name: "DISCUS THROW", rules: ["STANDARD RULES."], date: "4 APRIL, 10:30 AM", venue: "MAIN GROUND", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🛸" },
+    { id: 10, name: "CARROM", rules: ["REGULAR RULES."], date: "4 APRIL, 10:30 AM", venue: "RECEPTION", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🎯" },
+    { id: 11, name: "CHESS", rules: ["REGULAR RULES."], date: "5 APRIL, 11:00 AM", venue: "RECEPTION", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "♟️" },
+    { id: 12, name: "TABLE TENNIS", rules: ["REGULAR RULES."], date: "5 APRIL, 11:00 AM", venue: "T&P", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🏓" },
   ];
 
   const handleToggleRules = (id) => {
@@ -59,8 +59,9 @@ function Sport() {
                   <span className="text-2xl">{event.emoji}</span>
                   <h2 className="text-xl font-bold text-white">{event.name}</h2>
                 </div>
-                <div className="text-sm text-neon-cyan/80 flex items-center ml-10">
-                  📅 {event.date}
+                <div className="text-sm text-neon-cyan/80 flex flex-wrap items-center ml-10 gap-x-2">
+                  <span>📅 {event.date}</span>
+                  {event.venue && <span>| 📍 {event.venue}</span>}
                 </div>
               </div>
 

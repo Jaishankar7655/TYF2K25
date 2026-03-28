@@ -5,15 +5,15 @@ function Culture() {
   const [openEventId, setOpenEventId] = useState(null);
   const navigate = useNavigate();
   const culturalEvents = [
-    { id: 1, name: "DANCE (SOLO-DUO-GROUP)", rules: ["PERFORMED UNDER 5 MIN."], date: "Not Decided", fees: "SOLO: 100, DUO: 200, GROUP: 250", prizes: "TROPHY FOR WINNERS", emoji: "💃" },
-    { id: 2, name: "SINGING (SOLO-DUO)", rules: ["TIME DURATION WILL BE UNDER 5 MIN."], date: "Not Decided", fees: "SOLO: 50, DUO: 100", prizes: "TROPHY FOR WINNERS", emoji: "🎵" },
-    { id: 3, name: "ACTING ANTICS (SKIT)", rules: ["THEME:- SOCIAL AWARENESS.", "TIME LIMIT WILL BE 10 MIN."], date: "Not Decided", fees: "Rs 250 (Per team)", prizes: "TROPHY FOR WINNING GROUP", emoji: "🎭" },
-    { id: 4, name: "COPY PASTE (MIMICRY)", rules: ["NO OFFENSIVE CONTENT."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🗣️" },
-    { id: 5, name: "COLORFUL CANVAS (RANGOLI)", rules: ["RANGOLI COLOURS ONLY.", "TIME LIMIT WILL BE 1 HRS."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎨" },
-    { id: 6, name: "HENNA HARMONY (MEHENDI)", rules: ["BRING YOUR OWN CONE."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️" },
-    { id: 7, name: "OPEN MIC", rules: ["ANY TALENT UNDER 5 MIN."], date: "Not Decided", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🎤" },
-    { id: 8, name: "WALK & WOW (RAMP WALK)", rules: ["PROPER DRESS REGULATION."], date: "Not Decided", fees: "Rs 200", prizes: "TROPHY FOR WINNERS", emoji: "🚶" },
-    { id: 9, name: "DANCE BATTLE", rules: ["IMPROMPTU DANCE."], date: "Not Decided", fees: "Rs 100 (Per member)", prizes: "TROPHY FOR BATTLE WINNER", emoji: "🔥" },
+    { id: 1, name: "DANCE (SOLO-DUO-GROUP)", rules: ["PERFORMED UNDER 5 MIN."], date: "7 APRIL, 11:00 AM", venue: "PHARMACY SEMINAR HALL", fees: "SOLO: 100, DUO: 200, GROUP: 250", prizes: "TROPHY FOR WINNERS", emoji: "💃" },
+    { id: 2, name: "SINGING (SOLO-DUO)", rules: ["TIME DURATION WILL BE UNDER 5 MIN."], date: "7 APRIL, 11:00 AM", venue: "PHARMACY SEMINAR HALL", fees: "SOLO: 50, DUO: 100", prizes: "TROPHY FOR WINNERS", emoji: "🎵" },
+    { id: 3, name: "ACTING ANTICS (SKIT)", rules: ["THEME:- SOCIAL AWARENESS.", "TIME LIMIT WILL BE 10 MIN."], date: "6 APRIL, 2:00 PM", venue: "SAC ADDA", fees: "Rs 250 (Per team)", prizes: "TROPHY FOR WINNING GROUP", emoji: "🎭" },
+    { id: 4, name: "COPY PASTE (MIMICRY)", rules: ["NO OFFENSIVE CONTENT."], date: "6 APRIL, 2:00 PM", venue: "SAC ADDA", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🗣️" },
+    { id: 5, name: "COLORFUL CANVAS (RANGOLI)", rules: ["RANGOLI COLOURS ONLY.", "TIME LIMIT WILL BE 1 HRS."], date: "6 APRIL, 11:00 AM", venue: "PHARMACY OPEN AREA", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎨" },
+    { id: 6, name: "HENNA HARMONY (MEHENDI)", rules: ["BRING YOUR OWN CONE."], date: "6 APRIL, 11:00 AM", venue: "PHARMACY OPEN AREA", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️" },
+    { id: 7, name: "OPEN MIC", rules: ["ANY TALENT UNDER 5 MIN."], date: "6 APRIL, 2:00 PM", venue: "SAC ADDA", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🎤" },
+    { id: 8, name: "WALK & WOW (RAMP WALK)", rules: ["PROPER DRESS REGULATION."], date: "7 APRIL, 11:00 AM & 9 APRIL, 5:00 PM", venue: "PHARMACY SEMINAR HALL MAIN STAGE", fees: "Rs 200", prizes: "TROPHY FOR WINNERS", emoji: "🚶" },
+    { id: 9, name: "DANCE BATTLE", rules: ["IMPROMPTU DANCE."], date: "6 APRIL, 5:00 PM", venue: "SAC ADDA", fees: "Rs 100 (Per member)", prizes: "TROPHY FOR BATTLE WINNER", emoji: "🔥" },
   ];
 
   const handleToggleRules = (id) => {
@@ -55,8 +55,9 @@ function Culture() {
                   <span className="text-2xl">{event.emoji}</span>
                   <h2 className="text-xl font-bold text-white">{event.name}</h2>
                 </div>
-                <div className="text-sm text-neon-cyan/80 flex items-center ml-10">
-                  📅 {event.date}
+                <div className="text-sm text-neon-cyan/80 flex flex-wrap items-center ml-10 gap-x-2">
+                  <span>📅 {event.date}</span>
+                  {event.venue && <span>| 📍 {event.venue}</span>}
                 </div>
               </div>
               
