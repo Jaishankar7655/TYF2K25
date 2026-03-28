@@ -127,7 +127,7 @@ const PaymentGateway = () => {
       {/* Animated BG */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-1/3 w-[400px] h-[400px] rounded-full bg-neon-yellow/5 blur-[150px] animate-disco-pulse"></div>
-        <div className="absolute bottom-0 right-1/3 w-[400px] h-[400px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-0 right-1/3 w-[400px] h-[400px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
       <div className="max-w-md mx-auto party-card rounded-2xl relative z-10">
