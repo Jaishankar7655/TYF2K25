@@ -9,14 +9,14 @@ function Literary() {
   const [openEventId, setOpenEventId] = useState(null);
   const navigate = useNavigate();
   const literaryEvents = [
-    { id: 14, name: "FOCUS & FRAME (PHOTOGRAPHY)", rules: ["THE NATURE OF EVENT."], date: "6 APRIL, 11:00 AM", venue: "F-21", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📸" },
-    { id: 15, name: "CINEMATIC CAPITAL (REEL MAKING)", rules: ["CREATE A REEL.", "TIME LIMIT IS THERE."], date: "6 APRIL, 11:00 AM", venue: "F-21", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎥" },
-    { id: 16, name: "INK & INSIGHT (POETRY)", rules: ["VULGAR WRITING IS NOT ALLOWED."], date: "6 APRIL, 12:00 PM", venue: "S-26", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "✍️" },
-    { id: 17, name: "FACE PAINTING", rules: ["THERE WILL BE ONLY SINGLE ROUND"], date: "7 APRIL, 12:00 PM", venue: "F-10 & OPEN AREA", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️" },
-    { id: 18, name: "COMMERCE QUIZ", rules: ["THERE WILL BE THREE ROUNDS.", "TIME LIMIT WILL BE THERE."], date: "7 APRIL, 11:00 AM", venue: "T & P SEMINAR HALL", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📋" },
-    { id: 19, name: "IPL - THE FINAL BIDDER", rules: ["TEAM SHOULD HAVE MAX 4 MEMBERS.", "BIDDING HAS TO BE DONE WITHIN ASSIGN BUDGET"], date: "6 APRIL, 11:00 AM", venue: "T & P SEMINAR HALL", fees: "Rs 200 (Per team max 4 person)", prizes: "TROPHY FOR WINNING TEAM", emoji: "🏏" },
-    { id: 20, name: "EXTEMPORE", rules: ["PARTICIPANTS WILL BE GIVEN A RANDOM TOPIC AND THEY HAVE TO SPEAK ON THAT TOPIC."], date: "7 APRIL, 2:00 PM", venue: "T & P SEMINAR HALL", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎙️" },
-    { id: 21, name: "BECHO TO JAANE (SOLD OUT)", rules: ["SELLING MATERIAL WILL BE PROVIDED BY INSTITUTION.", "MAX 4 PERSON PER TEAM."], date: "6 APRIL, 1:00 PM", venue: "MAIN CIRCLE", fees: "Rs 100 (Per team max 4 person)", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🛍️" },
+    { id: 14, name: "CINEMATIC CAPITAL (REEL MAKING)", rules: ["CREATE A REEL.", "TIME LIMIT IS THERE."], date: "6 APRIL, 11:00 AM", venue: "F-21", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎥" },
+    { id: 15, name: "FOCUS & FRAME (PHOTOGRAPHY)", rules: ["THE NATURE OF EVENT."], date: "6 APRIL, 11:00 AM", venue: "F-21", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📸" },
+    { id: 16, name: "IPL - THE FINAL BIDDER", rules: ["TEAM SHOULD HAVE MAX 4 MEMBERS.", "BIDDING HAS TO BE DONE WITHIN ASSIGN BUDGET"], date: "6 APRIL, 11:00 AM", venue: "T & P SEMINAR HALL", fees: "Rs 200 (Per team max 4 person)", prizes: "TROPHY FOR WINNING TEAM", emoji: "🏏" },
+    { id: 17, name: "INK & INSIGHT (POETRY)", rules: ["VULGAR WRITING IS NOT ALLOWED."], date: "6 APRIL, 12:00 PM", venue: "S-26", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "✍️" },
+    { id: 18, name: "BECHO TO JAANE (SOLD OUT)", rules: ["SELLING MATERIAL WILL BE PROVIDED BY INSTITUTION.", "MAX 4 PERSON PER TEAM."], date: "6 APRIL, 1:00 PM", venue: "MAIN CIRCLE", fees: "Rs 100 (Per team max 4 person)", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🛍️" },
+    { id: 19, name: "COMMERCE QUIZ", rules: ["THERE WILL BE THREE ROUNDS.", "TIME LIMIT WILL BE THERE."], date: "7 APRIL, 11:00 AM", venue: "T & P SEMINAR HALL", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📋" },
+    { id: 20, name: "FACE PAINTING", rules: ["THERE WILL BE ONLY SINGLE ROUND"], date: "7 APRIL, 12:00 PM", venue: "F-10 & OPEN AREA", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️" },
+    { id: 21, name: "EXTEMPORE", rules: ["PARTICIPANTS WILL BE GIVEN A RANDOM TOPIC AND THEY HAVE TO SPEAK ON THAT TOPIC."], date: "7 APRIL, 2:00 PM", venue: "T & P SEMINAR HALL", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎙️" },
   ];
 
   const handleToggleRules = (id) => {
