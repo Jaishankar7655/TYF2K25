@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
+// Global registration deadline
+const GLOBAL_REG_DEADLINE = "2026-04-08T23:59:00+05:30";
+const isRegClosed = () => new Date() > new Date(GLOBAL_REG_DEADLINE);
+
 function Culture() {
   const [openEventId, setOpenEventId] = useState(null);
   const navigate = useNavigate();
   const culturalEvents = [
     { id: 1, name: "DANCE (SOLO-DUO-GROUP)", rules: ["PERFORMED UNDER 5 MIN."], date: "7 APRIL, 11:00 AM", venue: "PHARMACY SEMINAR HALL", fees: "SOLO: 100, DUO: 200, GROUP: 250", prizes: "TROPHY FOR WINNERS", emoji: "💃" },
     { id: 2, name: "SINGING (SOLO-DUO)", rules: ["TIME DURATION WILL BE UNDER 5 MIN."], date: "7 APRIL, 11:00 AM", venue: "PHARMACY SEMINAR HALL", fees: "SOLO: 50, DUO: 100", prizes: "TROPHY FOR WINNERS", emoji: "🎵" },
-    { id: 3, name: "ACTING ANTICS (SKIT)", rules: ["THEME:- SOCIAL AWARENESS.", "TIME LIMIT WILL BE 10 MIN."], date: "6 APRIL, 2:00 PM", venue: "SAC ADDA", fees: "Rs 250 (Per team)", prizes: "TROPHY FOR WINNING GROUP", emoji: "🎭" },
-    { id: 4, name: "COPY PASTE (MIMICRY)", rules: ["NO OFFENSIVE CONTENT."], date: "6 APRIL, 2:00 PM", venue: "SAC ADDA", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🗣️" },
-    { id: 5, name: "COLORFUL CANVAS (RANGOLI)", rules: ["RANGOLI COLOURS ONLY.", "TIME LIMIT WILL BE 1 HRS."], date: "6 APRIL, 11:00 AM", venue: "PHARMACY OPEN AREA", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎨" },
-    { id: 6, name: "HENNA HARMONY (MEHENDI)", rules: ["BRING YOUR OWN CONE."], date: "6 APRIL, 11:00 AM", venue: "PHARMACY OPEN AREA", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️" },
-    { id: 7, name: "OPEN MIC", rules: ["ANY TALENT UNDER 5 MIN."], date: "6 APRIL, 2:00 PM", venue: "SAC ADDA", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🎤" },
-    { id: 8, name: "WALK & WOW (RAMP WALK)", rules: ["PROPER DRESS REGULATION."], date: "7 APRIL, 11:00 AM & 9 APRIL, 5:00 PM", venue: "PHARMACY SEMINAR HALL MAIN STAGE", fees: "Rs 200", prizes: "TROPHY FOR WINNERS", emoji: "🚶" },
-    { id: 9, name: "DANCE BATTLE", rules: ["IMPROMPTU DANCE."], date: "6 APRIL, 5:00 PM", venue: "SAC ADDA", fees: "Rs 100 (Per member)", prizes: "TROPHY FOR BATTLE WINNER", emoji: "🔥" },
+    { id: 3, name: "ACTING ANTICS (SKIT)", rules: ["THEME:- SOCIAL AWARENESS.", "TIME LIMIT WILL BE 10 MIN."], date: "6 APRIL, 3:00 PM", venue: "SAC ADDA", fees: "Rs 250 (Per team)", prizes: "TROPHY FOR WINNING GROUP", emoji: "🎭" },
+    { id: 4, name: "COPY PASTE (MIMICRY)", rules: ["NO OFFENSIVE CONTENT."], date: "6 APRIL, 3:00 PM", venue: "MAIN STAGE", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🗣️" },
+    { id: 5, name: "COLORFUL CANVAS (RANGOLI)", rules: ["RANGOLI COLOURS ONLY.", "TIME LIMIT WILL BE 1 HRS."], date: "6 APRIL, 11:00 AM", venue: "TIP BUILDING", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎨" },
+    { id: 6, name: "HENNA HARMONY (MEHENDI)", rules: ["BRING YOUR OWN CONE."], date: "6 APRIL, 11:00 AM", venue: "TIP BUILDING", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️" },
+    { id: 7, name: "OPEN MIC", rules: ["ANY TALENT UNDER 5 MIN."], date: "6 APRIL, 3:00 PM", venue: "SAC ADDA", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🎤" },
+    { id: 8, name: "WALK & WOW (RAMP WALK)", rules: ["PROPER DRESS REGULATION."], date: "7 APRIL, 11:00 AM & 8 APRIL, 5:00 PM", venue: "PHARMACY SEMINAR HALL, MAIN STAGE", fees: "Rs 200", prizes: "TROPHY FOR WINNERS", emoji: "🚶" },
+    { id: 9, name: "DANCE BATTLE", rules: ["IMPROMPTU DANCE."], date: "6 APRIL, 2:00 PM", venue: "SAC ADDA", fees: "Rs 100 (Per member)", prizes: "TROPHY FOR BATTLE WINNER", emoji: "🔥" },
   ];
 
   const handleToggleRules = (id) => {
@@ -23,6 +27,8 @@ function Culture() {
   const handleRegister = () => {
     navigate("/register");
   };
+
+  const regClosed = isRegClosed();
 
   return (
     <div className="min-h-screen bg-dark-bg party-bg">
@@ -98,12 +104,21 @@ function Culture() {
               
               {/* Register Button */}
               <div className="px-6 py-4 mt-auto">
-                <button 
-                  onClick={handleRegister}
-                  className="btn-party w-full py-2.5 px-4 rounded-xl font-medium"
-                >
-                  <span>🎉 Register Now</span>
-                </button>
+                {regClosed ? (
+                  <button 
+                    disabled
+                    className="w-full py-2.5 px-4 rounded-xl font-medium bg-gray-700/50 text-gray-500 cursor-not-allowed border border-gray-600/30"
+                  >
+                    <span>🚫 Registration Closed</span>
+                  </button>
+                ) : (
+                  <button 
+                    onClick={handleRegister}
+                    className="btn-party w-full py-2.5 px-4 rounded-xl font-medium"
+                  >
+                    <span>🎉 Register Now</span>
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -118,12 +133,21 @@ function Culture() {
           <div className="text-4xl mb-4">🎵🪩🎵</div>
           <h2 className="text-2xl font-bold text-white mb-2">Ready to Showcase Your Cultural Talent?</h2>
           <p className="text-gray-400 mb-6">Register now to participate in these exciting cultural events!</p>
-          <button 
-            onClick={handleRegister}
-            className="btn-party py-3 px-8 rounded-xl font-medium"
-          >
-            <span>🎉 Register for Events</span>
-          </button>
+          {regClosed ? (
+            <button 
+              disabled
+              className="py-3 px-8 rounded-xl font-medium bg-gray-700/50 text-gray-500 cursor-not-allowed border border-gray-600/30"
+            >
+              <span>🚫 Registration Closed</span>
+            </button>
+          ) : (
+            <button 
+              onClick={handleRegister}
+              className="btn-party py-3 px-8 rounded-xl font-medium"
+            >
+              <span>🎉 Register for Events</span>
+            </button>
+          )}
         </div>
       </div>
     </div>

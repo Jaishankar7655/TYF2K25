@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Global registration deadline
+const GLOBAL_REG_DEADLINE = "2026-04-08T23:59:00+05:30";
+const isRegClosed = () => new Date() > new Date(GLOBAL_REG_DEADLINE);
+
 function Technical() {
   const [openEventId, setOpenEventId] = useState(null);
   const navigate = useNavigate();
 
   const technicalEvents = [
-    { id: 1, name: "TECH QUIZ", rules: ["TOTAL 5 SECTION WILL BE THERE.", "QUESTION ATTEMPTATION SHOULD BE MANDATORY.", "ALL THE QUESTION WILL BE MULTIPLE CHOICE"], date: "6 APRIL, 12:30 PM", venue: "F-20 (CS LAB)", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🧪" },
-    { id: 2, name: "CODING CONTEST", rules: ["THERE WILL BE TWO ROUNDS (1ST WILL BE CHOOSE THE CORRECT ANSWER & 2ND WILL BE CODE EXECUTION)"], date: "7 APRIL, 10:30 AM", venue: "G-23/MT-LAB", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "💻" },
-    { id: 3, name: "DEBUGGING CONTEST", rules: ["DEBUG THE GIVEN CODE.", "TIME LIMIT WILL BE THERE."], date: "7 APRIL, 2:00 PM", venue: "G-23/MT-LAB", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🐛" },
-    { id: 4, name: "POSTER-PAPER PRESENTATION", rules: ["SINGLE ROUND WILL BE HELD.", "PRESENTATION SHOULD BE UNDER 10 MIN."], date: "6 APRIL, 10:30 AM", venue: "SEMINAR HALL", fees: "Rs 150", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📝" },
-    { id: 5, name: "TREASURE HUNT", rules: ["TEAM BASED EVENT.", "FOLLOW THE CLUES TO FIND THE TREASURE."], date: "6 APRIL, 11:30 AM", venue: "F-24", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🗺️" },
-    { id: 6, name: "LAN GAMING", rules: ["PARTICIPANTS SHOULD BRING THEIR OWN DEVICES.", "GAME RULES WILL BE ANNOUNCED ON THE SPOT."], date: "6 APRIL, 10:30 AM", venue: "F-20 (CS LAB)", fees: "Rs 350", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎮" },
-    { id: 7, name: "CYBER SECURITY", rules: ["KNOWLEDGE OF CYBERSECURITY CONCEPTS REQUIRED.", "PRACTICAL AND THEORETICAL ROUNDS."], date: "7 APRIL, 12:30 PM", venue: "G-35 (COE LAB)", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🔐" },
-    { id: 8, name: "TECH TALK", rules: ["OPEN FOR ALL PARTICIPANTS.", "NO REGISTRATION FEE REQUIRED."], date: "6 APRIL, 10:30 PM", venue: "SEMINAR HALL", fees: "Free for all", prizes: "CERTIFICATE OF PARTICIPATION", emoji: "🎤" },
+    { id: 1, name: "TECH QUIZ", rules: ["TOTAL 5 SECTION WILL BE THERE.", "QUESTION ATTEMPTATION SHOULD BE MANDATORY.", "ALL THE QUESTION WILL BE MULTIPLE CHOICE"], date: "6 APRIL, 12:30 PM", venue: "G-23 (MT LAB)", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🧪" },
+    { id: 2, name: "CODING CONTEST", rules: ["THERE WILL BE TWO ROUNDS (1ST WILL BE CHOOSE THE CORRECT ANSWER & 2ND WILL BE CODE EXECUTION)"], date: "7 APRIL, 10:30 AM", venue: "G-23 (MT LAB)", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "💻" },
+    { id: 3, name: "DEBUGGING CONTEST", rules: ["DEBUG THE GIVEN CODE.", "TIME LIMIT WILL BE THERE."], date: "7 APRIL, 2:00 PM", venue: "G-23 (MT LAB)", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🐛" },
+    { id: 4, name: "POSTER & PAPER PRESENTATION", rules: ["SINGLE ROUND WILL BE HELD.", "PRESENTATION SHOULD BE UNDER 10 MIN."], date: "6 APRIL, 10:30 AM", venue: "SEMINAR HALL", fees: "Rs 150", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📝" },
+    { id: 5, name: "TREASURE HUNT", rules: ["TEAM BASED EVENT.", "FOLLOW THE CLUES TO FIND THE TREASURE."], date: "7 APRIL, 11:30 AM", venue: "RECEPTION AREA", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🗺️" },
+    { id: 6, name: "LAN GAMING (BGMI & FREE FIRE)", rules: ["PARTICIPANTS SHOULD BRING THEIR OWN DEVICES.", "GAME RULES WILL BE ANNOUNCED ON THE SPOT."], date: "6 APRIL, 10:30 AM", venue: "F-20 (CS LAB)", fees: "Rs 350", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎮" },
+    { id: 7, name: "CYBER SECURITY WORKSHOP", rules: ["KNOWLEDGE OF CYBERSECURITY CONCEPTS REQUIRED.", "PRACTICAL AND THEORETICAL ROUNDS."], date: "7 APRIL, 12:30 PM", venue: "G-35 (COE LAB)", fees: "Rs 200", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🔐" },
+    { id: 8, name: "TECH TALK", rules: ["OPEN FOR ALL PARTICIPANTS.", "NO REGISTRATION FEE REQUIRED."], date: "6 APRIL, 10:30 AM", venue: "SEMINAR HALL", fees: "Free for all", prizes: "CERTIFICATE OF PARTICIPATION", emoji: "🎤" },
     { id: 9, name: "PHARMA QUIZ", rules: ["QUESTIONS WILL BE RELATED TO PHARMACY.", "TIME LIMIT WILL BE THERE FOR EACH ROUND."], date: "7 APRIL, 1:00 PM", venue: "PHARMACY", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "💊" },
     { id: 10, name: "CURE CREATION", rules: ["PRACTICAL ROUND.", "RELATED TO PHARMACEUTICAL PREPARATIONS."], date: "6 APRIL, 11:00 AM", venue: "PHARMACY", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "⚗️" },
   ];
@@ -25,6 +29,8 @@ function Technical() {
   const handleRegister = () => {
     navigate("/register");
   };
+
+  const regClosed = isRegClosed();
 
   return (
     <div className="min-h-screen bg-dark-bg party-bg">
@@ -100,12 +106,21 @@ function Technical() {
               
               {/* Register Button */}
               <div className="px-6 py-4 mt-auto">
-                <button 
-                  onClick={handleRegister}
-                  className="btn-party w-full py-2.5 px-4 rounded-xl font-medium"
-                >
-                  <span>🎉 Register Now</span>
-                </button>
+                {regClosed ? (
+                  <button 
+                    disabled
+                    className="w-full py-2.5 px-4 rounded-xl font-medium bg-gray-700/50 text-gray-500 cursor-not-allowed border border-gray-600/30"
+                  >
+                    <span>🚫 Registration Closed</span>
+                  </button>
+                ) : (
+                  <button 
+                    onClick={handleRegister}
+                    className="btn-party w-full py-2.5 px-4 rounded-xl font-medium"
+                  >
+                    <span>🎉 Register Now</span>
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -120,12 +135,21 @@ function Technical() {
           <div className="text-4xl mb-4">💻⚡💻</div>
           <h2 className="text-2xl font-bold text-white mb-2">Ready to Participate?</h2>
           <p className="text-gray-400 mb-6">Register now to secure your spot in these exciting technical events!</p>
-          <button 
-            onClick={handleRegister}
-            className="btn-party py-3 px-8 rounded-xl font-medium"
-          >
-            <span>🎉 Register for Events</span>
-          </button>
+          {regClosed ? (
+            <button 
+              disabled
+              className="py-3 px-8 rounded-xl font-medium bg-gray-700/50 text-gray-500 cursor-not-allowed border border-gray-600/30"
+            >
+              <span>🚫 Registration Closed</span>
+            </button>
+          ) : (
+            <button 
+              onClick={handleRegister}
+              className="btn-party py-3 px-8 rounded-xl font-medium"
+            >
+              <span>🎉 Register for Events</span>
+            </button>
+          )}
         </div>
       </div>
     </div>

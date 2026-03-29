@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import { User, Mail, Phone, School, Tag, Loader2, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
+// Global registration deadline — after this, the entire registration form is closed
+const GLOBAL_REG_DEADLINE = "2026-04-08T23:59:00+05:30";
+
 // Categories data — all registrations open
 const categories = [
   {
@@ -28,13 +31,13 @@ const categories = [
         ],
         closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM"
       },
-      { name: "Acting Antics (Skit)", price: 250, closingDate: "2026-04-06T14:00:00+05:30", closingDateStr: "6 APRIL, 2:00 PM" },
-      { name: "Copy Paste (Mimicry)", price: 50, closingDate: "2026-04-06T14:00:00+05:30", closingDateStr: "6 APRIL, 2:00 PM" },
+      { name: "Acting Antics (Skit)", price: 250, closingDate: "2026-04-06T15:00:00+05:30", closingDateStr: "6 APRIL, 3:00 PM" },
+      { name: "Copy Paste (Mimicry)", price: 50, closingDate: "2026-04-06T15:00:00+05:30", closingDateStr: "6 APRIL, 3:00 PM" },
       { name: "Colorful Canvas (Rangoli)", price: 50, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
       { name: "Henna Harmony (Mehendi)", price: 50, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
-      { name: "Open Mic", price: 50, closingDate: "2026-04-06T14:00:00+05:30", closingDateStr: "6 APRIL, 2:00 PM" },
+      { name: "Open Mic", price: 50, closingDate: "2026-04-06T15:00:00+05:30", closingDateStr: "6 APRIL, 3:00 PM" },
       { name: "Walk & Wow (Ramp Walk)", price: 200, closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM" },
-      { name: "Dance Battle", price: 100, closingDate: "2026-04-06T17:00:00+05:30", closingDateStr: "6 APRIL, 5:00 PM" },
+      { name: "Dance Battle", price: 100, closingDate: "2026-04-06T14:00:00+05:30", closingDateStr: "6 APRIL, 2:00 PM" },
     ],
   },
   {
@@ -59,10 +62,10 @@ const categories = [
       { name: "Coding Contest", price: 100, closingDate: "2026-04-07T10:30:00+05:30", closingDateStr: "7 APRIL, 10:30 AM" },
       { name: "Debugging Contest", price: 100, closingDate: "2026-04-07T14:00:00+05:30", closingDateStr: "7 APRIL, 2:00 PM" },
       { name: "Poster-Paper Presentation", price: 150, closingDate: "2026-04-06T10:30:00+05:30", closingDateStr: "6 APRIL, 10:30 AM" },
-      { name: "Treasure Hunt", price: 200, closingDate: "2026-04-06T11:30:00+05:30", closingDateStr: "6 APRIL, 11:30 AM" },
+      { name: "Treasure Hunt", price: 200, closingDate: "2026-04-07T11:30:00+05:30", closingDateStr: "7 APRIL, 11:30 AM" },
       { name: "LAN Gaming", price: 350, closingDate: "2026-04-06T10:30:00+05:30", closingDateStr: "6 APRIL, 10:30 AM" },
       { name: "Cyber Security", price: 200, closingDate: "2026-04-07T12:30:00+05:30", closingDateStr: "7 APRIL, 12:30 PM" },
-      { name: "Tech Talk", price: 0, closingDate: "2026-04-06T22:30:00+05:30", closingDateStr: "6 APRIL, 10:30 PM" },
+      { name: "Tech Talk", price: 0, closingDate: "2026-04-06T10:30:00+05:30", closingDateStr: "6 APRIL, 10:30 AM" },
       { name: "Pharma Quiz", price: 100, closingDate: "2026-04-07T13:00:00+05:30", closingDateStr: "7 APRIL, 1:00 PM" },
       { name: "Cure Creation", price: 100, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
     ],
@@ -89,27 +92,28 @@ const categories = [
     title: "SAC Committee",
     icon: "🌟",
     events: [
-      { name: "Push-Up Challenge", price: 50 },
-      { name: "Plank / Weight Add-On Challenge", price: 0 },
-      { name: "Spoon Tie-Knot Challenge", price: 50 },
-      { name: "Poetry", price: 0 },
-      { name: "Arm Wrestling (SAC)", price: 50 },
-      { name: "Bottle Flip", price: 0 },
-      { name: "Thug of War (Per Team, Max 10)", price: 300 },
-      { name: "Teacher's Ramp Walk", price: 0 },
-      { name: "Blind Fold Challenge", price: 0 },
-      { name: "Dance-Freeze Challenge", price: 0 },
-      { name: "Paper Folding Dance", price: 0 },
-      { name: "Truba Roadies", price: 100 },
-      { name: "Cup Pyramid", price: 0 },
-      { name: "Sign - Walk Game", price: 50 },
-      { name: "Cricket Circle Game", price: 100 },
-      { name: "Dare to Drink", price: 50 },
+      { name: "Push-Up Challenge", price: 50, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
+      { name: "Plank / Weight Add-On Challenge", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Spoon Tie-Knot Challenge", price: 50, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
+      { name: "Poetry", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Arm Wrestling (SAC)", price: 50, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
+      { name: "Bottle Flip", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Thug of War (Per Team, Max 10)", price: 300, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Teacher's Ramp Walk", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Blind Fold Challenge", price: 0, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
+      { name: "Dance-Freeze Challenge", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Paper Folding Dance", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Truba Roadies", price: 100, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Cup Pyramid", price: 0, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
+      { name: "Sign - Walk Game", price: 50, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Cricket Circle Game", price: 100, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Dare to Drink", price: 50, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
     ],
   },
 ];
 
-
+// Check if global registration is closed
+const isGlobalRegistrationClosed = () => new Date() > new Date(GLOBAL_REG_DEADLINE);
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -139,7 +143,37 @@ const RegistrationForm = () => {
     },
   });
 
-
+  // If global registration is closed, show closed message
+  if (isGlobalRegistrationClosed()) {
+    return (
+      <div className="min-h-screen bg-dark-bg party-bg py-12 px-4 relative overflow-hidden flex items-center justify-center">
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse"></div>
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: '1s' }}></div>
+        </div>
+        <div className="max-w-lg mx-auto relative z-10 text-center">
+          <div className="party-card rounded-3xl p-10">
+            <div className="text-6xl mb-6">🚫</div>
+            <h2 className="text-4xl font-black text-red-400 mb-4">
+              Registration Closed
+            </h2>
+            <p className="text-gray-400 text-lg mb-6">
+              The registration deadline for <span className="text-neon-cyan font-bold">Truba Fest 2026</span> has passed. All registrations are now closed.
+            </p>
+            <p className="text-gray-500 text-sm mb-8">
+              If you have already registered, please check your email for confirmation details.
+            </p>
+            <button
+              onClick={() => navigate("/")}
+              className="btn-party inline-flex items-center justify-center font-bold py-3 px-8 rounded-xl"
+            >
+              <span>🏠 Back to Home</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const calculateTotal = () => {
     let total = 0;

@@ -37,8 +37,12 @@ const MusicEqualizer = () => (
   </div>
 );
 
+// Global registration deadline
+const GLOBAL_REG_DEADLINE = "2026-04-08T23:59:00+05:30";
+
 const HomePage = () => {
   const navigate = useNavigate();
+  const regClosed = new Date() > new Date(GLOBAL_REG_DEADLINE);
   const [confettiPieces, setConfettiPieces] = useState([]);
 
   useEffect(() => {
@@ -102,7 +106,7 @@ const HomePage = () => {
             {/* Party badge */}
             <div className="inline-flex items-center flex-wrap justify-center gap-1.5 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-dark-card/80 border border-neon-pink/30 backdrop-blur-md text-neon-pink font-semibold text-xs sm:text-base shadow-[0_0_20px_rgba(255,45,149,0.15)] animate-party-float scaling-element">
               <PartyPopper className="w-4 h-4 sm:w-5 sm:h-5 text-neon-yellow flex-shrink-0" />
-              <span className="tracking-wide sm:tracking-wider uppercase whitespace-nowrap">🎉 Registration Open • April 6-8, 2026 🎉</span>
+              <span className="tracking-wide sm:tracking-wider uppercase whitespace-nowrap">{regClosed ? '🚫 Registration Closed • Truba Fest 2026' : '🎉 Registration Open • April 4-8, 2026 🎉'}</span>
               <Disc3 className="w-4 h-4 sm:w-5 sm:h-5 text-neon-cyan animate-spin flex-shrink-0" style={{ animationDuration: '3s' }} />
             </div>
 
@@ -143,13 +147,22 @@ const HomePage = () => {
             </p>
 
             {/* CTA Button */}
-            <button
-              onClick={() => navigate("/register")}
-              className="btn-party group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 font-bold text-base sm:text-lg lg:text-xl rounded-full transition-all duration-300 active:scale-95 neon-border"
-            >
-              <span>🎉 Register Now</span>
-              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
-            </button>
+            {regClosed ? (
+              <button
+                disabled
+                className="group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 font-bold text-base sm:text-lg lg:text-xl rounded-full bg-gray-700/50 text-gray-500 cursor-not-allowed border border-gray-600/30"
+              >
+                <span>🚫 Registration Closed</span>
+              </button>
+            ) : (
+              <button
+                onClick={() => navigate("/register")}
+                className="btn-party group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 font-bold text-base sm:text-lg lg:text-xl rounded-full transition-all duration-300 active:scale-95 neon-border"
+              >
+                <span>🎉 Register Now</span>
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
+              </button>
+            )}
 
             {/* Party emojis row */}
             <div className="flex items-center gap-3 sm:gap-6 text-xl sm:text-2xl md:text-3xl animate-party-float flex-wrap justify-center">

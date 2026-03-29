@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Global registration deadline
+const GLOBAL_REG_DEADLINE = "2026-04-08T23:59:00+05:30";
+const isRegClosed = () => new Date() > new Date(GLOBAL_REG_DEADLINE);
+
 function Literary() {
   const [openEventId, setOpenEventId] = useState(null);
   const navigate = useNavigate();
@@ -8,11 +12,11 @@ function Literary() {
     { id: 14, name: "FOCUS & FRAME (PHOTOGRAPHY)", rules: ["THE NATURE OF EVENT."], date: "6 APRIL, 11:00 AM", venue: "F-21", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📸" },
     { id: 15, name: "CINEMATIC CAPITAL (REEL MAKING)", rules: ["CREATE A REEL.", "TIME LIMIT IS THERE."], date: "6 APRIL, 11:00 AM", venue: "F-21", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎥" },
     { id: 16, name: "INK & INSIGHT (POETRY)", rules: ["VULGAR WRITING IS NOT ALLOWED."], date: "6 APRIL, 12:00 PM", venue: "S-26", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "✍️" },
-    { id: 17, name: "FACE PAINTING", rules: ["THERE WILL BE ONLY SINGLE ROUND"], date: "7 APRIL, 12:00 PM", venue: "INFRONT OF CSE DEPARTMENT", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️" },
+    { id: 17, name: "FACE PAINTING", rules: ["THERE WILL BE ONLY SINGLE ROUND"], date: "7 APRIL, 12:00 PM", venue: "F-10 & OPEN AREA", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🖌️" },
     { id: 18, name: "COMMERCE QUIZ", rules: ["THERE WILL BE THREE ROUNDS.", "TIME LIMIT WILL BE THERE."], date: "7 APRIL, 11:00 AM", venue: "T & P SEMINAR HALL", fees: "Rs 100", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "📋" },
     { id: 19, name: "IPL - THE FINAL BIDDER", rules: ["TEAM SHOULD HAVE MAX 4 MEMBERS.", "BIDDING HAS TO BE DONE WITHIN ASSIGN BUDGET"], date: "6 APRIL, 11:00 AM", venue: "T & P SEMINAR HALL", fees: "Rs 200 (Per team max 4 person)", prizes: "TROPHY FOR WINNING TEAM", emoji: "🏏" },
     { id: 20, name: "EXTEMPORE", rules: ["PARTICIPANTS WILL BE GIVEN A RANDOM TOPIC AND THEY HAVE TO SPEAK ON THAT TOPIC."], date: "7 APRIL, 2:00 PM", venue: "T & P SEMINAR HALL", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🎙️" },
-    { id: 21, name: "BECHO TOH JAANE (SOLD OUT)", rules: ["SELLING MATERIAL WILL BE PROVIDED BY INSTITUTION.", "MAX 4 PERSON PER TEAM."], date: "6 APRIL, 1:00 PM", venue: "MAIN CIRCLE", fees: "Rs 100 (Per team max 4 person)", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🛍️" },
+    { id: 21, name: "BECHO TO JAANE (SOLD OUT)", rules: ["SELLING MATERIAL WILL BE PROVIDED BY INSTITUTION.", "MAX 4 PERSON PER TEAM."], date: "6 APRIL, 1:00 PM", venue: "MAIN CIRCLE", fees: "Rs 100 (Per team max 4 person)", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🛍️" },
   ];
 
   const handleToggleRules = (id) => {
@@ -22,6 +26,8 @@ function Literary() {
   const handleRegister = () => {
     navigate("/register");
   };
+
+  const regClosed = isRegClosed();
 
   return (
     <div className="min-h-screen bg-dark-bg party-bg">
@@ -97,12 +103,21 @@ function Literary() {
               
               {/* Register Button */}
               <div className="px-6 py-4 mt-auto">
-                <button 
-                  onClick={handleRegister}
-                  className="btn-party w-full py-2.5 px-4 rounded-xl font-medium"
-                >
-                  <span>🎉 Register Now</span>
-                </button>
+                {regClosed ? (
+                  <button 
+                    disabled
+                    className="w-full py-2.5 px-4 rounded-xl font-medium bg-gray-700/50 text-gray-500 cursor-not-allowed border border-gray-600/30"
+                  >
+                    <span>🚫 Registration Closed</span>
+                  </button>
+                ) : (
+                  <button 
+                    onClick={handleRegister}
+                    className="btn-party w-full py-2.5 px-4 rounded-xl font-medium"
+                  >
+                    <span>🎉 Register Now</span>
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -117,12 +132,21 @@ function Literary() {
           <div className="text-4xl mb-4">📚✨📚</div>
           <h2 className="text-2xl font-bold text-white mb-2">Ready to Showcase Your Talent?</h2>
           <p className="text-gray-400 mb-6">Register now to participate in these exciting literary events!</p>
-          <button 
-            onClick={handleRegister}
-            className="btn-party py-3 px-8 rounded-xl font-medium"
-          >
-            <span>🎉 Register for Events</span>
-          </button>
+          {regClosed ? (
+            <button 
+              disabled
+              className="py-3 px-8 rounded-xl font-medium bg-gray-700/50 text-gray-500 cursor-not-allowed border border-gray-600/30"
+            >
+              <span>🚫 Registration Closed</span>
+            </button>
+          ) : (
+            <button 
+              onClick={handleRegister}
+              className="btn-party py-3 px-8 rounded-xl font-medium"
+            >
+              <span>🎉 Register for Events</span>
+            </button>
+          )}
         </div>
       </div>
     </div>

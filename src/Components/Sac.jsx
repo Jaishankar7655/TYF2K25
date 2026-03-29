@@ -1,26 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
+// Global registration deadline
+const GLOBAL_REG_DEADLINE = "2026-04-08T23:59:00+05:30";
+const isRegClosed = () => new Date() > new Date(GLOBAL_REG_DEADLINE);
+
 function Sac() {
   const [openEventId, setOpenEventId] = useState(null);
   const navigate = useNavigate();
   const sacEvents = [
-      { id: 1, name: "Push-Up Challenge", rules: ["Standard rules apply."], date: "Not Decided", fees: "Rs 50", prizes: "Surprise Reward", emoji: "💪" },
-      { id: 2, name: "Plank / Weight Add-On Challenge", rules: ["Standard rules apply."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🏋️" },
-      { id: 3, name: "Spoon Tie-Knot Challenge", rules: ["Perform the challenge in given time."], date: "Not Decided", fees: "Rs 50", prizes: "Surprise Reward", emoji: "🥄" },
-      { id: 4, name: "Poetry", rules: ["Any topic."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "✍️" },
-      { id: 5, name: "Arm Wrestling (SAC)", rules: ["Standard rules apply."], date: "Not Decided", fees: "Rs 50", prizes: "Surprise Reward", emoji: "✊" },
-      { id: 6, name: "Bottle Flip", rules: ["Maximum consecutive flips win."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🍾" },
-      { id: 7, name: "Thug of War (Per Team)", rules: ["Max 10 per team."], date: "Not Decided", fees: "Rs 300", prizes: "Surprise Reward", emoji: "🪢" },
-      { id: 8, name: "Teacher's Ramp Walk", rules: ["Exclusive for teachers."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🧑‍🏫" },
-      { id: 9, name: "Blind Fold Challenge", rules: ["Follow the guided route."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🙈" },
-      { id: 10, name: "Dance-Freeze Challenge", rules: ["Freeze when music stops."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🧊" },
-      { id: 11, name: "Paper Folding Dance", rules: ["Dance and stay on the paper."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "📰" },
-      { id: 12, name: "Truba Roadies", rules: ["Task based event."], date: "Not Decided", fees: "100", prizes: "Surprise Reward", emoji: "🏍️" },
-      { id: 13, name: "Cup Pyramid", rules: ["Fastest to build wins."], date: "Not Decided", fees: "Free", prizes: "Surprise Reward", emoji: "🥤" },
-      { id: 14, name: "Sign - Walk Game", rules: ["Follow the instructions."], date: "Not Decided", fees: "Rs 50", prizes: "Surprise Reward", emoji: "🚶‍♂️" },
-      { id: 15, name: "Cricket Circle Game", rules: ["Hit boundaries."], date: "Not Decided", fees: "Rs 100", prizes: "Surprise Reward", emoji: "🏏" },
-      { id: 16, name: "Dare to Drink", rules: ["Mystery drink challenge."], date: "Not Decided", fees: "Rs 50", prizes: "Surprise Reward", emoji: "🍹" },
+      { id: 1, name: "Push-Up Challenge", rules: ["Standard rules apply."], date: "6 APRIL 2026", venue: "SAC ADDA", fees: "Rs 50", prizes: "Surprise Reward", emoji: "💪" },
+      { id: 2, name: "Plank / Weight Add-On Challenge", rules: ["Standard rules apply."], date: "7 APRIL 2026", venue: "SAC ADDA", fees: "Free", prizes: "Surprise Reward", emoji: "🏋️" },
+      { id: 3, name: "Spoon Tie-Knot Challenge", rules: ["Perform the challenge in given time."], date: "6 APRIL 2026", venue: "SAC ADDA", fees: "Rs 50", prizes: "Surprise Reward", emoji: "🥄" },
+      { id: 4, name: "Poetry", rules: ["Any topic."], date: "7 APRIL 2026", venue: "SAC ADDA", fees: "Free", prizes: "Surprise Reward", emoji: "✍️" },
+      { id: 5, name: "Arm Wrestling (SAC)", rules: ["Standard rules apply."], date: "6 APRIL 2026", venue: "SAC ADDA", fees: "Rs 50", prizes: "Surprise Reward", emoji: "✊" },
+      { id: 6, name: "Bottle Flip", rules: ["Maximum consecutive flips win."], date: "7 APRIL 2026", venue: "SAC ADDA", fees: "Free", prizes: "Surprise Reward", emoji: "🍾" },
+      { id: 7, name: "Thug of War (Per Team)", rules: ["Max 10 per team."], date: "7 APRIL 2026", venue: "SAC ADDA", fees: "Rs 300", prizes: "Surprise Reward", emoji: "🪢" },
+      { id: 8, name: "Teacher's Ramp Walk", rules: ["Exclusive for teachers."], date: "7 APRIL 2026", venue: "SAC ADDA", fees: "Free", prizes: "Surprise Reward", emoji: "🧑‍🏫" },
+      { id: 9, name: "Blind Fold Challenge", rules: ["Follow the guided route."], date: "6 APRIL 2026", venue: "SAC ADDA", fees: "Free", prizes: "Surprise Reward", emoji: "🙈" },
+      { id: 10, name: "Dance-Freeze Challenge", rules: ["Freeze when music stops."], date: "7 APRIL 2026", venue: "SAC ADDA", fees: "Free", prizes: "Surprise Reward", emoji: "🧊" },
+      { id: 11, name: "Paper Folding Dance", rules: ["Dance and stay on the paper."], date: "7 APRIL 2026", venue: "SAC ADDA", fees: "Free", prizes: "Surprise Reward", emoji: "📰" },
+      { id: 12, name: "Truba Roadies", rules: ["Task based event."], date: "7 APRIL 2026", venue: "SAC ADDA", fees: "100", prizes: "Surprise Reward", emoji: "🏍️" },
+      { id: 13, name: "Cup Pyramid", rules: ["Fastest to build wins."], date: "6 APRIL 2026", venue: "SAC ADDA", fees: "Free", prizes: "Surprise Reward", emoji: "🥤" },
+      { id: 14, name: "Sign - Walk Game", rules: ["Follow the instructions."], date: "7 APRIL 2026", venue: "SAC ADDA", fees: "Rs 50", prizes: "Surprise Reward", emoji: "🚶‍♂️" },
+      { id: 15, name: "Cricket Circle Game", rules: ["Hit boundaries."], date: "7 APRIL 2026", venue: "SAC ADDA", fees: "Rs 100", prizes: "Surprise Reward", emoji: "🏏" },
+      { id: 16, name: "Dare to Drink", rules: ["Mystery drink challenge."], date: "6 APRIL 2026", venue: "SAC ADDA", fees: "Rs 50", prizes: "Surprise Reward", emoji: "🍹" },
   ];
 
   const handleToggleRules = (id) => {
@@ -30,6 +34,8 @@ function Sac() {
   const handleRegister = () => {
     navigate("/register");
   };
+
+  const regClosed = isRegClosed();
 
   return (
     <div className="min-h-screen bg-dark-bg party-bg">
@@ -62,8 +68,9 @@ function Sac() {
                   <span className="text-2xl">{event.emoji}</span>
                   <h2 className="text-xl font-bold text-white">{event.name}</h2>
                 </div>
-                <div className="text-sm text-neon-green/80 flex items-center ml-10">
-                  📅 {event.date}
+                <div className="text-sm text-neon-green/80 flex flex-wrap items-center ml-10 gap-x-2">
+                  <span>📅 {event.date}</span>
+                  {event.venue && <span>| 📍 {event.venue}</span>}
                 </div>
               </div>
               
@@ -104,12 +111,21 @@ function Sac() {
               
               {/* Register Button */}
               <div className="px-6 py-4 mt-auto">
-                <button 
-                  onClick={handleRegister}
-                  className="btn-party w-full py-2.5 px-4 rounded-xl font-medium border-neon-green text-neon-green"
-                >
-                  <span>🎉 Register Now</span>
-                </button>
+                {regClosed ? (
+                  <button 
+                    disabled
+                    className="w-full py-2.5 px-4 rounded-xl font-medium bg-gray-700/50 text-gray-500 cursor-not-allowed border border-gray-600/30"
+                  >
+                    <span>🚫 Registration Closed</span>
+                  </button>
+                ) : (
+                  <button 
+                    onClick={handleRegister}
+                    className="btn-party w-full py-2.5 px-4 rounded-xl font-medium border-neon-green text-neon-green"
+                  >
+                    <span>🎉 Register Now</span>
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -120,12 +136,21 @@ function Sac() {
           <div className="text-4xl mb-4">✨🤸🏻✨</div>
           <h2 className="text-2xl font-bold text-white mb-2">Ready for Fun?</h2>
           <p className="text-gray-400 mb-6">Register now for SAC committee challenges!</p>
-          <button 
-            onClick={handleRegister}
-            className="btn-party py-3 px-8 rounded-xl font-medium"
-          >
-            <span>🎉 Register for Events</span>
-          </button>
+          {regClosed ? (
+            <button 
+              disabled
+              className="py-3 px-8 rounded-xl font-medium bg-gray-700/50 text-gray-500 cursor-not-allowed border border-gray-600/30"
+            >
+              <span>🚫 Registration Closed</span>
+            </button>
+          ) : (
+            <button 
+              onClick={handleRegister}
+              className="btn-party py-3 px-8 rounded-xl font-medium"
+            >
+              <span>🎉 Register for Events</span>
+            </button>
+          )}
         </div>
       </div>
     </div>

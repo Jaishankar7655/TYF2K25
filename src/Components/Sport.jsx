@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Global registration deadline
+const GLOBAL_REG_DEADLINE = "2026-04-08T23:59:00+05:30";
+const isRegClosed = () => new Date() > new Date(GLOBAL_REG_DEADLINE);
+
 function Sport() {
   const [openEventId, setOpenEventId] = useState(null);
   const navigate = useNavigate();
 
   const sportsEvents = [
-    { id: 1, name: "RAPID RUN-RACE", rules: ["STANDARD RACE RULES."], date: "4 APRIL, 11:00 AM", venue: "MAIN GROUND", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🏃" },
+    { id: 1, name: "RAPID RUN (RACE)", rules: ["STANDARD RACE RULES."], date: "4 APRIL, 11:00 AM", venue: "MAIN GROUND", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🏃" },
     { id: 2, name: "JAVELIN THROW", rules: ["STANDARD RULES."], date: "4 APRIL, 10:00 AM", venue: "MAIN GROUND", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🎯" },
     { id: 3, name: "BADMINTON", rules: ["SINGLES WILL BE THERE.", "MATCH WILL BE OF 11 POINTS."], date: "5 APRIL, 10:00 AM", venue: "PHARMACY GROUND", fees: "Rs 50", prizes: "TROPHY FOR WINNER AND RUNNERUP", emoji: "🏸" },
     { id: 4, name: "SHOT PUT", rules: ["STANDARD RULES."], date: "4 APRIL, 12:00 PM", venue: "MAIN GROUND", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🪨" },
-    { id: 5, name: "CRICKET", rules: ["STANDARD RULES."], date: "4 APRIL, 10:00 AM", venue: "MAIN GROUND", fees: "Rs 50", prizes: "TROPHY FOR WINNING TEAM", emoji: "🏏" },
+    { id: 5, name: "CRICKET (2V2)", rules: ["STANDARD RULES."], date: "4 APRIL, 10:00 AM", venue: "MAIN GROUND", fees: "Rs 50", prizes: "TROPHY FOR WINNING TEAM", emoji: "🏏" },
     { id: 6, name: "KABADDI", rules: ["EVERY SET WILL BE OF 10 MIN.", "PROPER DRESS AND SHOES ARE MANDATORY."], date: "5 APRIL, 10:00 AM", venue: "MAIN GROUND", fees: "Rs 300", prizes: "MEDAL AND TROPHY FOR WINNING TEAM", emoji: "🤼" },
     { id: 7, name: "KHO-KHO", rules: ["8 PARTICIPANTS SHOULD BE THERE IN THE TEAM."], date: "5 APRIL, 11:00 AM", venue: "MAIN GROUND", fees: "Rs 300", prizes: "MEDAL AND TROPHY FOR WINNING TEAM", emoji: "🏃" },
-    { id: 8, name: "TUG OF WAR", rules: ["STANDARD RULES."], date: "5 APRIL, 11:00 AM", venue: "INFRONT OF CSE", fees: "Rs 50", prizes: "MEDAL AND TROPHY", emoji: "🪢" },
+    { id: 8, name: "TUG OF WAR", rules: ["STANDARD RULES."], date: "5 APRIL, 11:00 AM", venue: "IN FRONT OF CSE", fees: "Rs 50", prizes: "MEDAL AND TROPHY", emoji: "🪢" },
     { id: 9, name: "DISCUS THROW", rules: ["STANDARD RULES."], date: "4 APRIL, 10:30 AM", venue: "MAIN GROUND", fees: "Rs 50", prizes: "MEDAL AND CERTIFICATE", emoji: "🛸" },
     { id: 10, name: "CARROM", rules: ["REGULAR RULES."], date: "4 APRIL, 10:30 AM", venue: "RECEPTION", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🎯" },
     { id: 11, name: "CHESS", rules: ["REGULAR RULES."], date: "5 APRIL, 11:00 AM", venue: "RECEPTION", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "♟️" },
-    { id: 12, name: "TABLE TENNIS", rules: ["REGULAR RULES."], date: "5 APRIL, 11:00 AM", venue: "T&P", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🏓" },
+    { id: 12, name: "TABLE TENNIS", rules: ["REGULAR RULES."], date: "5 APRIL, 11:00 AM", venue: "TBP", fees: "Rs 50", prizes: "TROPHY FOR WINNER", emoji: "🏓" },
   ];
 
   const handleToggleRules = (id) => {
@@ -27,6 +31,8 @@ function Sport() {
   const handleRegister = () => {
     navigate("/register");
   };
+
+  const regClosed = isRegClosed();
 
   return (
     <div className="min-h-screen bg-dark-bg party-bg">
@@ -104,12 +110,21 @@ function Sport() {
 
               {/* Register Button */}
               <div className="px-6 py-4 mt-auto">
-                <button
-                  onClick={handleRegister}
-                  className="btn-party w-full py-2.5 px-4 rounded-xl font-medium"
-                >
-                  <span>🎉 Register Now</span>
-                </button>
+                {regClosed ? (
+                  <button 
+                    disabled
+                    className="w-full py-2.5 px-4 rounded-xl font-medium bg-gray-700/50 text-gray-500 cursor-not-allowed border border-gray-600/30"
+                  >
+                    <span>🚫 Registration Closed</span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleRegister}
+                    className="btn-party w-full py-2.5 px-4 rounded-xl font-medium"
+                  >
+                    <span>🎉 Register Now</span>
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -124,12 +139,21 @@ function Sport() {
           <div className="text-4xl mb-4">⚡🏆⚡</div>
           <h2 className="text-2xl font-bold text-white mb-2">Ready to Compete?</h2>
           <p className="text-gray-400 mb-6">Register now to participate in these exciting sports events!</p>
-          <button
-            onClick={handleRegister}
-            className="btn-party py-3 px-8 rounded-xl font-medium"
-          >
-            <span>🎉 Register for Events</span>
-          </button>
+          {regClosed ? (
+            <button 
+              disabled
+              className="py-3 px-8 rounded-xl font-medium bg-gray-700/50 text-gray-500 cursor-not-allowed border border-gray-600/30"
+            >
+              <span>🚫 Registration Closed</span>
+            </button>
+          ) : (
+            <button
+              onClick={handleRegister}
+              className="btn-party py-3 px-8 rounded-xl font-medium"
+            >
+              <span>🎉 Register for Events</span>
+            </button>
+          )}
         </div>
       </div>
     </div>
