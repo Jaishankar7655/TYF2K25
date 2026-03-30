@@ -1,6 +1,6 @@
 import React from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
-import pdfUrl from "../assets/list.pdf";
+import pdfUrl from "../assets/lisst.pdf";
 
 function EventLists() {
   return (
