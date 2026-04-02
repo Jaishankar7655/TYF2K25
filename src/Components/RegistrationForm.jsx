@@ -85,7 +85,7 @@ const categories = [
         ],
         closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM"
       },
-      { name: "Walk & Wow (Ramp Walk)", price: 200, closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM" },
+      { name: "Walk & Wow (Ramp Walk)", price: 100, closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM" },
     ],
   },
   {
