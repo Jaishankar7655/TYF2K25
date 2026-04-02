@@ -31,7 +31,7 @@ const categories = [
       { name: "Javelin Throw", price: 50, closingDate: "2026-04-04T10:00:00+05:30", closingDateStr: "4 APRIL, 10:00 AM" },
       { name: "Cricket 2v2 ", price: 300, closingDate: "2026-04-04T10:00:00+05:30", closingDateStr: "4 APRIL, 10:00 AM" },
       { name: "Carrom", price: 50, closingDate: "2026-04-04T10:30:00+05:30", closingDateStr: "4 APRIL, 10:30 AM" },
-      { name: "Discus Throw", price: 50, closingDate: "2026-04-04T10:30:00+05:30", closingDateStr: "4 APRIL, 10:30 AM" },
+      { name: "Discus Throw", price: 50, closingDate: "2026-04-04T10:30:00+05:30", closingDateStr: "1 APRIL, 10:30 AM" },
       { name: "Rapid Run-Race", price: 50, closingDate: "2026-04-04T11:00:00+05:30", closingDateStr: "4 APRIL, 11:00 AM" },
       { name: "Shot Put", price: 50, closingDate: "2026-04-04T12:00:00+05:30", closingDateStr: "4 APRIL, 12:00 PM" },
       { name: "Badminton", price: 50, closingDate: "2026-04-05T10:00:00+05:30", closingDateStr: "5 APRIL, 10:00 AM" },
