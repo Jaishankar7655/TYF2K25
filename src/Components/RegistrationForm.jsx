@@ -98,7 +98,7 @@ const categories = [
       { name: "Blind Fold Challenge", price: 0, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
       { name: "Cup Pyramid", price: 0, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
       { name: "Dare to Drink", price: 50, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
-      { name: "Plank / Weight Add-On Challenge", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Plank / Weight Add-On Challenge", price: 50, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
       { name: "Poetry", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
       { name: "Bottle Flip", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
       { name: "Thug of War (Per Team, Max 10)", price: 300, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
