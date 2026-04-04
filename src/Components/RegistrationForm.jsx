@@ -37,7 +37,7 @@ const categories = [
       { name: "Badminton", price: 50, closingDate: "2026-04-05T10:00:00+05:30", closingDateStr: "5 APRIL, 10:00 AM" },
       { name: "Kabaddi", price: 300, closingDate: "2026-04-05T10:00:00+05:30", closingDateStr: "5 APRIL, 10:00 AM" },
       { name: "Kho-Kho", price: 300, closingDate: "2026-04-05T11:00:00+05:30", closingDateStr: "5 APRIL, 11:00 AM" },
-      { name: "Tug of War", price: 50, closingDate: "2026-04-05T11:00:00+05:30", closingDateStr: "5 APRIL, 11:00 AM" },
+      { name: "Tug of War", price: 50, closingDate: "2026-04-04T9:00:00+05:30", closingDateStr: "4 APRIL, 9:00 PM" },
       { name: "Table Tennis", price: 50, closingDate: "2026-04-05T11:00:00+05:30", closingDateStr: "5 APRIL, 11:00 AM" },
       { name: "Chess", price: 50, closingDate: "2026-04-05T11:00:00+05:30", closingDateStr: "5 APRIL, 11:00 AM" },
     ],
@@ -101,7 +101,7 @@ const categories = [
       { name: "Plank / Weight Add-On Challenge", price: 50, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
       { name: "Poetry", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
       { name: "Bottle Flip", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
-      { name: "Thug of War (Per Team, Max 10)", price: 300, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Thug of War (Per Team, Max 10)", price: 300, closingDate: "2026-04-07T09:09:00+05:30", closingDateStr: "4 APRIL 2026" },
       
       { name: "Dance-Freeze Challenge", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
       { name: "Paper Folding Dance", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
