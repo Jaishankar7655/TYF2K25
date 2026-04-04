@@ -101,8 +101,8 @@ const categories = [
       { name: "Plank / Weight Add-On Challenge", price: 50, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
       { name: "Poetry", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
       { name: "Bottle Flip", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
-      { name: "Thug of War (Per Team, Max 10)", price: 300, closingDate: "2026-04-07T21:09:00+05:30", closingDateStr: "4 APRIL 2026" },
-      
+      { name: "Thug of War (Per Team, Max 10)", price: 300, : closingDate: "2026-04-04T21:00:00+05:30", closingDateStr: "4 APRIL, 9:00 PM" },
+      tt
       { name: "Dance-Freeze Challenge", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
       { name: "Paper Folding Dance", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
       { name: "Truba Roadies", price: 100, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
