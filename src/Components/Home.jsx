@@ -146,15 +146,7 @@ const HomePage = () => {
               <span className="sm:hidden mt-1 block"> Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span> 🎶
             </p>
 
-            {/* CTA Button */}
-            {regClosed ? (
-              <button
-                disabled
-                className="group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 font-bold text-base sm:text-lg lg:text-xl rounded-full bg-gray-700/50 text-gray-500 cursor-not-allowed border border-gray-600/30"
-              >
-                <span>🚫 Registration Closed</span>
-              </button>
-            ) : (
+            
               <button
                 onClick={() => navigate("/Server")}
                 className="btn-party group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 font-bold text-base sm:text-lg lg:text-xl rounded-full transition-all duration-300 active:scale-95 neon-border"
@@ -162,7 +154,7 @@ const HomePage = () => {
                 <span>🎉 Register Now</span>
                 <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
               </button>
-            )}
+            }
 
             {/* Party emojis row */}
             <div className="flex items-center gap-3 sm:gap-6 text-xl sm:text-2xl md:text-3xl animate-party-float flex-wrap justify-center">
