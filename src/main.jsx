@@ -15,6 +15,7 @@ import Literary from "./Components/Literary";
 import Technical from "./Components/Technical";
 import Sac from "./Components/Sac";
 import Footer from "./Components/Footer";
+import Server from "./Components/Server";
 
 const root = document.getElementById("root");
 
@@ -35,6 +36,7 @@ ReactDOM.createRoot(root).render(
           <Route path="/Culture" element={<Culture />} />
           <Route path="/Sport" element={<Sport />} />
           <Route path="/sac" element={<Sac />} />
+          <Route path="/Server" element={<Server />} />
         </Routes>
       </div>
       <Footer />
