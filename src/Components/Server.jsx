@@ -329,7 +329,7 @@ export default function ServerUnreachable() {
           {/* Footer */}
           <p style={styles.footer}>
             If the issue persists, contact{" "}
-            <span style={styles.footerHighlight}>support@yourdomain.com</span>
+            <span style={styles.footerHighlight}>jaishankar7655@gmail.com</span>
           </p>
         </div>
       </div>
