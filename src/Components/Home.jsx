@@ -117,7 +117,7 @@ const HomePage = () => {
                     key={i}
                     className="whitespace-nowrap px-12 text-sm sm:text-base md:text-lg font-medium text-amber-200/90 tracking-wide"
                   >
-                    📌 Note: Sport events will be from 4 – 5 April 2026
+                    📌 Note: Sport events will be from 4 – 5 April 2026.
                   </span>
                 ))}
               </div>
