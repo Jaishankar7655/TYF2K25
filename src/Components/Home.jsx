@@ -148,7 +148,7 @@ const HomePage = () => {
 
             
               <button
-                onClick={() => navigate("/Server")}
+                onClick={() => navigate("/register")}
                 className="btn-party group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 font-bold text-base sm:text-lg lg:text-xl rounded-full transition-all duration-300 active:scale-95 neon-border"
               >
                 <span>🎉 Register Now</span>
