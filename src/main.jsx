@@ -36,7 +36,7 @@ ReactDOM.createRoot(root).render(
           <Route path="/Culture" element={<Culture />} />
           <Route path="/Sport" element={<Sport />} />
           <Route path="/sac" element={<Sac />} />
-          <Route path="/report-api-failure?=" element={<Server />} />
+          <Route path="/report" element={<Server />} />
         </Routes>
       </div>
       <Footer />
