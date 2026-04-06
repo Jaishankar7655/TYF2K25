@@ -4,7 +4,7 @@ import { User, Mail, Phone, School, Tag, Loader2, AlertTriangle } from "lucide-r
 import { useNavigate } from "react-router-dom";
 
 // Global registration deadline — after this, the entire registration form is closed
-const GLOBAL_REG_DEADLINE = "2026-04-08T23:59:00+05:30";
+const GLOBAL_REG_DEADLINE = "2026-04-07T21:00:00+05:30";
 
 // Force close online registration
 const ONLINE_REG_CLOSED = true;
@@ -20,11 +20,11 @@ const categories = [
       { name: "Poster-Paper Presentation", price: 150, closingDate: "2026-04-06T10:30:00+05:30", closingDateStr: "6 APRIL, 10:30 AM" },
       { name: "Cure Creation", price: 50, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
       { name: "Tech Quiz", price: 50, closingDate: "2026-04-06T12:30:00+05:30", closingDateStr: "6 APRIL, 12:30 PM" },
-      { name: "Coding Contest", price: 100, closingDate: "2026-04-07T10:30:00+05:30", closingDateStr: "7 APRIL, 10:30 AM" },
-      { name: "Treasure Hunt", price: 200, closingDate: "2026-04-07T11:30:00+05:30", closingDateStr: "7 APRIL, 11:30 AM" },
-      { name: "Cyber Security", price: 200, closingDate: "2026-04-07T12:30:00+05:30", closingDateStr: "7 APRIL, 12:30 PM" },
-      { name: "Pharma Quiz", price: 50, closingDate: "2026-04-07T13:00:00+05:30", closingDateStr: "7 APRIL, 1:00 PM" },
-      { name: "Debugging Contest", price: 100, closingDate: "2026-04-07T14:00:00+05:30", closingDateStr: "7 APRIL, 2:00 PM" },
+      { name: "Coding Contest", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
+      { name: "Treasure Hunt", price: 200, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
+      { name: "Cyber Security", price: 200, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
+      { name: "Pharma Quiz", price: 50, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
+      { name: "Debugging Contest", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
     ],
   },
   {
@@ -54,9 +54,9 @@ const categories = [
       { name: "IPL - The Final Bidder", price: 200, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
       { name: "Ink & Insight (Poetry)", price: 50, closingDate: "2026-04-06T12:00:00+05:30", closingDateStr: "6 APRIL, 12:00 PM" },
       { name: "Becho Toh Jaane (Sold Out)", price: 100, closingDate: "2026-04-06T13:00:00+05:30", closingDateStr: "6 APRIL, 1:00 PM" },
-      { name: "Commerce Quiz", price: 100, closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM" },
-      { name: "Face Painting", price: 100, closingDate: "2026-04-07T12:00:00+05:30", closingDateStr: "7 APRIL, 12:00 PM" },
-      { name: "Extempore", price: 50, closingDate: "2026-04-07T14:00:00+05:30", closingDateStr: "7 APRIL, 2:00 PM" },
+      { name: "Commerce Quiz", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
+      { name: "Face Painting", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
+      { name: "Extempore", price: 50, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
     ],
   },
   {
@@ -77,7 +77,7 @@ const categories = [
           { type: "Duo", price: 200 },
           { type: "Group", price: 250 },
         ],
-        closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM"
+        closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM"
       },
       {
         name: "Singing (Solo-Duo)",
@@ -86,9 +86,9 @@ const categories = [
           { type: "Solo", price: 50 },
           { type: "Duo", price: 100 },
         ],
-        closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM"
+        closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM"
       },
-      { name: "Walk & Wow (Ramp Walk)", price: 100, closingDate: "2026-04-07T11:00:00+05:30", closingDateStr: "7 APRIL, 11:00 AM" },
+      { name: "Walk & Wow (Ramp Walk)", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
     ],
   },
   {
@@ -101,15 +101,15 @@ const categories = [
       { name: "Blind Fold Challenge", price: 0, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
       { name: "Cup Pyramid", price: 0, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
       { name: "Dare to Drink", price: 50, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
-      { name: "Plank / Weight Add-On Challenge", price: 50, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
-      { name: "Poetry", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
-      { name: "Bottle Flip", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Plank / Weight Add-On Challenge", price: 50, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
+      { name: "Poetry", price: 0, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
+      { name: "Bottle Flip", price: 0, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
       { name: "Thug of War (Per Team, Max 10)", price: 300, closingDate: "2026-04-04T21:00:00+05:30", closingDateStr: "4 APRIL, 9:00 PM" },
-      { name: "Dance-Freeze Challenge", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
-      { name: "Paper Folding Dance", price: 0, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
-      { name: "Truba Roadies", price: 100, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
-      { name: "Sign - Walk Game", price: 50, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
-      { name: "Cricket Circle Game", price: 100, closingDate: "2026-04-07T23:59:00+05:30", closingDateStr: "7 APRIL 2026" },
+      { name: "Dance-Freeze Challenge", price: 0, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
+      { name: "Paper Folding Dance", price: 0, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
+      { name: "Truba Roadies", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
+      { name: "Sign - Walk Game", price: 50, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
+      { name: "Cricket Circle Game", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
     ],
   },
 ];
@@ -430,215 +430,3 @@ const RegistrationForm = () => {
                 {errors.email && (
                   <p className="mt-1 text-neon-pink text-sm">
                     {errors.email.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Phone Field */}
-              <div>
-                <label className="flex items-center space-x-2 text-gray-300 font-medium mb-2">
-                  <Phone className="w-4 h-4 text-neon-purple" />
-                  <span>Phone Number</span>
-                </label>
-                <input
-                  {...register("phone", {
-                    required: "Phone number is required",
-                    pattern: {
-                      value: /^\d{10}$/,
-                      message: "Invalid phone number",
-                    },
-                  })}
-                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-purple/50 focus:border-neon-purple/50 outline-none transition-all"
-                  placeholder="Enter your phone number"
-                />
-                {errors.phone && (
-                  <p className="mt-1 text-neon-pink text-sm">
-                    {errors.phone.message}
-                  </p>
-                )}
-              </div>
-
-              {/* College Field */}
-              <div>
-                <label className="flex items-center space-x-2 text-gray-300 font-medium mb-2">
-                  <School className="w-4 h-4 text-neon-yellow" />
-                  <span>College Name</span>
-                </label>
-                <input
-                  {...register("college", { required: "College name is required" })}
-                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-yellow/50 focus:border-neon-yellow/50 outline-none transition-all"
-                  placeholder="Enter your college name"
-                />
-                {errors.college && (
-                  <p className="mt-1 text-neon-pink text-sm">
-                    {errors.college.message}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            {/* Events Selection */}
-            <div>
-              <label className="flex items-center space-x-2 text-gray-300 font-medium mb-6">
-                <Tag className="w-4 h-4 text-neon-pink" />
-                <span>Select Events</span>
-              </label>
-
-              <div className="space-y-8">
-                {categories.map((category) => (
-                  <div key={category.title}>
-                    <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                      <span>{category.icon}</span>
-                      <span>{category.title}</span>
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                      {category.events.map((event) => {
-                        const isClosed =
-                          event.closed ||
-                          (event.closingDate &&
-                            new Date() > new Date(event.closingDate));
-                        const isSelected = selectedEvents.includes(event.name);
-
-                        return (
-                          <div
-                            key={event.name}
-                            className={`relative rounded-xl border p-3 transition-all ${
-                              ONLINE_REG_CLOSED
-                                ? "border-gray-700/30 bg-dark-surface/20 opacity-50 cursor-not-allowed"
-                                : isClosed
-                                ? "border-gray-700/30 bg-dark-surface/20 opacity-50 cursor-not-allowed"
-                                : isSelected
-                                ? "border-neon-pink/60 bg-neon-pink/10 shadow-[0_0_15px_rgba(255,0,128,0.1)] cursor-pointer"
-                                : "border-neon-purple/20 bg-dark-surface/40 hover:border-neon-purple/40 cursor-pointer"
-                            }`}
-                            onClick={() => {
-                              if (ONLINE_REG_CLOSED) return;
-                              if (!isClosed) {
-                                handleEventSelection(event, !isSelected);
-                              } else {
-                                setAlertMessage(`Registration for "${event.name}" is closed.`);
-                                setTimeout(() => setAlertMessage(""), 3000);
-                              }
-                            }}
-                          >
-                            <div className="flex items-start gap-2">
-                              <input
-                                type="checkbox"
-                                checked={isSelected}
-                                disabled={isClosed || ONLINE_REG_CLOSED}
-                                onChange={(e) =>
-                                  handleEventSelection(event, e.target.checked)
-                                }
-                                onClick={(e) => e.stopPropagation()}
-                                className="mt-1 accent-neon-pink"
-                              />
-                              <div className="flex-1 min-w-0">
-                                <p className="text-white text-sm font-medium leading-tight">
-                                  {event.name}
-                                </p>
-                                {event.hasOptions ? (
-                                  <p className="text-gray-400 text-xs mt-0.5">
-                                    ₹{event.options.map((o) => o.price).join("/")}
-                                  </p>
-                                ) : (
-                                  <p className="text-gray-400 text-xs mt-0.5">
-                                    {event.price === 0 ? "FREE" : `₹${event.price}`}
-                                  </p>
-                                )}
-                                {isClosed && (
-                                  <span className="inline-block mt-1 text-xs text-red-400 font-semibold">
-                                    Closed
-                                  </span>
-                                )}
-                                {!isClosed && event.closingDateStr && (
-                                  <p className="text-gray-500 text-xs mt-0.5">
-                                    Closes: {event.closingDateStr}
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-
-                            {/* Sub-options for events with options */}
-                            {event.hasOptions && isSelected && (
-                              <div
-                                className="mt-3 pt-3 border-t border-neon-purple/20 space-y-1"
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                {event.options.map((opt) => (
-                                  <label
-                                    key={opt.type}
-                                    className="flex items-center gap-2 cursor-pointer text-sm text-gray-300 hover:text-white"
-                                  >
-                                    <input
-                                      type="radio"
-                                      name={event.name}
-                                      value={opt.type}
-                                      checked={eventOptions[event.name] === opt.type}
-                                      onChange={() =>
-                                        handleOptionChange(event.name, opt.type)
-                                      }
-                                      className="accent-neon-cyan"
-                                    />
-                                    {opt.type} — ₹{opt.price}
-                                  </label>
-                                ))}
-                                {selectedEvents.includes(event.name) &&
-                                  !eventOptions[event.name] && (
-                                    <p className="text-neon-pink text-xs mt-1">
-                                      Please select a category
-                                    </p>
-                                  )}
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Total Amount */}
-            {selectedEvents.length > 0 && (
-              <div className="party-card rounded-2xl p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-gray-400 text-sm mb-1">Selected Events</p>
-                    <p className="text-white font-medium">
-                      {selectedEvents.join(", ")}
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-gray-400 text-sm mb-1">Total Amount</p>
-                    <p className="text-3xl font-black gradient-party">
-                      ₹{calculateTotal()}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isSubmitting || selectedEvents.length === 0 || ONLINE_REG_CLOSED}
-              className="w-full btn-party font-bold py-4 px-8 rounded-xl text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Submitting...</span>
-                </>
-              ) : (
-                <span>🎉 Register Now</span>
-              )}
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default RegistrationForm;
