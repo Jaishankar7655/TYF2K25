@@ -1,432 +1,235 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { User, Mail, Phone, School, Tag, Loader2, AlertTriangle } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Calendar, Music, Users, Trophy, ArrowRight, Sparkles, Disc3, PartyPopper, Headphones } from "lucide-react";
+import festlogo from "../assets/festlogo.png";
+import trb from "../assets/trb.png";
+import EventLists from "./EventLists";
+import Rules from "./Rules";
+import AllEvents from "./AllEvents";
 
-// Global registration deadline — after this, the entire registration form is closed
-const GLOBAL_REG_DEADLINE = "2026-04-07T21:00:00+05:30";
+// Confetti particle component
+const ConfettiParticle = ({ delay, left, color, size }) => (
+  <div
+    className="fixed pointer-events-none z-50"
+    style={{
+      left: `${left}%`,
+      top: '-20px',
+      width: `${size}px`,
+      height: `${size}px`,
+      backgroundColor: color,
+      borderRadius: Math.random() > 0.5 ? '50%' : '2px',
+      animation: `confettiFall ${4 + Math.random() * 4}s linear ${delay}s infinite`,
+      opacity: 0.8,
+    }}
+  />
+);
 
-// Force close online registration
-const ONLINE_REG_CLOSED = true;
+// Music equalizer component
+const MusicEqualizer = () => (
+  <div className="flex items-end gap-[3px] h-6">
+    {[0, 0.2, 0.4, 0.1, 0.3].map((delay, i) => (
+      <div
+        key={i}
+        className="eq-bar"
+        style={{ animationDelay: `${delay}s`, height: '8px' }}
+      />
+    ))}
+  </div>
+);
 
-// Categories data — all registrations open
-const categories = [
-  {
-    title: "Technical",
-    icon: "💻",
-    events: [
-      { name: "LAN Gaming", price: 350, closingDate: "2026-04-06T10:30:00+05:30", closingDateStr: "6 APRIL, 10:30 AM" },
-      { name: "Tech Talk", price: 0, closingDate: "2026-04-06T10:30:00+05:30", closingDateStr: "6 APRIL, 10:30 AM" },
-      { name: "Poster-Paper Presentation", price: 150, closingDate: "2026-04-06T10:30:00+05:30", closingDateStr: "6 APRIL, 10:30 AM" },
-      { name: "Cure Creation", price: 50, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
-      { name: "Tech Quiz", price: 50, closingDate: "2026-04-06T12:30:00+05:30", closingDateStr: "6 APRIL, 12:30 PM" },
-      { name: "Coding Contest", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Treasure Hunt", price: 200, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Cyber Security", price: 200, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Pharma Quiz", price: 50, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Debugging Contest", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-    ],
-  },
-  {
-    title: "Sports",
-    icon: "🏆",
-    events: [
-      { name: "Javelin Throw", price: 50, closingDate: "2026-04-04T10:00:00+05:30", closingDateStr: "4 APRIL, 10:00 AM" },
-      { name: "Cricket 2v2 ", price: 300, closingDate: "2026-04-04T10:00:00+05:30", closingDateStr: "4 APRIL, 10:00 AM" },
-      { name: "Carrom", price: 50, closingDate: "2026-04-04T10:30:00+05:30", closingDateStr: "4 APRIL, 10:30 AM" },
-      { name: "Discus Throw", price: 50, closingDate: "2026-04-04T10:30:00+05:30", closingDateStr: "4 APRIL, 10:30 AM" },
-      { name: "Rapid Run-Race", price: 50, closingDate: "2026-04-04T11:00:00+05:30", closingDateStr: "4 APRIL, 11:00 AM" },
-      { name: "Shot Put", price: 50, closingDate: "2026-04-02T12:00:00+05:30", closingDateStr: "4 APRIL, 12:00 PM" },
-      { name: "Badminton", price: 50, closingDate: "2026-04-05T10:00:00+05:30", closingDateStr: "5 APRIL, 10:00 AM" },
-      { name: "Kabaddi", price: 300, closingDate: "2026-04-05T10:00:00+05:30", closingDateStr: "5 APRIL, 10:00 AM" },
-      { name: "Kho-Kho", price: 300, closingDate: "2026-04-05T11:00:00+05:30", closingDateStr: "5 APRIL, 11:00 AM" },
-      { name: "Tug of War", price: 50, closingDate: "2026-04-04T21:00:00+05:30", closingDateStr: "4 APRIL, 9:00 PM" },
-      { name: "Table Tennis", price: 50, closingDate: "2026-04-05T11:00:00+05:30", closingDateStr: "5 APRIL, 11:00 AM" },
-      { name: "Chess", price: 50, closingDate: "2026-04-05T11:00:00+05:30", closingDateStr: "5 APRIL, 11:00 AM" },
-    ],
-  },
-  {
-    title: "Literary",
-    icon: "📚",
-    events: [
-      { name: "Cinematic Capital (Reel Making)", price: 100, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
-      { name: "Focus & Frame (Photography)", price: 50, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
-      { name: "IPL - The Final Bidder", price: 200, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
-      { name: "Ink & Insight (Poetry)", price: 50, closingDate: "2026-04-06T12:00:00+05:30", closingDateStr: "6 APRIL, 12:00 PM" },
-      { name: "Becho Toh Jaane (Sold Out)", price: 100, closingDate: "2026-04-06T13:00:00+05:30", closingDateStr: "6 APRIL, 1:00 PM" },
-      { name: "Commerce Quiz", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Face Painting", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Extempore", price: 50, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-    ],
-  },
-  {
-    title: "Cultural",
-    icon: "🎭",
-    events: [
-      { name: "Colorful Canvas (Rangoli)", price: 50, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
-      { name: "Henna Harmony (Mehendi)", price: 50, closingDate: "2026-04-06T11:00:00+05:30", closingDateStr: "6 APRIL, 11:00 AM" },
-      { name: "Dance Battle", price: 100, closingDate: "2026-04-06T14:00:00+05:30", closingDateStr: "6 APRIL, 2:00 PM" },
-      { name: "Open Mic", price: 50, closingDate: "2026-04-06T15:00:00+05:30", closingDateStr: "6 APRIL, 3:00 PM" },
-      { name: "Copy Paste (Mimicry)", price: 50, closingDate: "2026-04-06T15:00:00+05:30", closingDateStr: "6 APRIL, 3:00 PM" },
-      { name: "Acting Antics (Skit)", price: 250, closingDate: "2026-04-06T15:00:00+05:30", closingDateStr: "6 APRIL, 3:00 PM" },
-      {
-        name: "Dance (Solo-Duo-Group)",
-        hasOptions: true,
-        options: [
-          { type: "Solo", price: 100 },
-          { type: "Duo", price: 200 },
-          { type: "Group", price: 250 },
-        ],
-        closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM"
-      },
-      {
-        name: "Singing (Solo-Duo)",
-        hasOptions: true,
-        options: [
-          { type: "Solo", price: 50 },
-          { type: "Duo", price: 100 },
-        ],
-        closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM"
-      },
-      { name: "Walk & Wow (Ramp Walk)", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-    ],
-  },
-  {
-    title: "SAC Committee",
-    icon: "🌟",
-    events: [
-      { name: "Push-Up Challenge", price: 50, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
-      { name: "Spoon Tie-Knot Challenge", price: 50, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
-      { name: "Arm Wrestling (SAC)", price: 50, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
-      { name: "Blind Fold Challenge", price: 0, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
-      { name: "Cup Pyramid", price: 0, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
-      { name: "Dare to Drink", price: 50, closingDate: "2026-04-06T23:59:00+05:30", closingDateStr: "6 APRIL 2026" },
-      { name: "Plank / Weight Add-On Challenge", price: 50, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Poetry", price: 0, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Bottle Flip", price: 0, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Thug of War (Per Team, Max 10)", price: 300, closingDate: "2026-04-04T21:00:00+05:30", closingDateStr: "4 APRIL, 9:00 PM" },
-      { name: "Dance-Freeze Challenge", price: 0, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Paper Folding Dance", price: 0, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Truba Roadies", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Sign - Walk Game", price: 50, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-      { name: "Cricket Circle Game", price: 100, closingDate: "2026-04-07T21:00:00+05:30", closingDateStr: "7 APRIL, 9:00 PM" },
-    ],
-  },
-];
+// Global registration deadline
+const GLOBAL_REG_DEADLINE = "2026-04-08T23:59:00+05:30";
 
-// Check if global registration is closed
-const isGlobalRegistrationClosed = () => new Date() > new Date(GLOBAL_REG_DEADLINE);
-
-const RegistrationForm = () => {
+const HomePage = () => {
   const navigate = useNavigate();
-  const [error, setError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedEvents, setSelectedEvents] = useState([]);
-  const [eventOptions, setEventOptions] = useState({
-    "Singing (Solo-Duo)": "",
-    "Dance (Solo-Duo-Group)": "",
-  });
-  const [alertMessage, setAlertMessage] = useState("");
+  const regClosed = new Date() > new Date(GLOBAL_REG_DEADLINE);
+  const [confettiPieces, setConfettiPieces] = useState([]);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm({
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      college: "",
-      events: [],
-      "Singing (Solo-Duo) Options": "",
-      "Dance (Solo-Duo-Group) Options": "",
-    },
-  });
-
-  // If global registration is closed, show closed message
-  if (isGlobalRegistrationClosed()) {
-    return (
-      <div className="min-h-screen bg-dark-bg party-bg py-12 px-4 relative overflow-hidden flex items-center justify-center">
-        <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: '1s' }}></div>
-        </div>
-        <div className="max-w-lg mx-auto relative z-10 text-center">
-          <div className="party-card rounded-3xl p-10">
-            <div className="text-6xl mb-6">🚫</div>
-            <h2 className="text-4xl font-black text-red-400 mb-4">
-              Registration Closed
-            </h2>
-            <p className="text-gray-400 text-lg mb-6">
-              The registration deadline for <span className="text-neon-cyan font-bold">Truba Fest 2026</span> has passed. All registrations are now closed.
-            </p>
-            <p className="text-gray-500 text-sm mb-8">
-              If you have already registered, please check your email for confirmation details.
-            </p>
-            <button
-              onClick={() => navigate("/")}
-              className="btn-party inline-flex items-center justify-center font-bold py-3 px-8 rounded-xl"
-            >
-              <span>🏠 Back to Home</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  const calculateTotal = () => {
-    let total = 0;
-
-    selectedEvents.forEach((eventName) => {
-      for (const category of categories) {
-        const event = category.events.find((e) => e.name === eventName);
-        if (event) {
-          if (event.hasOptions) {
-            const selectedOption = eventOptions[event.name];
-            if (selectedOption) {
-              const option = event.options.find(
-                (opt) => opt.type === selectedOption
-              );
-              if (option) {
-                total += option.price;
-              }
-            }
-          } else {
-            total +=
-              typeof event.price === "number"
-                ? event.price
-                : parseInt(event.price);
-          }
-          break;
-        }
-      }
-    });
-
-    return total;
-  };
-
-  const handleEventSelection = (event, isChecked) => {
-    const isClosed = event.closed || (event.closingDate && new Date() > new Date(event.closingDate));
-    if (isClosed) {
-      setAlertMessage(`Registration for "${event.name}" is closed.`);
-      setTimeout(() => {
-        setAlertMessage("");
-      }, 3000);
-      return;
-    }
-
-    if (isChecked) {
-      setSelectedEvents((prev) => [...prev, event.name]);
-    } else {
-      setSelectedEvents((prev) => prev.filter((e) => e !== event.name));
-      if (
-        event.name === "Singing (Solo-Duo)" ||
-        event.name === "Dance (Solo-Duo-Group)"
-      ) {
-        setEventOptions((prev) => ({
-          ...prev,
-          [event.name]: "",
-        }));
-        setValue(`${event.name} Options`, "");
-      }
-    }
-  };
-
-  const handleOptionChange = (eventName, option) => {
-    setEventOptions((prev) => ({
-      ...prev,
-      [eventName]: option,
+  useEffect(() => {
+    const colors = ['#ff2d95', '#00f0ff', '#b026ff', '#ffe600', '#39ff14', '#ff6b00', '#ff00ff'];
+    const pieces = Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      delay: Math.random() * 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: 4 + Math.random() * 6,
     }));
-  };
-
-  const validateEventOptions = (eventName) => {
-    if (selectedEvents.includes(eventName) && !eventOptions[eventName]) {
-      return "Please select a category";
-    }
-    return true;
-  };
-
-  const onSubmit = async (data) => {
-    try {
-      setError("");
-      setIsSubmitting(true);
-
-      const detailedEventsList = selectedEvents.map((eventName) => {
-        let price = null;
-        let category = null;
-        for (const cat of categories) {
-          const event = cat.events.find((e) => e.name === eventName);
-          if (event) {
-            let catTitle = cat.title === "SAC Committee" ? "SAC Committee" : cat.title;
-            if (event.hasOptions) {
-              const selectedOption = eventOptions[event.name] || null;
-              category = selectedOption ? `${catTitle} - ${selectedOption}` : catTitle;
-              if (selectedOption) {
-                const opt = event.options.find((o) => o.type === selectedOption);
-                if (opt) price = opt.price;
-              }
-            } else {
-              category = catTitle;
-              price = typeof event.price === "number" ? event.price : parseInt(event.price);
-            }
-            break;
-          }
-        }
-        return { name: eventName, category: category, price: price };
-      });
-
-      const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("email", data.email);
-      formData.append("phone", data.phone);
-      formData.append("college", data.college);
-      formData.append("events", JSON.stringify(detailedEventsList));
-      formData.append("totalAmount", calculateTotal());
-
-      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVdY1Leca6iuIwN-Msb0gKIQehwh488UT7E3Z4J84rTRBT7Cno5I4TDaZa1xcaSrN5/exec";
-
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors",
-      });
-
-      if (response.type === "opaque") {
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-
-        const totalAmt = calculateTotal();
-        if (totalAmt === 0) {
-          navigate("/registration-confirmed", {
-            state: {
-              email: data.email,
-              phone: data.phone,
-            },
-          });
-        } else {
-          navigate("/payment", {
-            state: {
-              totalAmount: totalAmt,
-              email: data.email,
-              phone: data.phone,
-              message:
-                "Registration successful! Please check your email for the confirmation and QR code.",
-            },
-          });
-        }
-      } else {
-        throw new Error("Registration submission failed");
-      }
-    } catch (error) {
-      setError(
-        "Failed to submit registration. Please refresh the page and try again."
-      );
-      console.error("Registration error:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    setConfettiPieces(pieces);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-dark-bg party-bg py-12 px-4 relative overflow-hidden">
-      {/* Animated background orbs */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse"></div>
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: '1s' }}></div>
+    <div className="min-h-screen bg-dark-bg text-white relative overflow-hidden font-outfit selection:bg-neon-pink/30 flex flex-col">
+
+      {/* Confetti overlay — fewer on mobile for performance */}
+      <div className="hidden sm:block">
+        {confettiPieces.map((piece) => (
+          <ConfettiParticle key={piece.id} {...piece} />
+        ))}
       </div>
 
-      {/* ✅ ONLINE REGISTRATION CLOSED BANNER */}
-      {ONLINE_REG_CLOSED && (
-        <div className="relative z-20 max-w-5xl mx-auto mb-6">
-          <div className="bg-yellow-400/10 border border-yellow-400/50 rounded-2xl px-5 py-4 flex items-start gap-3 backdrop-blur-sm shadow-[0_0_30px_rgba(234,179,8,0.15)]">
-            <span className="text-2xl mt-0.5">📢</span>
-            <div>
-              <p className="text-yellow-300 font-black text-sm uppercase tracking-widest mb-1">
-                Important Notice
-              </p>
-              <p className="text-yellow-100 font-bold text-base leading-snug">
-                ONLINE REGISTRATION HAS BEEN CLOSED.
-              </p>
-              <p className="text-gray-300 text-sm mt-1 leading-relaxed">
-                OFFLINE / ON-SPOT REGISTRATION WILL BE TAKEN FOR TOMORROW{" "}
-                <span className="text-neon-cyan font-bold">(07-04-2026)</span> EVENTS.
-                KINDLY REACH CAMPUS BEFORE EVENTS STARTS FOR OFFLINE / ON-SPOT REGISTRATION.
-              </p>
+      {/* Animated Background Effects - Party Lights */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-[300px] h-[300px] sm:w-[450px] sm:h-[450px] lg:w-[600px] lg:h-[600px] rounded-full bg-neon-pink/10 blur-[100px] sm:blur-[150px] animate-disco-pulse"></div>
+        <div className="absolute top-1/3 right-0 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] rounded-full bg-neon-cyan/10 blur-[100px] sm:blur-[150px] animate-disco-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px] rounded-full bg-neon-purple/10 blur-[120px] sm:blur-[180px] animate-disco-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="hidden sm:block absolute bottom-1/4 left-0 w-[400px] h-[400px] rounded-full bg-neon-yellow/5 blur-[120px] animate-disco-pulse" style={{ animationDelay: '0.5s' }}></div>
+
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(176,38,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(176,38,255,0.03)_1px,transparent_1px)] bg-[size:3rem_3rem] sm:bg-[size:4rem_4rem]"></div>
+      </div>
+
+      {/* Hero Section Container (min 100vh) */}
+      <div className="min-h-[100dvh] w-full flex flex-col relative z-20">
+        {/* Header */}
+        <header className="relative z-50 w-full flex justify-between items-center gap-2 sm:gap-8 md:gap-16 px-4 sm:px-10 md:px-16 py-3 sm:py-5">
+          <div className="flex items-center group cursor-pointer flex-shrink-0">
+          <img className="w-12 h-12 sm:w-16 sm:h-16 md:w-28 md:h-28 object-contain rounded-full transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(255,45,149,0.5)] group-hover:scale-105" src={trb} alt="Truba Logo" />
+          </div>
+
+          {/* Center - Music Equalizer */}
+          <div className="flex items-center gap-1 sm:gap-3 md:gap-4 flex-shrink min-w-0 justify-center">
+            <div className="scale-[0.6] sm:scale-100"><MusicEqualizer /></div>
+          <span className="text-neon-cyan text-[11px] sm:text-base md:text-3xl font-bold md:font-black tracking-normal sm:tracking-widest uppercase whitespace-nowrap drop-shadow-[0_0_10px_rgba(0,240,255,0.5)] truncate">Live Party Mode</span>
+            <div className="scale-[0.6] sm:scale-100"><MusicEqualizer /></div>
+          </div>
+
+          <div className="flex items-center group cursor-pointer flex-shrink-0">
+          <img className="w-12 h-12 sm:w-12 sm:h-12 md:w-28 md:h-28 object-contain rounded-full transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(0,240,255,0.5)] group-hover:scale-105" src={festlogo} alt="Fest Logo" />
+          </div>
+
+        </header>
+
+        {/* Hero Section */}
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center w-full px-4 sm:px-6 pb-12 sm:pb-20 pt-10 sm:pt-12">
+        <div className="text-center w-full max-w-5xl mx-auto flex flex-col items-center justify-center h-full gap-6 sm:gap-8 md:gap-10 lg:gap-12">
+
+            {/* Party badge */}
+            <div className="inline-flex items-center flex-wrap justify-center gap-1.5 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-dark-card/80 border border-neon-pink/30 backdrop-blur-md text-neon-pink font-semibold text-xs sm:text-base shadow-[0_0_20px_rgba(255,45,149,0.15)] animate-party-float scaling-element">
+              <PartyPopper className="w-4 h-4 sm:w-5 sm:h-5 text-neon-yellow flex-shrink-0" />
+              <span className="tracking-wide sm:tracking-wider uppercase whitespace-nowrap">{regClosed ? '🚫 Registration Closed • Truba Fest 2026' : '🎉 Registration Open • April 4-8, 2026 🎉'}</span>
+              <Disc3 className="w-4 h-4 sm:w-5 sm:h-5 text-neon-cyan animate-spin flex-shrink-0" style={{ animationDuration: '3s' }} />
             </div>
+
+            <div className="w-[90%] max-w-[600px] overflow-hidden rounded-lg py-2 mx-auto">
+              <div className="flex w-max animate-ticker hover:[animation-play-state:paused]">
+                {[...Array(4)].map((_, i) => (
+                  <span
+                    key={i}
+                    className="whitespace-nowrap px-12 text-sm sm:text-base md:text-lg font-medium text-amber-200/90 tracking-wide"
+                  >
+                    📌 Note: Sport events will be from 4 – 5 April 2026.
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Main title */}
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight flex flex-col items-center leading-[1.1] md:leading-none my-2 sm:my-4">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan px-2 pb-2 md:pb-0 drop-shadow-[0_0_40px_rgba(255,45,149,0.3)]">
+                <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">TRUBA</span> FEST
+              </span>
+            </h1>
+
+            {/* Year */}
+          <div className="relative flex items-center gap-3 sm:gap-5 mb-2 sm:mb-4">
+            <Headphones className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-neon-cyan animate-party-float" style={{ animationDelay: '0.5s' }} />
+            <h2 className="text-5xl sm:text-6xl md:text-8xl font-black neon-text bg-clip-text text-neon-cyan drop-shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+                2K26
+              </h2>
+            <Music className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-neon-pink animate-party-float" style={{ animationDelay: '1s' }} />
+            </div>
+
+            {/* Tagline */}
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-sm sm:max-w-2xl md:max-w-3xl mx-auto font-medium leading-relaxed px-4">
+              🎧 The Ultimate <span className="text-neon-pink font-bold">Party</span> • <span className="text-neon-cyan font-bold">Music</span> • <span className="text-neon-purple font-bold">Dance</span> Experience.
+              <span className="hidden sm:inline"> Join Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span>
+              <span className="sm:hidden mt-1 block"> Central India's most <span className="text-neon-yellow font-bold">electrifying</span> fest!</span> 🎶
+            </p>
+
+            
+              <button
+                onClick={() => navigate("/register")}
+                className="btn-party group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 font-bold text-base sm:text-lg lg:text-xl rounded-full transition-all duration-300 active:scale-95 neon-border"
+              >
+                <span>🎉 Register Now</span>
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
+              </button>
+            
+
+            {/* Party emojis row */}
+            <div className="flex items-center gap-3 sm:gap-6 text-xl sm:text-2xl md:text-3xl animate-party-float flex-wrap justify-center">
+              <span>🎵</span><span>🪩</span><span>🎤</span><span>🎸</span>
+              <span className="hidden sm:inline">🥁</span>
+              <span className="hidden sm:inline">🎷</span>
+              <span className="hidden md:inline">🎺</span>
+            </div>
+          </div>
+        </main>
+
+        {/* Scroll Down Indicator */}
+        <div
+          className="mt-auto mb-4 sm:mb-8 mx-auto flex flex-col items-center animate-bounce z-50 cursor-pointer text-gray-400 hover:text-white transition-colors"
+          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+        >
+          <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest mb-1 drop-shadow-md">Scroll Down</span>
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-current rounded-full flex justify-center p-1 bg-dark-bg/50 backdrop-blur-sm">
+            <div className="w-1 h-2 bg-neon-cyan rounded-full"></div>
           </div>
         </div>
-      )}
+      </div>
 
-      <div className="max-w-5xl mx-auto relative z-10">
-        <div className="party-card rounded-3xl p-8">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <div className="text-4xl mb-4">🎉🪩🎶</div>
-            <h2 className="text-5xl font-black gradient-party mb-4">
-              Join the Party!
-            </h2>
-            <p className="text-gray-400 text-lg">
-              🎧 Register for Truba Fest 2026 🎧
-            </p>
+      {/* Feature Section - Party Stats */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 border-y border-neon-purple/10">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black">
+            <span className="gradient-party">🪩 The Party Lineup 🪩</span>
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-7xl mx-auto">
+          {[
+            { icon: <Calendar className="w-6 h-6 sm:w-8 sm:h-8" />, title: "3 Epic Days", desc: "Non-stop party & celebration", color: "neon-pink", emoji: "🎉" },
+            { icon: <Music className="w-6 h-6 sm:w-8 sm:h-8" />, title: "25+ Events", desc: "Dance, sing, compete & party", color: "neon-cyan", emoji: "🎶" },
+            { icon: <Users className="w-6 h-6 sm:w-8 sm:h-8" />, title: "1000+ Students", desc: "The biggest youth gathering", color: "neon-purple", emoji: "🕺" },
+            { icon: <Trophy className="w-6 h-6 sm:w-8 sm:h-8" />, title: "Massive Prizes", desc: "Win glory and epic rewards", color: "neon-yellow", emoji: "🏆" },
+          ].map((item, idx) => (
+            <div key={idx} className="party-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 flex flex-col items-center text-center group cursor-pointer" style={{ animationDelay: `${idx * 0.1}s` }}>
+              <div className="text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-4">{item.emoji}</div>
+              <div className={`p-2.5 sm:p-3 md:p-4 rounded-xl sm:rounded-2xl bg-${item.color}/10 text-${item.color} mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-500 group-hover:shadow-[0_0_20px_rgba(255,45,149,0.2)]`}>
+                {item.icon}
+              </div>
+              <h3 className="text-base sm:text-xl md:text-2xl font-bold text-white mb-1 sm:mb-2">{item.title}</h3>
+              <p className="text-gray-400 text-xs sm:text-sm md:text-base font-medium hidden sm:block">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Details Components */}
+      <section className="relative z-10 container mx-auto px-3 sm:px-4 md:px-6 py-12 sm:py-16 md:py-24 space-y-8 sm:space-y-12 md:space-y-16">
+        <div className="relative group max-w-7xl mx-auto">
+          <div className="absolute -inset-1 bg-gradient-to-r from-neon-pink/20 to-neon-purple/20 rounded-2xl sm:rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition duration-700"></div>
+          <div className="relative party-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-14">
+            <EventLists />
           </div>
+        </div>
 
-          {/* Alert Message */}
-          {alertMessage && (
-            <div className="fixed top-6 left-0 right-0 mx-auto w-full max-w-md z-50">
-              <div className="bg-red-900/80 border border-red-500/50 text-red-200 px-4 py-3 rounded-lg shadow-[0_0_20px_rgba(255,0,0,0.2)] flex items-center backdrop-blur-md">
-                <AlertTriangle className="h-5 w-5 mr-2 text-neon-yellow" />
-                <p>{alertMessage}</p>
-              </div>
-            </div>
-          )}
+        <div className="relative group max-w-7xl mx-auto">
+          <div className="absolute -inset-1 bg-gradient-to-r from-neon-cyan/20 to-neon-purple/20 rounded-2xl sm:rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition duration-700"></div>
+          <div className="relative party-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-14">
+            <Rules />
+          </div>
+        </div>
 
-          {/* Error Message */}
-          {error && (
-            <div className="mb-6 p-4 bg-red-900/30 border border-red-500/30 rounded-xl">
-              <p className="text-red-300">{error}</p>
-            </div>
-          )}
+        <div className="relative group max-w-7xl mx-auto">
+          <div className="absolute -inset-1 bg-gradient-to-r from-neon-yellow/20 to-neon-pink/20 rounded-2xl sm:rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition duration-700"></div>
+          <div className="relative party-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-14 mb-6 sm:mb-12">
+            <AllEvents />
+          </div>
+        </div>
+      </section>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-            {/* Personal Information */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Name Field */}
-              <div>
-                <label className="flex items-center space-x-2 text-gray-300 font-medium mb-2">
-                  <User className="w-4 h-4 text-neon-pink" />
-                  <span>Full Name</span>
-                </label>
-                <input
-                  {...register("name", { required: "Name is required" })}
-                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-pink/50 focus:border-neon-pink/50 outline-none transition-all"
-                  placeholder="Enter your full name"
-                />
-                {errors.name && (
-                  <p className="mt-1 text-neon-pink text-sm">
-                    {errors.name.message}
-                  </p>
-                )}
-              </div>
+    </div>
+  );
+};
 
-              {/* Email Field */}
-              <div>
-                <label className="flex items-center space-x-2 text-gray-300 font-medium mb-2">
-                  <Mail className="w-4 h-4 text-neon-cyan" />
-                  <span>Email</span>
-                </label>
-                <input
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Invalid email address",
-                    },
-                  })}
-                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-cyan/50 focus:border-neon-cyan/50 outline-none transition-all"
-                  placeholder="Enter your email"
-                />
-                {errors.email && (
-                  <p className="mt-1 text-neon-pink text-sm">
-                    {errors.email.message}
+export default HomePage;
