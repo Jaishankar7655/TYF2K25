@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { User, Mail, Phone, School, Tag, Loader2, AlertTriangle } from "lucide-react";
+import { User, Mail, Phone, School, Tag, Loader2, AlertTriangle, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-// Global registration deadline — after this, the entire registration form is closed
-const GLOBAL_REG_DEADLINE = "2026-04-08T23:59:00+05:30";
+// ✅ Global registration deadline — 6 April 2026, 9:00 PM IST
+const GLOBAL_REG_DEADLINE = "2026-04-06T21:00:00+05:30";
 
-// Force close online registration
-const ONLINE_REG_CLOSED = true;
-
-// Categories data — all registrations open
+// Categories data
 const categories = [
   {
     title: "Technical",
@@ -114,8 +111,44 @@ const categories = [
   },
 ];
 
-// Check if global registration is closed
+// ✅ Check if global registration is closed (after 6 April 2026, 9:00 PM IST)
 const isGlobalRegistrationClosed = () => new Date() > new Date(GLOBAL_REG_DEADLINE);
+
+// ✅ Popup Modal Component
+const RegistrationClosedPopup = ({ onClose }) => (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4">
+    <div className="relative bg-[#1a1a2e] border border-red-500/50 rounded-2xl p-8 max-w-lg w-full shadow-[0_0_60px_rgba(255,0,0,0.2)] text-center animate-fade-in">
+      {/* Close button */}
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+      >
+        <X className="w-5 h-5" />
+      </button>
+
+      <div className="text-5xl mb-4">🚫</div>
+
+      <h2 className="text-2xl font-black text-red-400 mb-4 uppercase tracking-wide leading-snug">
+        ONLINE REGISTRATION HAS BEEN CLOSED
+      </h2>
+
+      <div className="bg-yellow-400/10 border border-yellow-400/30 rounded-xl px-5 py-4 mb-6">
+        <p className="text-yellow-100 font-semibold text-sm leading-relaxed">
+          OFFLINE / ON-SPOT REGISTRATION WILL BE TAKEN FOR TOMORROW{" "}
+          <span className="text-neon-cyan font-black">(07-04-2026)</span> EVENTS,
+          KINDLY REACH CAMPUS BEFORE EVENTS STARTS FOR OFFLINE / ON-SPOT REGISTRATION.
+        </p>
+      </div>
+
+      <button
+        onClick={onClose}
+        className="btn-party inline-flex items-center justify-center font-bold py-3 px-8 rounded-xl text-sm"
+      >
+        OK, Got it
+      </button>
+    </div>
+  </div>
+);
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -127,6 +160,17 @@ const RegistrationForm = () => {
     "Dance (Solo-Duo-Group)": "",
   });
   const [alertMessage, setAlertMessage] = useState("");
+
+  // ✅ Popup state — show automatically on page load if registration is closed
+  const [showClosedPopup, setShowClosedPopup] = useState(false);
+
+  const regClosed = isGlobalRegistrationClosed();
+
+  useEffect(() => {
+    if (regClosed) {
+      setShowClosedPopup(true);
+    }
+  }, [regClosed]);
 
   const {
     register,
@@ -145,41 +189,8 @@ const RegistrationForm = () => {
     },
   });
 
-  // If global registration is closed, show closed message
-  if (isGlobalRegistrationClosed()) {
-    return (
-      <div className="min-h-screen bg-dark-bg party-bg py-12 px-4 relative overflow-hidden flex items-center justify-center">
-        <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: '1s' }}></div>
-        </div>
-        <div className="max-w-lg mx-auto relative z-10 text-center">
-          <div className="party-card rounded-3xl p-10">
-            <div className="text-6xl mb-6">🚫</div>
-            <h2 className="text-4xl font-black text-red-400 mb-4">
-              Registration Closed
-            </h2>
-            <p className="text-gray-400 text-lg mb-6">
-              The registration deadline for <span className="text-neon-cyan font-bold">Truba Fest 2026</span> has passed. All registrations are now closed.
-            </p>
-            <p className="text-gray-500 text-sm mb-8">
-              If you have already registered, please check your email for confirmation details.
-            </p>
-            <button
-              onClick={() => navigate("/")}
-              className="btn-party inline-flex items-center justify-center font-bold py-3 px-8 rounded-xl"
-            >
-              <span>🏠 Back to Home</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   const calculateTotal = () => {
     let total = 0;
-
     selectedEvents.forEach((eventName) => {
       for (const category of categories) {
         const event = category.events.find((e) => e.name === eventName);
@@ -187,34 +198,30 @@ const RegistrationForm = () => {
           if (event.hasOptions) {
             const selectedOption = eventOptions[event.name];
             if (selectedOption) {
-              const option = event.options.find(
-                (opt) => opt.type === selectedOption
-              );
-              if (option) {
-                total += option.price;
-              }
+              const option = event.options.find((opt) => opt.type === selectedOption);
+              if (option) total += option.price;
             }
           } else {
-            total +=
-              typeof event.price === "number"
-                ? event.price
-                : parseInt(event.price);
+            total += typeof event.price === "number" ? event.price : parseInt(event.price);
           }
           break;
         }
       }
     });
-
     return total;
   };
 
   const handleEventSelection = (event, isChecked) => {
+    // ✅ If global reg is closed, block ALL checkboxes
+    if (regClosed) {
+      setShowClosedPopup(true);
+      return;
+    }
+
     const isClosed = event.closed || (event.closingDate && new Date() > new Date(event.closingDate));
     if (isClosed) {
       setAlertMessage(`Registration for "${event.name}" is closed.`);
-      setTimeout(() => {
-        setAlertMessage("");
-      }, 3000);
+      setTimeout(() => setAlertMessage(""), 3000);
       return;
     }
 
@@ -222,24 +229,15 @@ const RegistrationForm = () => {
       setSelectedEvents((prev) => [...prev, event.name]);
     } else {
       setSelectedEvents((prev) => prev.filter((e) => e !== event.name));
-      if (
-        event.name === "Singing (Solo-Duo)" ||
-        event.name === "Dance (Solo-Duo-Group)"
-      ) {
-        setEventOptions((prev) => ({
-          ...prev,
-          [event.name]: "",
-        }));
+      if (event.name === "Singing (Solo-Duo)" || event.name === "Dance (Solo-Duo-Group)") {
+        setEventOptions((prev) => ({ ...prev, [event.name]: "" }));
         setValue(`${event.name} Options`, "");
       }
     }
   };
 
   const handleOptionChange = (eventName, option) => {
-    setEventOptions((prev) => ({
-      ...prev,
-      [eventName]: option,
-    }));
+    setEventOptions((prev) => ({ ...prev, [eventName]: option }));
   };
 
   const validateEventOptions = (eventName) => {
@@ -250,6 +248,12 @@ const RegistrationForm = () => {
   };
 
   const onSubmit = async (data) => {
+    // ✅ Extra safety — block submit if closed
+    if (regClosed) {
+      setShowClosedPopup(true);
+      return;
+    }
+
     try {
       setError("");
       setIsSubmitting(true);
@@ -286,7 +290,8 @@ const RegistrationForm = () => {
       formData.append("events", JSON.stringify(detailedEventsList));
       formData.append("totalAmount", calculateTotal());
 
-      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVdY1Leca6iuIwN-Msb0gKIQehwh488UT7E3Z4J84rTRBT7Cno5I4TDaZa1xcaSrN5/exec";
+      const GOOGLE_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbxVdY1Leca6iuIwN-Msb0gKIQehwh488UT7E3Z4J84rTRBT7Cno5I4TDaZa1xcaSrN5/exec";
 
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
@@ -296,14 +301,10 @@ const RegistrationForm = () => {
 
       if (response.type === "opaque") {
         await new Promise((resolve) => setTimeout(resolve, 1500));
-
         const totalAmt = calculateTotal();
         if (totalAmt === 0) {
           navigate("/registration-confirmed", {
-            state: {
-              email: data.email,
-              phone: data.phone,
-            },
+            state: { email: data.email, phone: data.phone },
           });
         } else {
           navigate("/payment", {
@@ -311,8 +312,7 @@ const RegistrationForm = () => {
               totalAmount: totalAmt,
               email: data.email,
               phone: data.phone,
-              message:
-                "Registration successful! Please check your email for the confirmation and QR code.",
+              message: "Registration successful! Please check your email for the confirmation and QR code.",
             },
           });
         }
@@ -320,9 +320,7 @@ const RegistrationForm = () => {
         throw new Error("Registration submission failed");
       }
     } catch (error) {
-      setError(
-        "Failed to submit registration. Please refresh the page and try again."
-      );
+      setError("Failed to submit registration. Please refresh the page and try again.");
       console.error("Registration error:", error);
     } finally {
       setIsSubmitting(false);
@@ -331,28 +329,33 @@ const RegistrationForm = () => {
 
   return (
     <div className="min-h-screen bg-dark-bg party-bg py-12 px-4 relative overflow-hidden">
+      {/* ✅ Popup — auto shows when reg is closed */}
+      {showClosedPopup && (
+        <RegistrationClosedPopup onClose={() => setShowClosedPopup(false)} />
+      )}
+
       {/* Animated background orbs */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse"></div>
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: "1s" }}></div>
       </div>
 
-      {/* ✅ ONLINE REGISTRATION CLOSED BANNER */}
-      {ONLINE_REG_CLOSED && (
+      {/* ✅ ONLINE REGISTRATION CLOSED BANNER — always visible when reg is closed */}
+      {regClosed && (
         <div className="relative z-20 max-w-5xl mx-auto mb-6">
-          <div className="bg-yellow-400/10 border border-yellow-400/50 rounded-2xl px-5 py-4 flex items-start gap-3 backdrop-blur-sm shadow-[0_0_30px_rgba(234,179,8,0.15)]">
-            <span className="text-2xl mt-0.5">📢</span>
+          <div className="bg-red-500/10 border border-red-500/50 rounded-2xl px-5 py-4 flex items-start gap-3 backdrop-blur-sm shadow-[0_0_30px_rgba(255,0,0,0.15)]">
+            <span className="text-2xl mt-0.5">🚫</span>
             <div>
-              <p className="text-yellow-300 font-black text-sm uppercase tracking-widest mb-1">
-                Important Notice
+              <p className="text-red-400 font-black text-sm uppercase tracking-widest mb-1">
+                Registration Closed
               </p>
-              <p className="text-yellow-100 font-bold text-base leading-snug">
-                ONLINE REGISTRATION HAS BEEN CLOSED.
+              <p className="text-red-200 font-bold text-base leading-snug">
+                ONLINE REGISTRATION HAS BEEN CLOSED,
               </p>
               <p className="text-gray-300 text-sm mt-1 leading-relaxed">
-                OFFLINE / ON-SPOT REGISTRATION WILL BE TAKEN FOR TOMORROW{" "}
-                <span className="text-neon-cyan font-bold">(07-04-2026)</span> EVENTS.
-                KINDLY REACH CAMPUS BEFORE EVENTS STARTS FOR OFFLINE / ON-SPOT REGISTRATION.
+                OFFLINE/ON-SPOT REGISTRATION WILL BE TAKEN FOR TOMORROW{" "}
+                <span className="text-neon-cyan font-bold">(07-04-2026)</span> EVENTS, KINDLY REACH
+                CAMPUS BEFORE EVENTS STARTS FOR OFFLINE/ON-SPOT REGISTRATION.
               </p>
             </div>
           </div>
@@ -364,12 +367,8 @@ const RegistrationForm = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <div className="text-4xl mb-4">🎉🪩🎶</div>
-            <h2 className="text-5xl font-black gradient-party mb-4">
-              Join the Party!
-            </h2>
-            <p className="text-gray-400 text-lg">
-              🎧 Register for Truba Fest 2026 🎧
-            </p>
+            <h2 className="text-5xl font-black gradient-party mb-4">Join the Party!</h2>
+            <p className="text-gray-400 text-lg">🎧 Register for Truba Fest 2026 🎧</p>
           </div>
 
           {/* Alert Message */}
@@ -400,14 +399,11 @@ const RegistrationForm = () => {
                 </label>
                 <input
                   {...register("name", { required: "Name is required" })}
-                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-pink/50 focus:border-neon-pink/50 outline-none transition-all"
+                  disabled={regClosed}
+                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-pink/50 focus:border-neon-pink/50 outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Enter your full name"
                 />
-                {errors.name && (
-                  <p className="mt-1 text-neon-pink text-sm">
-                    {errors.name.message}
-                  </p>
-                )}
+                {errors.name && <p className="mt-1 text-neon-pink text-sm">{errors.name.message}</p>}
               </div>
 
               {/* Email Field */}
@@ -424,14 +420,11 @@ const RegistrationForm = () => {
                       message: "Invalid email address",
                     },
                   })}
-                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-cyan/50 focus:border-neon-cyan/50 outline-none transition-all"
+                  disabled={regClosed}
+                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-cyan/50 focus:border-neon-cyan/50 outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Enter your email"
                 />
-                {errors.email && (
-                  <p className="mt-1 text-neon-pink text-sm">
-                    {errors.email.message}
-                  </p>
-                )}
+                {errors.email && <p className="mt-1 text-neon-pink text-sm">{errors.email.message}</p>}
               </div>
 
               {/* Phone Field */}
@@ -448,14 +441,11 @@ const RegistrationForm = () => {
                       message: "Invalid phone number",
                     },
                   })}
-                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-purple/50 focus:border-neon-purple/50 outline-none transition-all"
+                  disabled={regClosed}
+                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-purple/50 focus:border-neon-purple/50 outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Enter your phone number"
                 />
-                {errors.phone && (
-                  <p className="mt-1 text-neon-pink text-sm">
-                    {errors.phone.message}
-                  </p>
-                )}
+                {errors.phone && <p className="mt-1 text-neon-pink text-sm">{errors.phone.message}</p>}
               </div>
 
               {/* College Field */}
@@ -466,14 +456,11 @@ const RegistrationForm = () => {
                 </label>
                 <input
                   {...register("college", { required: "College name is required" })}
-                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-yellow/50 focus:border-neon-yellow/50 outline-none transition-all"
+                  disabled={regClosed}
+                  className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-yellow/50 focus:border-neon-yellow/50 outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Enter your college name"
                 />
-                {errors.college && (
-                  <p className="mt-1 text-neon-pink text-sm">
-                    {errors.college.message}
-                  </p>
-                )}
+                {errors.college && <p className="mt-1 text-neon-pink text-sm">{errors.college.message}</p>}
               </div>
             </div>
 
@@ -493,24 +480,27 @@ const RegistrationForm = () => {
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                       {category.events.map((event) => {
+                        // ✅ If global reg closed, ALL events are forcibly closed
                         const isClosed =
+                          regClosed ||
                           event.closed ||
-                          (event.closingDate &&
-                            new Date() > new Date(event.closingDate));
+                          (event.closingDate && new Date() > new Date(event.closingDate));
                         const isSelected = selectedEvents.includes(event.name);
 
                         return (
                           <div
                             key={event.name}
-                            className={`relative rounded-xl border p-3 transition-all cursor-pointer ${
+                            className={`relative rounded-xl border p-3 transition-all ${
                               isClosed
                                 ? "border-gray-700/30 bg-dark-surface/20 opacity-50 cursor-not-allowed"
                                 : isSelected
-                                ? "border-neon-pink/60 bg-neon-pink/10 shadow-[0_0_15px_rgba(255,0,128,0.1)]"
-                                : "border-neon-purple/20 bg-dark-surface/40 hover:border-neon-purple/40"
+                                ? "border-neon-pink/60 bg-neon-pink/10 shadow-[0_0_15px_rgba(255,0,128,0.1)] cursor-pointer"
+                                : "border-neon-purple/20 bg-dark-surface/40 hover:border-neon-purple/40 cursor-pointer"
                             }`}
                             onClick={() => {
-                              if (!isClosed) {
+                              if (regClosed) {
+                                setShowClosedPopup(true);
+                              } else if (!isClosed) {
                                 handleEventSelection(event, !isSelected);
                               } else {
                                 setAlertMessage(`Registration for "${event.name}" is closed.`);
@@ -523,10 +513,15 @@ const RegistrationForm = () => {
                                 type="checkbox"
                                 checked={isSelected}
                                 disabled={isClosed}
-                                onChange={(e) =>
-                                  handleEventSelection(event, e.target.checked)
-                                }
-                                onClick={(e) => e.stopPropagation()}
+                                onChange={(e) => {
+                                  if (!isClosed) handleEventSelection(event, e.target.checked);
+                                }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (regClosed) {
+                                    setShowClosedPopup(true);
+                                  }
+                                }}
                                 className="mt-1 accent-neon-pink"
                               />
                               <div className="flex-1 min-w-0">
@@ -556,7 +551,7 @@ const RegistrationForm = () => {
                             </div>
 
                             {/* Sub-options for events with options */}
-                            {event.hasOptions && isSelected && (
+                            {event.hasOptions && isSelected && !regClosed && (
                               <div
                                 className="mt-3 pt-3 border-t border-neon-purple/20 space-y-1"
                                 onClick={(e) => e.stopPropagation()}
@@ -571,20 +566,17 @@ const RegistrationForm = () => {
                                       name={event.name}
                                       value={opt.type}
                                       checked={eventOptions[event.name] === opt.type}
-                                      onChange={() =>
-                                        handleOptionChange(event.name, opt.type)
-                                      }
+                                      onChange={() => handleOptionChange(event.name, opt.type)}
                                       className="accent-neon-cyan"
                                     />
                                     {opt.type} — ₹{opt.price}
                                   </label>
                                 ))}
-                                {selectedEvents.includes(event.name) &&
-                                  !eventOptions[event.name] && (
-                                    <p className="text-neon-pink text-xs mt-1">
-                                      Please select a category
-                                    </p>
-                                  )}
+                                {selectedEvents.includes(event.name) && !eventOptions[event.name] && (
+                                  <p className="text-neon-pink text-xs mt-1">
+                                    Please select a category
+                                  </p>
+                                )}
                               </div>
                             )}
                           </div>
@@ -602,15 +594,11 @@ const RegistrationForm = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-gray-400 text-sm mb-1">Selected Events</p>
-                    <p className="text-white font-medium">
-                      {selectedEvents.join(", ")}
-                    </p>
+                    <p className="text-white font-medium">{selectedEvents.join(", ")}</p>
                   </div>
                   <div className="text-right">
                     <p className="text-gray-400 text-sm mb-1">Total Amount</p>
-                    <p className="text-3xl font-black gradient-party">
-                      ₹{calculateTotal()}
-                    </p>
+                    <p className="text-3xl font-black gradient-party">₹{calculateTotal()}</p>
                   </div>
                 </div>
               </div>
@@ -619,7 +607,7 @@ const RegistrationForm = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={isSubmitting || selectedEvents.length === 0}
+              disabled={isSubmitting || selectedEvents.length === 0 || regClosed}
               className="w-full btn-party font-bold py-4 px-8 rounded-xl text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
