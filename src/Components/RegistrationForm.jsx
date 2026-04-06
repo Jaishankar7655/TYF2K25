@@ -3,8 +3,11 @@ import { useForm } from "react-hook-form";
 import { User, Mail, Phone, School, Tag, Loader2, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-// Global registration deadline — CLOSED (past date triggers closed screen)
-const GLOBAL_REG_DEADLINE = "2026-04-06T23:59:00+05:30";
+// Global registration deadline — after this, the entire registration form is closed
+const GLOBAL_REG_DEADLINE = "2026-04-08T23:59:00+05:30";
+
+// Force close online registration
+const ONLINE_REG_CLOSED = true;
 
 // Categories data — all registrations open
 const categories = [
@@ -142,91 +145,29 @@ const RegistrationForm = () => {
     },
   });
 
-  // ─── REGISTRATION CLOSED SCREEN ───────────────────────────────────────────
+  // If global registration is closed, show closed message
   if (isGlobalRegistrationClosed()) {
     return (
       <div className="min-h-screen bg-dark-bg party-bg py-12 px-4 relative overflow-hidden flex items-center justify-center">
-        {/* Animated background orbs */}
         <div className="fixed inset-0 pointer-events-none z-0">
           <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: "1s" }}></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-yellow-500/3 blur-[180px] animate-disco-pulse" style={{ animationDelay: "0.5s" }}></div>
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
-
-        <div className="max-w-lg w-full mx-auto relative z-10 text-center">
-          <div
-            className="party-card rounded-3xl p-10"
-            style={{
-              border: "1px solid rgba(250, 204, 21, 0.35)",
-              boxShadow: "0 0 60px rgba(250, 204, 21, 0.08), 0 0 120px rgba(239, 68, 68, 0.06)",
-            }}
-          >
-            {/* Icon */}
-            <div className="text-6xl mb-5 animate-bounce">🚨</div>
-
-            {/* Title */}
-            <h2
-              className="text-3xl font-black uppercase tracking-widest mb-1"
-              style={{ color: "#facc15", textShadow: "0 0 20px rgba(250,204,21,0.4)" }}
-            >
-              Online Registration
+        <div className="max-w-lg mx-auto relative z-10 text-center">
+          <div className="party-card rounded-3xl p-10">
+            <div className="text-6xl mb-6">🚫</div>
+            <h2 className="text-4xl font-black text-red-400 mb-4">
+              Registration Closed
             </h2>
-            <h3
-              className="text-2xl font-black uppercase tracking-wide mb-7"
-              style={{ color: "#f87171", textShadow: "0 0 16px rgba(248,113,113,0.4)" }}
-            >
-              Has Been Closed
-            </h3>
-
-            {/* Divider */}
-            <div className="w-16 h-px mx-auto mb-7" style={{ background: "linear-gradient(90deg, transparent, rgba(250,204,21,0.6), transparent)" }}></div>
-
-            {/* Announcement box */}
-            <div
-              className="rounded-2xl p-5 mb-7 text-left"
-              style={{
-                background: "rgba(250, 204, 21, 0.06)",
-                border: "1px solid rgba(250, 204, 21, 0.25)",
-              }}
-            >
-              <div className="flex items-start gap-3 mb-4">
-                <span className="text-xl mt-0.5">📋</span>
-                <p className="text-sm font-bold uppercase tracking-wide" style={{ color: "#facc15" }}>
-                  Offline / On-Spot Registration
-                </p>
-              </div>
-              <p className="text-gray-300 text-sm leading-relaxed ml-8">
-                Offline / On-Spot registration will be taken for{" "}
-                <span
-                  className="font-bold"
-                  style={{ color: "#67e8f9" }}
-                >
-                  tomorrow's (07-04-2026) events.
-                </span>
-              </p>
-              <div
-                className="mt-4 ml-8 p-3 rounded-xl text-sm font-semibold text-center"
-                style={{
-                  background: "rgba(250, 204, 21, 0.12)",
-                  color: "#fde68a",
-                  border: "1px dashed rgba(250,204,21,0.3)",
-                }}
-              >
-                ⏰ Kindly reach the campus{" "}
-                <span className="underline underline-offset-2">before events start</span>{" "}
-                for offline / on-spot registration.
-              </div>
-            </div>
-
-            {/* Already registered note */}
-            <p className="text-gray-500 text-xs mb-8">
-              Already registered? Check your email for confirmation &amp; payment details.
+            <p className="text-gray-400 text-lg mb-6">
+              The registration deadline for <span className="text-neon-cyan font-bold">Truba Fest 2026</span> has passed. All registrations are now closed.
             </p>
-
-            {/* Back button */}
+            <p className="text-gray-500 text-sm mb-8">
+              If you have already registered, please check your email for confirmation details.
+            </p>
             <button
               onClick={() => navigate("/")}
-              className="btn-party inline-flex items-center justify-center font-bold py-3 px-8 rounded-xl w-full"
+              className="btn-party inline-flex items-center justify-center font-bold py-3 px-8 rounded-xl"
             >
               <span>🏠 Back to Home</span>
             </button>
@@ -235,7 +176,6 @@ const RegistrationForm = () => {
       </div>
     );
   }
-  // ─── END CLOSED SCREEN ────────────────────────────────────────────────────
 
   const calculateTotal = () => {
     let total = 0;
@@ -269,9 +209,7 @@ const RegistrationForm = () => {
   };
 
   const handleEventSelection = (event, isChecked) => {
-    const isClosed =
-      event.closed ||
-      (event.closingDate && new Date() > new Date(event.closingDate));
+    const isClosed = event.closed || (event.closingDate && new Date() > new Date(event.closingDate));
     if (isClosed) {
       setAlertMessage(`Registration for "${event.name}" is closed.`);
       setTimeout(() => {
@@ -322,23 +260,17 @@ const RegistrationForm = () => {
         for (const cat of categories) {
           const event = cat.events.find((e) => e.name === eventName);
           if (event) {
-            let catTitle =
-              cat.title === "SAC Committee" ? "SAC Committee" : cat.title;
+            let catTitle = cat.title === "SAC Committee" ? "SAC Committee" : cat.title;
             if (event.hasOptions) {
               const selectedOption = eventOptions[event.name] || null;
-              category = selectedOption
-                ? `${catTitle} - ${selectedOption}`
-                : catTitle;
+              category = selectedOption ? `${catTitle} - ${selectedOption}` : catTitle;
               if (selectedOption) {
                 const opt = event.options.find((o) => o.type === selectedOption);
                 if (opt) price = opt.price;
               }
             } else {
               category = catTitle;
-              price =
-                typeof event.price === "number"
-                  ? event.price
-                  : parseInt(event.price);
+              price = typeof event.price === "number" ? event.price : parseInt(event.price);
             }
             break;
           }
@@ -354,8 +286,7 @@ const RegistrationForm = () => {
       formData.append("events", JSON.stringify(detailedEventsList));
       formData.append("totalAmount", calculateTotal());
 
-      const GOOGLE_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbxVdY1Leca6iuIwN-Msb0gKIQehwh488UT7E3Z4J84rTRBT7Cno5I4TDaZa1xcaSrN5/exec";
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVdY1Leca6iuIwN-Msb0gKIQehwh488UT7E3Z4J84rTRBT7Cno5I4TDaZa1xcaSrN5/exec";
 
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
@@ -403,11 +334,30 @@ const RegistrationForm = () => {
       {/* Animated background orbs */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-neon-pink/5 blur-[150px] animate-disco-pulse"></div>
-        <div
-          className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[150px] animate-disco-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
+
+      {/* ✅ ONLINE REGISTRATION CLOSED BANNER */}
+      {ONLINE_REG_CLOSED && (
+        <div className="relative z-20 max-w-5xl mx-auto mb-6">
+          <div className="bg-yellow-400/10 border border-yellow-400/50 rounded-2xl px-5 py-4 flex items-start gap-3 backdrop-blur-sm shadow-[0_0_30px_rgba(234,179,8,0.15)]">
+            <span className="text-2xl mt-0.5">📢</span>
+            <div>
+              <p className="text-yellow-300 font-black text-sm uppercase tracking-widest mb-1">
+                Important Notice
+              </p>
+              <p className="text-yellow-100 font-bold text-base leading-snug">
+                ONLINE REGISTRATION HAS BEEN CLOSED.
+              </p>
+              <p className="text-gray-300 text-sm mt-1 leading-relaxed">
+                OFFLINE / ON-SPOT REGISTRATION WILL BE TAKEN FOR TOMORROW{" "}
+                <span className="text-neon-cyan font-bold">(07-04-2026)</span> EVENTS.
+                KINDLY REACH CAMPUS BEFORE EVENTS STARTS FOR OFFLINE / ON-SPOT REGISTRATION.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="party-card rounded-3xl p-8">
@@ -512,12 +462,10 @@ const RegistrationForm = () => {
               <div>
                 <label className="flex items-center space-x-2 text-gray-300 font-medium mb-2">
                   <School className="w-4 h-4 text-neon-yellow" />
-                  <span>College / Institution</span>
+                  <span>College Name</span>
                 </label>
                 <input
-                  {...register("college", {
-                    required: "College name is required",
-                  })}
+                  {...register("college", { required: "College name is required" })}
                   className="w-full px-4 py-3 rounded-xl bg-dark-surface/80 border border-neon-purple/20 text-white placeholder-gray-500 focus:ring-2 focus:ring-neon-yellow/50 focus:border-neon-yellow/50 outline-none transition-all"
                   placeholder="Enter your college name"
                 />
@@ -532,20 +480,18 @@ const RegistrationForm = () => {
             {/* Events Selection */}
             <div>
               <label className="flex items-center space-x-2 text-gray-300 font-medium mb-6">
-                <Tag className="w-4 h-4 text-neon-cyan" />
-                <span className="text-xl font-bold gradient-party">
-                  Select Events
-                </span>
+                <Tag className="w-4 h-4 text-neon-pink" />
+                <span>Select Events</span>
               </label>
 
               <div className="space-y-8">
                 {categories.map((category) => (
                   <div key={category.title}>
-                    <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                       <span>{category.icon}</span>
-                      <span className="gradient-party">{category.title}</span>
+                      <span>{category.title}</span>
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                       {category.events.map((event) => {
                         const isClosed =
                           event.closed ||
@@ -556,105 +502,83 @@ const RegistrationForm = () => {
                         return (
                           <div
                             key={event.name}
-                            className={`relative rounded-xl p-4 border transition-all cursor-pointer ${
+                            className={`relative rounded-xl border p-3 transition-all cursor-pointer ${
                               isClosed
-                                ? "opacity-50 border-gray-700/30 bg-gray-800/20 cursor-not-allowed"
+                                ? "border-gray-700/30 bg-dark-surface/20 opacity-50 cursor-not-allowed"
                                 : isSelected
-                                ? "border-neon-pink/60 bg-neon-pink/5 shadow-[0_0_20px_rgba(255,0,128,0.1)]"
+                                ? "border-neon-pink/60 bg-neon-pink/10 shadow-[0_0_15px_rgba(255,0,128,0.1)]"
                                 : "border-neon-purple/20 bg-dark-surface/40 hover:border-neon-purple/40"
                             }`}
-                            onClick={() =>
-                              !isClosed &&
-                              handleEventSelection(event, !isSelected)
-                            }
+                            onClick={() => {
+                              if (!isClosed) {
+                                handleEventSelection(event, !isSelected);
+                              } else {
+                                setAlertMessage(`Registration for "${event.name}" is closed.`);
+                                setTimeout(() => setAlertMessage(""), 3000);
+                              }
+                            }}
                           >
-                            <div className="flex items-start justify-between gap-2">
-                              <div className="flex items-start gap-3 flex-1">
-                                <div
-                                  className={`w-5 h-5 rounded border-2 flex-shrink-0 mt-0.5 flex items-center justify-center transition-all ${
-                                    isSelected
-                                      ? "bg-neon-pink border-neon-pink"
-                                      : "border-gray-500"
-                                  }`}
-                                >
-                                  {isSelected && (
-                                    <svg
-                                      className="w-3 h-3 text-white"
-                                      fill="none"
-                                      viewBox="0 0 24 24"
-                                      stroke="currentColor"
-                                    >
-                                      <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={3}
-                                        d="M5 13l4 4L19 7"
-                                      />
-                                    </svg>
-                                  )}
-                                </div>
-                                <div>
-                                  <p className="text-white font-medium text-sm">
-                                    {event.name}
-                                  </p>
-                                  {isClosed ? (
-                                    <p className="text-red-400 text-xs mt-0.5 font-semibold">
-                                      🔒 Registration Closed
-                                    </p>
-                                  ) : (
-                                    <p className="text-gray-500 text-xs mt-0.5">
-                                      Closes: {event.closingDateStr}
-                                    </p>
-                                  )}
-                                </div>
-                              </div>
-                              <div className="text-right flex-shrink-0">
+                            <div className="flex items-start gap-2">
+                              <input
+                                type="checkbox"
+                                checked={isSelected}
+                                disabled={isClosed}
+                                onChange={(e) =>
+                                  handleEventSelection(event, e.target.checked)
+                                }
+                                onClick={(e) => e.stopPropagation()}
+                                className="mt-1 accent-neon-pink"
+                              />
+                              <div className="flex-1 min-w-0">
+                                <p className="text-white text-sm font-medium leading-tight">
+                                  {event.name}
+                                </p>
                                 {event.hasOptions ? (
-                                  <p className="text-neon-cyan text-xs font-bold">
-                                    Multiple
-                                  </p>
-                                ) : event.price === 0 ? (
-                                  <p className="text-green-400 text-sm font-bold">
-                                    FREE
+                                  <p className="text-gray-400 text-xs mt-0.5">
+                                    ₹{event.options.map((o) => o.price).join("/")}
                                   </p>
                                 ) : (
-                                  <p className="text-neon-yellow text-sm font-bold">
-                                    ₹{event.price}
+                                  <p className="text-gray-400 text-xs mt-0.5">
+                                    {event.price === 0 ? "FREE" : `₹${event.price}`}
+                                  </p>
+                                )}
+                                {isClosed && (
+                                  <span className="inline-block mt-1 text-xs text-red-400 font-semibold">
+                                    Closed
+                                  </span>
+                                )}
+                                {!isClosed && event.closingDateStr && (
+                                  <p className="text-gray-500 text-xs mt-0.5">
+                                    Closes: {event.closingDateStr}
                                   </p>
                                 )}
                               </div>
                             </div>
 
-                            {/* Options for events with sub-types */}
+                            {/* Sub-options for events with options */}
                             {event.hasOptions && isSelected && (
                               <div
-                                className="mt-3 pt-3 border-t border-neon-purple/20"
+                                className="mt-3 pt-3 border-t border-neon-purple/20 space-y-1"
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                <p className="text-gray-400 text-xs mb-2">
-                                  Select category:
-                                </p>
-                                <div className="flex flex-wrap gap-2">
-                                  {event.options.map((opt) => (
-                                    <button
-                                      key={opt.type}
-                                      type="button"
-                                      onClick={() =>
-                                        handleOptionChange(
-                                          event.name,
-                                          opt.type
-                                        )
+                                {event.options.map((opt) => (
+                                  <label
+                                    key={opt.type}
+                                    className="flex items-center gap-2 cursor-pointer text-sm text-gray-300 hover:text-white"
+                                  >
+                                    <input
+                                      type="radio"
+                                      name={event.name}
+                                      value={opt.type}
+                                      checked={eventOptions[event.name] === opt.type}
+                                      onChange={() =>
+                                        handleOptionChange(event.name, opt.type)
                                       }
-                                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                                        eventOptions[event.name] === opt.type
-                                          ? "bg-neon-pink text-white shadow-[0_0_10px_rgba(255,0,128,0.3)]"
-                                          : "bg-dark-surface border border-neon-purple/30 text-gray-300 hover:border-neon-pink/40"
-                                      }`}
-                                    >
-                                      {opt.type} — ₹{opt.price}
-                                    </button>
-                                  ))}
-                                </div>
+                                      className="accent-neon-cyan"
+                                    />
+                                    {opt.type} — ₹{opt.price}
+                                  </label>
+                                ))}
                                 {selectedEvents.includes(event.name) &&
                                   !eventOptions[event.name] && (
                                     <p className="text-neon-pink text-xs mt-1">
@@ -674,45 +598,37 @@ const RegistrationForm = () => {
 
             {/* Total Amount */}
             {selectedEvents.length > 0 && (
-              <div className="party-card rounded-2xl p-6 border border-neon-yellow/20">
+              <div className="party-card rounded-2xl p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-400 text-sm">Selected Events</p>
-                    <p className="text-white font-bold">
-                      {selectedEvents.length} event
-                      {selectedEvents.length !== 1 ? "s" : ""}
+                    <p className="text-gray-400 text-sm mb-1">Selected Events</p>
+                    <p className="text-white font-medium">
+                      {selectedEvents.join(", ")}
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-gray-400 text-sm">Total Amount</p>
-                    <p className="text-3xl font-black text-neon-yellow">
-                      {calculateTotal() === 0
-                        ? "FREE"
-                        : `₹${calculateTotal()}`}
+                    <p className="text-gray-400 text-sm mb-1">Total Amount</p>
+                    <p className="text-3xl font-black gradient-party">
+                      ₹{calculateTotal()}
                     </p>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* Validation: must select at least one event */}
-            {errors.events && (
-              <p className="text-neon-pink text-sm">{errors.events.message}</p>
-            )}
-
             {/* Submit Button */}
             <button
               type="submit"
               disabled={isSubmitting || selectedEvents.length === 0}
-              className="btn-party w-full py-4 rounded-xl font-black text-lg flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full btn-party font-bold py-4 px-8 rounded-xl text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Registering...</span>
+                  <span>Submitting...</span>
                 </>
               ) : (
-                <span>🎉 Complete Registration</span>
+                <span>🎉 Register Now</span>
               )}
             </button>
           </form>
